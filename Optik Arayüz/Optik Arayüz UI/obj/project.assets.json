@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\dev\\Optik Arayüz\\Optik Arayüz UI\\Optik Arayüz UI.csproj",
+      "projectUniqueName": "C:\\dev\\Optik-Arayuz\\Optik Arayüz\\Optik Arayüz UI\\Optik Arayüz UI.csproj",
       "projectName": "Optik Arayüz UI",
-      "projectPath": "C:\\dev\\Optik Arayüz\\Optik Arayüz UI\\Optik Arayüz UI.csproj",
+      "projectPath": "C:\\dev\\Optik-Arayuz\\Optik Arayüz\\Optik Arayüz UI\\Optik Arayüz UI.csproj",
       "packagesPath": "C:\\Users\\İSMAİL\\.nuget\\packages\\",
-      "outputPath": "C:\\dev\\Optik Arayüz\\Optik Arayüz UI\\obj\\",
+      "outputPath": "C:\\dev\\Optik-Arayuz\\Optik Arayüz\\Optik Arayüz UI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

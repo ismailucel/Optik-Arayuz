@@ -1,0 +1,20 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Optik_Arayüz_UI.Models
+{
+    public class Exam
+    {
+        [Key]
+        public int ExamId { get; set; }
+        public string? ExamName { get; set; }
+        public int TestCount { get; set; }
+        public int ClassicCount { get; set; }
+        [ForeignKey("ExamPaper")]
+        public int ExamPaperId { get; set; }
+        public ExamPaper? ExamPaper { get; set; }
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+        public User? User { get; set; }
+    }
+}
