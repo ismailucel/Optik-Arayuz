@@ -15,6 +15,6 @@ namespace Optik_Arayüz_UI.Models
         public ExamPaper? ExamPaper { get; set; }
         [ForeignKey("User")]
         public int UserId { get; set; }
-        public User? User { get; set; }
+        public virtual User? User { get; set; }
     }
 }
