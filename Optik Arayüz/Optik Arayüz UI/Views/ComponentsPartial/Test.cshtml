@@ -1,9 +1,20 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <a asp-area="" asp-controller="Home" asp-action="ExamPaperCreate">tıkla</a>
+﻿
+<head>
+    <link rel="stylesheet" href="~/css/Test.css" asp-append-version="true" />
+</head>
+<div class="test" style="width: @Convert.ToInt32(ViewData["x"])px;">
+    @for (var i = 1; i < Convert.ToInt32(ViewData["QuestionCount"]); i++)
+    {
+        <div class="lines">
+            <div class="number">@i</div>
+            <div class="circles">
+                <div>A</div>
+                <div>B</div>
+                <div>C</div>
+                <div>D</div>
+                <div>E</div>
+            </div>
+        </div>
+    }
+    
 </div>

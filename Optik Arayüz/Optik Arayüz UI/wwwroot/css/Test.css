@@ -1,0 +1,29 @@
+
+.lines {
+    display: flex;
+    border: 1px solid black;
+    justify-content: space-between;
+}
+
+.number {
+    padding-left: 2px;
+}
+
+.circles {
+    border-left: 1px solid black;
+    display: flex;
+    padding-right: 2px;
+    align-items: center;
+}
+
+.lines .circles div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 13px;
+    height: 13px;
+    margin-left: 2px;
+    padding: 1px;
+    border: 0.5px solid black;
+    border-radius: 50%;
+}

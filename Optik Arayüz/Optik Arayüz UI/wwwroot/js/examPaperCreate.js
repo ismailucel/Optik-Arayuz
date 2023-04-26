@@ -24,15 +24,8 @@ function dragEnter(e) {
 }
 
 function dragOver(e) {
-    $(document).ready(function () { 
-        $.get("/ComponentsPartial/NumaraKodlama", function (data) {
-            $('#NumaraKodlama').html(data);
-            console.log(e);
-        });
-    });
     e.preventDefault();
     box.classList.add("dragging");
-    e.dataTransfer.setData('text/plain', e.target.id);
 }
 
 function dragLeave(e) {
@@ -45,53 +38,61 @@ function drop(e) {
     box.classList.remove("dragging");
     const id = e.dataTransfer.getData('text/plain');
     const draggable = document.getElementById(id);
-    let clone = draggable.cloneNode(true);
-    clone.style.top=(mouse.clientY-Math.round(coordinat.top))-32+"px";
-    clone.style.left = (mouse.clientX - Math.round(coordinat.left)) - 32 + "px";
-    if(!(checkCollide(clone))){
-        if(draggable.classList.contains("on")){
-            draggable.style.top=(mouse.clientY-Math.round(coordinat.top))-32+"px";
-            draggable.style.left=(mouse.clientX-Math.round(coordinat.left))-32+"px";
-        }
-        else{
-            clone.style.position="absolute";
-            clone.classList.add("on");
-            clone.id = clone.id+(sayac++);
-            box.appendChild(clone);
-            clone.addEventListener('dragstart', dragStart);
-        }
-    }
-    else{
-        alert("ss");
-    }
     
+    if (draggable.classList.contains("on")) {
+        var x = (mouse.clientX - Math.round(coordinat.left)) - 32 + "px";
+        var y = (mouse.clientY - Math.round(coordinat.top)) - 32 + "px";
+        if (!checkCollide(draggable,x,y)) {
+            draggable.style.top = y;
+            draggable.style.left = x;
+        } else {
+            alert("sa");
+        }
+    }
+    else {
+        let clone = draggable.cloneNode(true);
+        clone.style.top = (mouse.clientY - Math.round(coordinat.top)) - 32 + "px";
+        clone.style.left = (mouse.clientX - Math.round(coordinat.left)) - 32 + "px";
+        clone.style.position = "absolute";
+        clone.style.margin = "0px";
+        clone.classList.add("on");
+        clone.id = clone.id + (sayac++);
+
+        $.get("/ComponentsPartial/Test", function (data) {
+            $('#' + clone.id).html(data);
+        });
+     
+        box.appendChild(clone);
+        clone.addEventListener('dragstart', dragStart);
+
+    }
 }
 
 function getPaperItems(){
     return box.getElementsByClassName("item");
 }
 
-function isCollide(a, b) {
-    var atop = parseInt(a.style.top,10);
-    var aleft= parseInt(a.style.left,10);
-    var btop = parseInt(b.style.top,10);
-    var bleft= parseInt(b.style.left,10);
-    
-    if(
-        aleft < bleft+ b.offsetWidth && 
-        aleft+ a.offsetWidth > bleft &&
-        atop < btop+ b.offsetHeight && 
-        atop + a.offsetHeight > btop){
-        return true;
+function isCollide(a,b,x,y) {
+    var atop = parseInt(a.style.top, 10);
+    var aleft = parseInt(a.style.left, 10);
+    var btop = parseInt(y, 10);
+    var bleft = parseInt(x, 10);
+    console.log(aleft, atop, a.offsetHeight);
+    if ((aleft <= bleft && bleft <= aleft + a.offsetWidth) || (bleft <= aleft && aleft <= bleft + b.offsetWidth)) {
+        if ((atop <= btop && btop <= atop + a.offsetHeight) || (btop <= atop && atop <= btop + b.offsetHeight)) {
+            return true;
+        } 
     }
     else{return false;}
 }
 
-function checkCollide(x){
+function checkCollide(element,x,y) {
+    console.log(element.offsetHeight);
     var paperItems = getPaperItems();
-    for(let i=0;i< paperItems.length;i++){
-        if(!(paperItems[i] == x)){
-            if(isCollide(paperItems[i],x)){
+    for (let i = 0; i < paperItems.length; i++){
+        
+        if(!(paperItems[i].id == element.id)){
+            if(isCollide(paperItems[i],element,x,y)){
                 return true;
             }
             
@@ -100,11 +101,4 @@ function checkCollide(x){
     return false;
 }
 
-$("#btnIslemYap").click(function () {
-    console.log("sa");
-    $.get("/ComponentsPartial/NumaraKodlama", function (data) {
-        console.log("saa");
 
-        $('#div11').html(data);
-    });
-});

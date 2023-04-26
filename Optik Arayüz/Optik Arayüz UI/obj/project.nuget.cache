@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "h69BLySLq+5tqwSSN/q2KtgOObXxdZtE2vqjJgsysR26A2zrWYbHW0rJ+6CxaSsuL4uv//qoTdgkg3xgZouFmQ==",
+  "dgSpecHash": "ZrFUVj62d2sJMCqBGOMtKjCbMK/WfGGcGmJFSP89lSIl7tJ2QwEaH7BeR/N69LyafaQJ8n6fElniz3HPoX+i9w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Yunus Emre\\Source\\Repos\\ismailucel\\Optik-Arayuz\\Optik Arayüz\\Optik Arayüz UI\\Optik Arayüz UI.csproj",
+  "projectFilePath": "C:\\Users\\Yunus Emre\\source\\repos\\ismailucel\\Optik-Arayuz\\Optik Arayüz\\Optik Arayüz UI\\Optik Arayüz UI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Yunus Emre\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Yunus Emre\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

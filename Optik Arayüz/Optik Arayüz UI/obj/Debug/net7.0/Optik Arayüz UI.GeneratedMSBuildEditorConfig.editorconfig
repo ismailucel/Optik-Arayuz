@@ -9,73 +9,73 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Optik_Arayüz_UI
 build_property.RootNamespace = Optik_Arayüz_UI
-build_property.ProjectDir = C:\Users\Yunus Emre\Source\Repos\ismailucel\Optik-Arayuz\Optik Arayüz\Optik Arayüz UI\
+build_property.ProjectDir = C:\Users\Yunus Emre\source\repos\ismailucel\Optik-Arayuz\Optik Arayüz\Optik Arayüz UI\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Yunus Emre\Source\Repos\ismailucel\Optik-Arayuz\Optik Arayüz\Optik Arayüz UI
+build_property.MSBuildProjectDirectory = C:\Users\Yunus Emre\source\repos\ismailucel\Optik-Arayuz\Optik Arayüz\Optik Arayüz UI
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Yunus Emre/Source/Repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Logo.cshtml]
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Choose.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1BhcnRpYWxcQ2hvb3NlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Logo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1BhcnRpYWxcTG9nby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yunus Emre/Source/Repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/NumaraKodlama.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1BhcnRpYWxcTnVtYXJhS29kbGFtYS5jc2h0bWw=
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Number.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1BhcnRpYWxcTnVtYmVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yunus Emre/Source/Repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/OgrenciBilgiler.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1BhcnRpYWxcT2dyZW5jaUJpbGdpbGVyLmNzaHRtbA==
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Score.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1BhcnRpYWxcU2NvcmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yunus Emre/Source/Repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Puanlama.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1BhcnRpYWxcUHVhbmxhbWEuY3NodG1s
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Student.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1BhcnRpYWxcU3R1ZGVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yunus Emre/Source/Repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/SikSecme.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1BhcnRpYWxcU2lrU2VjbWUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Yunus Emre/Source/Repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Test.cshtml]
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Test.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1BhcnRpYWxcVGVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yunus Emre/Source/Repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Text.cshtml]
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Text.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1BhcnRpYWxcVGV4dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yunus Emre/Source/Repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/Home/ExamPaperCreate.cshtml]
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/Home/ExamPaperCreate.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFeGFtUGFwZXJDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yunus Emre/Source/Repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/Home/Index.cshtml]
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yunus Emre/Source/Repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/Home/Privacy.cshtml]
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yunus Emre/Source/Repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/Shared/Error.cshtml]
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yunus Emre/Source/Repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/Shared/NumaraKodlama.cshtml]
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/Shared/NumaraKodlama.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE51bWFyYUtvZGxhbWEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yunus Emre/Source/Repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yunus Emre/Source/Repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/_ViewImports.cshtml]
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yunus Emre/Source/Repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/_ViewStart.cshtml]
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yunus Emre/Source/Repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/Shared/_Layout.cshtml]
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-c3xfxckisc

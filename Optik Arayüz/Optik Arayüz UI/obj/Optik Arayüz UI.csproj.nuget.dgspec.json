@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Yunus Emre\\Source\\Repos\\ismailucel\\Optik-Arayuz\\Optik Arayüz\\Optik Arayüz UI\\Optik Arayüz UI.csproj": {}
+    "C:\\Users\\Yunus Emre\\source\\repos\\ismailucel\\Optik-Arayuz\\Optik Arayüz\\Optik Arayüz UI\\Optik Arayüz UI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Yunus Emre\\Source\\Repos\\ismailucel\\Optik-Arayuz\\Optik Arayüz\\Optik Arayüz UI\\Optik Arayüz UI.csproj": {
+    "C:\\Users\\Yunus Emre\\source\\repos\\ismailucel\\Optik-Arayuz\\Optik Arayüz\\Optik Arayüz UI\\Optik Arayüz UI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Yunus Emre\\Source\\Repos\\ismailucel\\Optik-Arayuz\\Optik Arayüz\\Optik Arayüz UI\\Optik Arayüz UI.csproj",
+        "projectUniqueName": "C:\\Users\\Yunus Emre\\source\\repos\\ismailucel\\Optik-Arayuz\\Optik Arayüz\\Optik Arayüz UI\\Optik Arayüz UI.csproj",
         "projectName": "Optik Arayüz UI",
-        "projectPath": "C:\\Users\\Yunus Emre\\Source\\Repos\\ismailucel\\Optik-Arayuz\\Optik Arayüz\\Optik Arayüz UI\\Optik Arayüz UI.csproj",
+        "projectPath": "C:\\Users\\Yunus Emre\\source\\repos\\ismailucel\\Optik-Arayuz\\Optik Arayüz\\Optik Arayüz UI\\Optik Arayüz UI.csproj",
         "packagesPath": "C:\\Users\\Yunus Emre\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Yunus Emre\\Source\\Repos\\ismailucel\\Optik-Arayuz\\Optik Arayüz\\Optik Arayüz UI\\obj\\",
         "projectStyle": "PackageReference",
