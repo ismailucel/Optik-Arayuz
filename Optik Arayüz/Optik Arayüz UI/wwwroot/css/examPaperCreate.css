@@ -1,0 +1,34 @@
+.A4{
+    height: 1123px;
+    width:794px;
+    background-color: white;
+    position: relative;
+}
+
+
+.container{
+    margin-right: 2%;
+    margin-left: 2%; 
+    background-color: rgb(163, 206, 235);
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.dragging{
+    opacity: 0.5;
+    border: 1px solid black;
+}
+
+.leftstripes{
+    position: absolute;
+    left: 10px;
+    top: 100px;
+}
+
+.leftstripes div{
+    width: 10px;
+    height: 5px;
+    background-color: black;
+    margin-top: 10px;
+}
