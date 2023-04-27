@@ -1,34 +1,30 @@
-.A4{
-    height: 1123px;
-    width:794px;
-    background-color: white;
-    position: relative;
-}
-
-
-.container{
-    margin-right: 2%;
-    margin-left: 2%; 
-    background-color: rgb(163, 206, 235);
-    padding: 10px;
-    display: flex;
-    justify-content: space-around;
-}
-
-.dragging{
-    opacity: 0.5;
+.student {
     border: 1px solid black;
+    width: 175px;
+    display: flex;
 }
 
-.leftstripes{
-    position: absolute;
-    left: 10px;
-    top: 100px;
+.line {
+    height: 20px;
+    border-bottom: 1px dotted black;
 }
 
-.leftstripes div{
-    width: 10px;
-    height: 5px;
-    background-color: black;
-    margin-top: 10px;
+.right {
+    margin-right: 4px;
+}
+
+.dots {
+    padding: 2px;
+}
+
+.row {
+    padding: 2px;
+}
+
+.left {
+    flex-grow: 1;
+}
+
+.right {
+    flex-grow: 6;
 }

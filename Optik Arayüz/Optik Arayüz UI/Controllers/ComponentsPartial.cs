@@ -15,10 +15,14 @@ namespace Optik_Arayüz_UI.Controllers
         }
         public IActionResult Logo()
         {
+            ViewData["src"] = "googleturtle.png";
             return PartialView();
         }
         public IActionResult Number()
         {
+            ViewData["Length"] = 10;
+            ViewData["Label"] = "Ogrenci Numarası";
+
             return PartialView();
         }
         public IActionResult Student()
@@ -31,16 +35,20 @@ namespace Optik_Arayüz_UI.Controllers
         }
         public IActionResult Choose()
         {
+            ViewData["number"] = 2;
+            TempData["choices"] = new[] { "A", "B" };
+            ViewData["label"] = "Kitapcık";
             return PartialView();
         }
         public IActionResult Text()
         {
+            ViewData["text"] = "Merhaba";
             return PartialView();
         }
         public IActionResult Test()
         {  
-            ViewData["QuestionCount"] = _context.Tests.Where(test => test.TestId == 2).Select(test1 => test1.QuestionCount).ToList()[0];
-            ViewData["x"] = _context.Tests.Where(test => test.TestId == 2).Select(test1 => test1.XLength).ToList()[0];
+            ViewData["QuestionCount"] = 10;
+            ViewData["x"] = 120;
             return PartialView();
         }
     }

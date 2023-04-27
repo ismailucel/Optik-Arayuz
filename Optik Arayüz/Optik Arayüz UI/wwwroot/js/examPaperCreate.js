@@ -16,6 +16,7 @@ if (box != null) {
 
 function dragStart(e) {
     e.dataTransfer.setData('text/plain', e.target.id);
+
 }
 
 function dragEnter(e) {
@@ -38,35 +39,37 @@ function drop(e) {
     box.classList.remove("dragging");
     const id = e.dataTransfer.getData('text/plain');
     const draggable = document.getElementById(id);
-    
-    if (draggable.classList.contains("on")) {
-        var x = (mouse.clientX - Math.round(coordinat.left)) - 32 + "px";
-        var y = (mouse.clientY - Math.round(coordinat.top)) - 32 + "px";
+    var x = (mouse.clientX - Math.round(coordinat.left)) - 32 + "px";
+    var y = (mouse.clientY - Math.round(coordinat.top)) - 32 + "px";
+    if (draggable.classList.contains("on")) {    
         if (!checkCollide(draggable,x,y)) {
             draggable.style.top = y;
             draggable.style.left = x;
         } else {
-            alert("sa");
+            alert("Buraya Koyamazsiniz");
         }
     }
     else {
         let clone = draggable.cloneNode(true);
-        clone.style.top = (mouse.clientY - Math.round(coordinat.top)) - 32 + "px";
-        clone.style.left = (mouse.clientX - Math.round(coordinat.left)) - 32 + "px";
+        clone.style.top = y;
+        clone.style.left = x;
         clone.style.position = "absolute";
         clone.style.margin = "0px";
         clone.classList.add("on");
+        var link = "/ComponentsPartial/"+clone.id; 
         clone.id = clone.id + (sayac++);
 
-        $.get("/ComponentsPartial/Test", function (data) {
+        $.get(link, function (data) {
             $('#' + clone.id).html(data);
         });
      
         box.appendChild(clone);
         clone.addEventListener('dragstart', dragStart);
-
+        a = clone.id;
+        
     }
 }
+
 
 function getPaperItems(){
     return box.getElementsByClassName("item");
@@ -90,7 +93,6 @@ function checkCollide(element,x,y) {
     console.log(element.offsetHeight);
     var paperItems = getPaperItems();
     for (let i = 0; i < paperItems.length; i++){
-        
         if(!(paperItems[i].id == element.id)){
             if(isCollide(paperItems[i],element,x,y)){
                 return true;

@@ -2,12 +2,13 @@
 <head>
     <link rel="stylesheet" href="~/css/Test.css" asp-append-version="true" />
 </head>
+
 <div class="test" style="width: @Convert.ToInt32(ViewData["x"])px;">
-    @for (var i = 1; i < Convert.ToInt32(ViewData["QuestionCount"]); i++)
+    @for (var i = 1; i <= Convert.ToInt32(ViewData["QuestionCount"]); i++)
     {
         <div class="lines">
             <div class="number">@i</div>
-            <div class="circles">
+            <div class="testCircles">
                 <div>A</div>
                 <div>B</div>
                 <div>C</div>
