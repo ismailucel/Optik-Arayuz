@@ -1,5 +1,6 @@
 using Optik_Arayuz_UI.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +8,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<OptikArayuzDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("OptikArayuzConnection")
     ));
+
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<OptikArayuzDbContext>();
 
 var app = builder.Build();
 
