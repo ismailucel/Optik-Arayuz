@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Optik_Arayuz_UI.Models;
 
 namespace Optik_Arayuz_UI.Data
 {
-    public class OptikArayuzDbContext: DbContext
+    public class OptikArayuzDbContext: IdentityDbContext
     {
         public OptikArayuzDbContext(DbContextOptions<OptikArayuzDbContext> options) : base(options)
         {
@@ -11,7 +12,7 @@ namespace Optik_Arayuz_UI.Data
         }
 
         public DbSet<ExamPaperElement> ExamPaperElements { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> User { get; set; }
         public DbSet<Exam> Exams { get; set; }
         public DbSet<Faculty> Faculties { get; set; }
         public DbSet<Grade> Grades { get; set; }
