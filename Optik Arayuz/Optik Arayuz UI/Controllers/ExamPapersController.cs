@@ -19,6 +19,11 @@ namespace Optik_Arayüz_UI.Controllers
             _context = context;
         }
 
+        public IActionResult ExamPaperCreate()
+        {
+            return View();
+        }
+
         // GET: ExamPapers
         public async Task<IActionResult> Index()
         {
