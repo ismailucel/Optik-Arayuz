@@ -22,12 +22,19 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                      
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         
                     </ul>
                 </div>
+            </div>
+            <div class="right-top-bar flex-w h-full">
+                <a class="flex-c-m trans-04 p-lr-25" asp-area="Identity" asp-page="/Account/Register"><i class="fa fa-bell"></i>KayıtOl</a>
+            </div>
+            <div class="right-top-bar flex-w h-full">
+                <a class="flex-c-m trans-04 p-lr-25" asp-area="Identity" asp-page="/Account/Login"><i class="fa fa-user"></i>Giris</a>
             </div>
         </nav>
     </header>
