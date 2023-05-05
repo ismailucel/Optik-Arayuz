@@ -15,7 +15,7 @@ namespace Optik_Arayuz_UI.Models
         public string? Role { get; set; }
 
         [ForeignKey("Faculty")]
-        public int FacultyId { get; set; }
+        public int? FacultyId { get; set; }
         public virtual Faculty? Faculty { get; set; }
     }
 }
