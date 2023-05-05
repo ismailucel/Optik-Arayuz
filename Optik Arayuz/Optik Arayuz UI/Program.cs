@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Optik_Arayüz_UI.Data;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Optik_Arayüz_UI.Data.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,6 +45,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.User.RequireUniqueEmail = false;
 });
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -59,6 +61,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+SeedDatabase();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -69,3 +73,11 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+void SeedDatabase()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+        dbInitializer.Initialize();
+    }
+}

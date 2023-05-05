@@ -7,6 +7,6 @@ namespace Optik_Arayüz_UI.Data
 {
     public interface IDbInitializer
     {
-        void Initialize(OptikArayuzDbContext context);
+        void Initialize();
     }
 }

@@ -1,19 +1,29 @@
-﻿using Optik_Arayüz_UI.Data;
+﻿using Microsoft.AspNetCore.Identity;
+using Optik_Arayüz_UI.Data;
 using Optik_Arayuz_UI.Data;
 using Optik_Arayuz_UI.Models;
 using System;
+using System.Drawing.Text;
 using System.Linq;
 
 namespace Optik_Arayuz_UI.Data
 {
     public class DbInitializer: IDbInitializer
     {
-        public void Initialize(OptikArayuzDbContext context)
+        private readonly OptikArayuzDbContext _db;
+
+        public DbInitializer(OptikArayuzDbContext db)
         {
-            context.Database.EnsureCreated();
+            _db = db;
+        }
+        public void Initialize()
+        {
+            
+
+             _db.Database.EnsureCreated();
 
             // Look for any students.
-            if (context.Faculties.Any())
+            if (_db.Faculties.Any())
             {
                 return;   // DB has been seeded
             }
@@ -36,9 +46,9 @@ namespace Optik_Arayuz_UI.Data
             };
             foreach (Faculty f in faculties)
             {
-                context.Faculties.Add(f);
+                _db.Faculties.Add(f);
             }
-            context.SaveChanges();
+            _db.SaveChanges();
 
             var exampapers = new ExamPaper[]
             {
@@ -49,9 +59,9 @@ namespace Optik_Arayuz_UI.Data
             };
             foreach (ExamPaper e in exampapers)
             {
-                context.ExamPapers.Add(e);
+                _db.ExamPapers.Add(e);
             }
-            context.SaveChanges();
+            _db.SaveChanges();
 
            
         }
