@@ -1,8 +1,15 @@
 using Optik_Arayuz_UI.Data;
 using Optik_Arayuz_UI.Models;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Optik_Arayüz_UI.Data;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();   
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -12,7 +19,9 @@ builder.Services.AddDbContext<OptikArayuzDbContext>(options => options.UseSqlSer
 
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<OptikArayuzDbContext>();
+
 builder.Services.AddRazorPages();
+
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
