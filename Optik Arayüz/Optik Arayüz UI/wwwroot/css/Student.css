@@ -9,7 +9,7 @@
     border-bottom: 1px dotted black;
 }
 
-.right {
+.sright {
     margin-right: 4px;
 }
 
@@ -21,10 +21,4 @@
     padding: 2px;
 }
 
-.left {
-    flex-grow: 1;
-}
 
-.right {
-    flex-grow: 6;
-}

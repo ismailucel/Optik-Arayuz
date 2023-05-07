@@ -1,0 +1,12 @@
+
+.inputs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.input {
+    margin-left: 10px;
+    height: 20px;
+    width: 75px;
+}

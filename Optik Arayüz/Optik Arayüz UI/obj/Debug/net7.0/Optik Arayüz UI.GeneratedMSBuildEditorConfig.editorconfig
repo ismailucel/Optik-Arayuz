@@ -16,8 +16,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Yunus Emre\source\repos\ismailucel\Optik-Arayuz\Optik Arayüz\Optik Arayüz UI
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Choose.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1BhcnRpYWxcQ2hvb3NlLmNzaHRtbA==
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Choice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1BhcnRpYWxcQ2hvaWNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Grade.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1BhcnRpYWxcR3JhZGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Inputs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1BhcnRpYWxcSW5wdXRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Logo.cshtml]
@@ -26,10 +34,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Number.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1BhcnRpYWxcTnVtYmVyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Score.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1BhcnRpYWxcU2NvcmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/ComponentsPartial/Student.cshtml]
@@ -46,6 +50,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/Home/ExamPaperCreate.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFeGFtUGFwZXJDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/Home/Help.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIZWxwLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Yunus Emre/source/repos/ismailucel/Optik-Arayuz/Optik Arayüz/Optik Arayüz UI/Views/Home/Index.cshtml]

@@ -1,0 +1,14 @@
+﻿
+<head>
+    <link rel="stylesheet" href="~/css/Inputs.css" asp-append-version="true" />
+</head>
+
+
+
+    @for (var i = 0; i < Convert.ToInt32(ViewData["columnNumber"]); i++)
+    {
+        <div class="inputs" id="inputs">
+            <p>Width</p>
+            <input class="input" type="text">
+        </div>
+    }
