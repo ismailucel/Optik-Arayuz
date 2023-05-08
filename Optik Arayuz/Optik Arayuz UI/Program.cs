@@ -22,6 +22,7 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
     .AddEntityFrameworkStores<OptikArayuzDbContext>();
 
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 
 
 builder.Services.Configure<IdentityOptions>(options =>
@@ -61,7 +62,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-SeedDatabase();
+var scope = app.Services.CreateScope();
+var service = scope.ServiceProvider.GetService<IDbInitializer>();
+service.Initialize();
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -73,11 +76,3 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-void SeedDatabase()
-{
-    using (var scope = app.Services.CreateScope())
-    {
-        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
-        dbInitializer.Initialize();
-    }
-}

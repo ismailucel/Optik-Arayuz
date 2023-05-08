@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations.Operations.Builders;
-using Optik_Arayüz_UI.Data;
+using Optik_Arayuz_UI.Data;
 using System;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Optik_Arayüz_UI.Models;
+using Optik_Arayuz_UI.Models;
 using System.Diagnostics;
 
 namespace Optik_Arayüz_UI.Controllers
