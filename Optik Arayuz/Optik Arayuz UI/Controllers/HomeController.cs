@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Optik_Arayuz_UI.Models;
 using System.Diagnostics;
 
@@ -13,6 +14,7 @@ namespace Optik_Arayüz_UI.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();
@@ -26,11 +28,7 @@ namespace Optik_Arayüz_UI.Controllers
         {
             return View();
         }
-        public IActionResult ExamPaperCreate()
-        {
-            return View();
-        }
-
+   
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -66,6 +66,7 @@ namespace Optik_Arayüz_UI.Controllers
         [Authorize]
         public async Task<IActionResult> Create([Bind("ExamId,ExamName,TestCount,ClassicCount,ExamPaperId,UserId")] Exam exam)
         {
+
             if (ModelState.IsValid)
             {
                 _context.Add(exam);

@@ -1,22 +1,61 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    margin: 0px;
+    font-family: 'Quicksand', sans-serif;
+    min-height:100vh;
 }
+
+.Nav {
+    background-color: #3C486B;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.Nav a {
+    color:white;
+    text-decoration:none;
+}
+.NavLeft {
+    display:flex;
+}
+.NavLeftItem:first-child {
+    margin-left: 5px;
+}
+.NavLeftItem {
+margin-left:15px;
+}
+
+.NavRight{
+    display: flex;
+}
+.NavRightItem:first-child {
+        margin-right: 5px;
+}
+
+.NavRightItem {
+    margin-right: 15px;
+}
+
+footer {
+    color:white;
+    background-color: #3C486B;
+    height:100px;
+    margin-top: 10px;
+    border-top: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mid {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+

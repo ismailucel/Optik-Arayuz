@@ -4,10 +4,9 @@
     "\\Optik Arayuz",
     "\\Optik Arayuz\\Optik Arayuz UI",
     "\\Optik Arayuz\\Optik Arayuz UI\\Controllers",
-    "\\Optik Arayuz\\Optik Arayuz UI\\Views",
-    "\\Optik Arayüz\\Optik Arayüz UI",
-    "\\Optik Arayüz\\Optik Arayüz UI\\obj"
+    "\\Optik Arayuz\\Optik Arayuz UI\\Data",
+    "\\Optik Arayuz\\Optik Arayuz UI\\Views"
   ],
-  "SelectedNode": "\\Optik Arayuz\\Optik Arayuz.sln",
+  "SelectedNode": "\\Optik Arayuz\\Optik Arayuz UI\\Data\\DbInitializer.cs",
   "PreviewInSolutionExplorer": false
 }
