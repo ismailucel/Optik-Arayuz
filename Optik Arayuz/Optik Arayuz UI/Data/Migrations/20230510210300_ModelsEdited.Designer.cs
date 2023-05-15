@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Optik_Arayuz_UI.Data;
 
@@ -11,9 +12,11 @@ using Optik_Arayuz_UI.Data;
 namespace Optik_Arayüz_UI.Data.Migrations
 {
     [DbContext(typeof(OptikArayuzDbContext))]
-    partial class OptikArayuzDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230510210300_ModelsEdited")]
+    partial class ModelsEdited
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -243,8 +246,8 @@ namespace Optik_Arayüz_UI.Data.Migrations
                     b.Property<int>("ChoiceCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Choices")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("ChoiceId1")
+                        .HasColumnType("int");
 
                     b.Property<string>("Label")
                         .HasColumnType("nvarchar(max)");
@@ -256,6 +259,8 @@ namespace Optik_Arayüz_UI.Data.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("ChoiceId");
+
+                    b.HasIndex("ChoiceId1");
 
                     b.ToTable("Choices");
                 });
@@ -580,6 +585,13 @@ namespace Optik_Arayüz_UI.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Optik_Arayuz_UI.Models.Choice", b =>
+                {
+                    b.HasOne("Optik_Arayuz_UI.Models.Choice", null)
+                        .WithMany("Choices")
+                        .HasForeignKey("ChoiceId1");
+                });
+
             modelBuilder.Entity("Optik_Arayuz_UI.Models.Exam", b =>
                 {
                     b.HasOne("Optik_Arayuz_UI.Models.ExamPaper", "ExamPaper")
@@ -617,6 +629,11 @@ namespace Optik_Arayüz_UI.Data.Migrations
                         .HasForeignKey("FacultyId");
 
                     b.Navigation("Faculty");
+                });
+
+            modelBuilder.Entity("Optik_Arayuz_UI.Models.Choice", b =>
+                {
+                    b.Navigation("Choices");
                 });
 #pragma warning restore 612, 618
         }

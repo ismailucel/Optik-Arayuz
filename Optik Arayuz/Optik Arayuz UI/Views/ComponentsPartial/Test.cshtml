@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="~/css/Test.css" asp-append-version="true" />
 </head>
 
-<div class="test" style="width: @Convert.ToInt32(ViewData["x"])px">
+<div class="test" style="width: @ViewData["x"]px">
     @for (var i = 1; i <= Convert.ToInt32(ViewData["QuestionCount"]); i++)
     {
         <div class="lines">

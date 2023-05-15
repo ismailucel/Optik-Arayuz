@@ -6,7 +6,7 @@ namespace Optik_Arayuz_UI.Models
     {
         [Key]
         public int LogoId { get; set; }
-        public int ImagePath { get; set; }
+        public string? ImagePath { get; set; }
         public double XLength { get; set; }
         public double YLength { get; set; }
     }

@@ -24,7 +24,7 @@ namespace Optik_Arayüz_UI.Controllers
         {
             return View();
         }
-
+        
         // GET: ExamPapers
         [Authorize]
         public async Task<IActionResult> Index()

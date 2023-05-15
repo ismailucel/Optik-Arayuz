@@ -1,15 +1,29 @@
 const box = document.querySelector(".A4");
 const items = document.querySelectorAll('.item');
- 
-var sayac = 0;
-var deneme = "s";
+const right = document.querySelector(".right");
+const button = document.querySelector("#button");
+
+var count = {
+    "Number" :1,
+    "Choice": 1,
+    "Student": 1,
+    "Test": 1,
+    "Grade": 1,
+    "Logo": 1,
+    "Text": 1,
+}
+var clickedId = "";
 var tempx = 0;
 var tempy = 0;
+
+
+button.addEventListener('click', clicked);
 items.forEach(item => {
     item.addEventListener('dragstart', dragStart);
     item.addEventListener('mousedown', mouseDown);
 
 });
+right.addEventListener('mouseenter', mouseEnter);
 
 if (box != null) {
     box.addEventListener('dragenter', dragEnter)
@@ -18,12 +32,14 @@ if (box != null) {
     box.addEventListener('drop', drop);
 }
 
-function clearId(id) {
-    var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-    for (var x = 0; x < numbers.length; x++) {
-        id = id.replace(numbers[x],"");
-    }
-    return id;
+function clicked() {
+    var values = "saa";
+
+
+    var link = "/ComponentsPartial/SendDatabase";
+    $.get(link, { value: values }, function (data) {
+        console.log(data);
+    });
 }
 
 function mouseDown(e) {
@@ -40,18 +56,39 @@ function mouseDown(e) {
     };
     tempx = x - parseInt(temp.style.left, 10);
     tempy = y - parseInt(temp.style.top, 10);
-
-    var id = clearId(temp.id);
+    clickedId = temp.id;
+    var id = temp.id;
+    console.log(id);
     var link = "/ComponentsPartial/Inputs/" + id;
     $.get(link, function (data) {
         $('#right').html(data);
     });
 
-
 }
+function mouseEnter() {
+    var inputs = document.getElementsByClassName("input");
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('change', Change);
+    }
+}
+function Change(e) {
+    var id = clickedId;
+    var inputs = document.getElementsByClassName("input");
+    var values = "";
 
+    for (var i = 0; i < inputs.length; i++) {
+
+        values = values + inputs[i].value + "/";
+    }
+    values = values + clickedId;
+    id = id.substring(0, (id.length - 1));
+    console.log(id);
+    var link = "/ComponentsPartial/" + id;
+    $.get(link, { value: values }, function (data) {
+        $('#' + clickedId).html(data);
+    });
+}
 function dragStart(e) {
-    deneme = e.target.id;
     e.dataTransfer.setData('text/plain', e.target.id);
 }
 
@@ -79,7 +116,7 @@ function drop(e) {
     var y = (mouse.clientY - Math.round(coordinat.top)) + "px";
 
     if (draggable.classList.contains("on")) {
-        x = parseInt(x, 10)-tempx + "px";
+        x = parseInt(x, 10) - tempx + "px";
         y = parseInt(y, 10) - tempy + "px";
         if (!checkCollide(draggable, x, y)) {
             draggable.style.top = y;
@@ -95,13 +132,15 @@ function drop(e) {
         clone.style.position = "absolute";
         clone.style.margin = "0px";
         clone.classList.add("on");
-        var link = "/ComponentsPartial/"+clone.id; 
-        clone.id = clone.id + (sayac++);
+        var link = "/ComponentsPartial/" + clone.id;
 
+        clone.id = clone.id + (count[draggable.id]);
+        count[draggable.id] = count[draggable.id] + 1;
+        clickedId = clone.id;
         $.get(link, function (data) {
             $('#' + clone.id).html(data);
         });
-   
+
         box.appendChild(clone);
         clone.addEventListener('dragstart', dragStart);
         clone.addEventListener('mousedown', mouseDown);
@@ -110,11 +149,11 @@ function drop(e) {
 }
 
 
-function getPaperItems(){
+function getPaperItems() {
     return box.getElementsByClassName("item");
 }
 
-function isCollide(a,b,x,y) {
+function isCollide(a, b, x, y) {
     var atop = parseInt(a.style.top, 10);
     var aleft = parseInt(a.style.left, 10);
     var btop = parseInt(y, 10);
@@ -122,21 +161,20 @@ function isCollide(a,b,x,y) {
     if ((aleft <= bleft && bleft <= aleft + a.offsetWidth) || (bleft <= aleft && aleft <= bleft + b.offsetWidth)) {
         if ((atop <= btop && btop <= atop + a.offsetHeight) || (btop <= atop && atop <= btop + b.offsetHeight)) {
             return true;
-        } 
+        }
     }
-    else{return false;}
+    else { return false; }
 }
 
-function checkCollide(element,x,y) {
+function checkCollide(element, x, y) {
     var paperItems = getPaperItems();
-    for (let i = 0; i < paperItems.length; i++){
-        if(!(paperItems[i].id == element.id)){
-            if(isCollide(paperItems[i],element,x,y)){
+    for (let i = 0; i < paperItems.length; i++) {
+        if (!(paperItems[i].id == element.id)) {
+            if (isCollide(paperItems[i], element, x, y)) {
                 return true;
             }
         }
     }
     return false;
 }
-
 

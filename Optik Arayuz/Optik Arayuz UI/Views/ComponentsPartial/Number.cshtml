@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="~/css/Number.css" asp-append-version="true" />
 </head>
 
-<div class="Number" style="width: @((Convert.ToInt32(ViewData["Length"])*18.5)-1)px">
+<div class="Number" style="width: @ViewData["x"]px;height:@ViewData["y"]px">
     <div class="label">@ViewData["Label"]</div>
     <div class="bottom">
          @for (var i = 0; i < Convert.ToInt32(ViewData["Length"]); i++){
