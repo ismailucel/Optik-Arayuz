@@ -13,5 +13,7 @@ namespace Optik_Arayuz_UI.Models
         [ForeignKey("ExamPaper")]
         public int ExamPaperId { get; set; }
         public virtual ExamPaper? ExamPaper { get; set; }
+        public int ComponentId { get; set; }
+
     }
 }

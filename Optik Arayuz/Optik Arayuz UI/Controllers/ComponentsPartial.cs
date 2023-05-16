@@ -44,8 +44,10 @@ namespace Optik_Arayüz_UI.Controllers
                 _texts = new List<Text> { new Text() { TextContent= "sa",FontSize = 16,FontType = "Calibri"}};
 
                 _tests = new List<Test> { new Test() { XLength = 120, YLength = 100, QuestionCount = 10 } };
+
                 flag = false;
             }
+
 
             _context = context;
 

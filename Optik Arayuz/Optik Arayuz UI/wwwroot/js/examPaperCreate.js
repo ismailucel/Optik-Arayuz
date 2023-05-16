@@ -18,6 +18,7 @@ var tempy = 0;
 
 
 button.addEventListener('click', clicked);
+
 items.forEach(item => {
     item.addEventListener('dragstart', dragStart);
     item.addEventListener('mousedown', mouseDown);
@@ -33,12 +34,20 @@ if (box != null) {
 }
 
 function clicked() {
-    var values = "saa";
+    var paperitems = getPaperItems();
+    var values = "";
+
+    for (var i = 0; i < paperitems.length; i++) {
+        values = values +"/"+ paperitems[i].id +"_"+ parseInt(paperitems[i].style.left, 10) +"_"+ parseInt(paperitems[i].style.top, 10);
+    }
+    values = values.substr(1);
 
 
-    var link = "/ComponentsPartial/SendDatabase";
+    var link = "/ExamPapers/SendDatabase";
     $.get(link, { value: values }, function (data) {
-        console.log(data);
+        if (data == "true") {
+            location.replace("https://localhost:7061/")
+        }
     });
 }
 

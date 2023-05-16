@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +25,97 @@ namespace Optik_Arayüz_UI.Controllers
         {
             return View();
         }
-        
+
+        [HttpPost]
+        public IActionResult ExamPaperCreate(ExamPaper examPaper)
+        {
+            _context.ExamPapers.Add(examPaper);
+
+            _context.SaveChanges();
+
+            return View();
+
+        }
+
+        public string SendDatabase(string value)
+        {
+            var components = value.Split("/");
+            var paperId = _context.ExamPapers.OrderBy(m=> m.ExamPaperId).Last().ExamPaperId;
+            int id = 0;
+            for (int i = 0; i < components.Length; i++) { 
+                var attr = components[i].Split("_");
+                int index = Convert.ToInt32(attr[0].Substring(attr[0].Length-1));
+                var type = attr[0][..^1];
+                
+                switch (type)
+                {
+                    case "Choice":
+                        _context.Choices.Add(ComponentsPartial._choices[index]);
+                        _context.SaveChanges();
+
+                        id = _context.Choices.OrderBy(m=> m.ChoiceId).Last().ChoiceId;
+                        break;
+                    case "Logo":
+                        _context.Logos.Add(ComponentsPartial._logos[index]);
+                        _context.SaveChanges();
+
+                        id = _context.Logos.OrderBy(m=> m.LogoId).Last().LogoId;
+                        break;
+                    case "Number":
+                        _context.Numbers.Add(ComponentsPartial._numbers[index]);
+                        _context.SaveChanges();
+
+                        id = _context.Numbers.OrderBy(m=> m.NumberId).Last().NumberId;
+
+                        break;
+                    case "Student":
+                        _context.Students.Add(ComponentsPartial._students[index]);
+                        _context.SaveChanges();
+
+                        id = _context.Students.OrderBy(m=> m.StudentId).Last().StudentId;
+
+                        break;
+                    case "Grade":
+                        _context.Grades.Add(ComponentsPartial._grades[index]);
+                        _context.SaveChanges();
+
+                        id = _context.Grades.OrderBy(m=> m.GradeId).Last().GradeId;
+
+                        break;
+                    case "Text":
+                        _context.Texts.Add(ComponentsPartial._texts[index]);
+                        _context.SaveChanges();
+
+                        id = _context.Texts.OrderBy(m=> m.TextId).Last().TextId;
+
+                        break;
+                    case "Test":
+                        _context.Tests.Add(ComponentsPartial._tests[index]);
+                        _context.SaveChanges();
+
+                        id = _context.Tests.OrderBy(m=> m.TestId).Last().TestId;
+
+                        break;
+                    default:
+                        break;
+
+                }
+                ExamPaperElement examPaperElement = new ExamPaperElement()
+                {
+                    Type = type,
+                    X = Convert.ToDouble(attr[1]),
+                    Y = Convert.ToDouble(attr[2]),
+                    ExamPaperId = paperId,
+                    ComponentId = id,
+                };
+                _context.ExamPaperElements.Add(examPaperElement);
+                _context.SaveChanges();
+
+            }
+            Console.WriteLine(value);
+            return "true";
+        }
+
         // GET: ExamPapers
         [Authorize]
         public async Task<IActionResult> Index()
@@ -57,9 +148,11 @@ namespace Optik_Arayüz_UI.Controllers
         [Authorize]
         public IActionResult Create()
         {
+            Console.WriteLine("sa");
             return View();
         }
 
+        
         // POST: ExamPapers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.

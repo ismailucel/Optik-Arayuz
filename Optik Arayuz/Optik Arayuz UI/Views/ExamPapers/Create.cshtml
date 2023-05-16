@@ -1,38 +1,26 @@
 ﻿@model Optik_Arayuz_UI.Models.ExamPaper
-
 @{
     ViewData["Title"] = "Create";
 }
+<head>
+    <link rel="stylesheet" href="~/css/ExamPaper.css" asp-append-version="true" />
 
-<h1>Create</h1>
+</head>
 
-<h4>ExamPaper</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ExamPaperName" class="control-label"></label>
-                <input asp-for="ExamPaperName" class="form-control" />
-                <span asp-validation-for="ExamPaperName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ExamPaperTitle" class="control-label"></label>
-                <input asp-for="ExamPaperTitle" class="form-control" />
-                <span asp-validation-for="ExamPaperTitle" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div class="examContainer">
+    @using (Html.BeginForm("ExamPaperCreate", "ExamPapers", FormMethod.Post))
+    {
+        <div class="examRow">
+            <div class="label">ExamPaperName :</div>
+            @Html.TextBoxFor(m=> m.ExamPaperName)
+        </div>
+
+        <div class="examRow">
+            <div>ExamPaperTitle :</div>
+            @Html.TextBoxFor(m=> m.ExamPaperTitle)
+        </div>
+        <div class="buttonRow">
+            <input class="button" type="submit" value="Editor Sayfasina Git" />
+        </div>
+    }
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
