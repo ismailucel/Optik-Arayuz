@@ -174,12 +174,28 @@ function isCollide(a, b, x, y) {
     }
     else { return false; }
 }
+function boxIsCollide(b, x, y) {
+    var a = box.getBoundingClientRect();
+    var btop = parseInt(y, 10);
+    var bleft = parseInt(x, 10);
+    console.log(bleft + b.offsetWidth, a.left + a.width);
+    if ((bleft + b.offsetWidth) >= (a.width) || (bleft <= 0)) {
+        return true;
+    }
+    else if (btop + b.offsetHeight >= a.height || btop <= 0) {
+        return true;
+    }
+    else { return false; }
+}
 
 function checkCollide(element, x, y) {
     var paperItems = getPaperItems();
     for (let i = 0; i < paperItems.length; i++) {
         if (!(paperItems[i].id == element.id)) {
             if (isCollide(paperItems[i], element, x, y)) {
+                return true;
+            }
+            else if (boxIsCollide(element, x, y)) {
                 return true;
             }
         }
