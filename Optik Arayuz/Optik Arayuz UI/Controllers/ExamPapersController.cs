@@ -218,9 +218,52 @@ namespace Optik_Arayüz_UI.Controllers
 
                 }
                 if(flag){
-                    _context.Remove(x);
+                    switch (x.Type)
+                    {
+                        case "Choice":
+                            var choice = _context.Choices.Where(m => m.ChoiceId == x.ComponentId).First();
+                            _context.Choices.Remove(choice);
+                            break;
+                        case "Logo":
+                            var logo = _context.Logos.Where(m => m.LogoId == x.ComponentId).First();
+                            _context.Logos.Remove(logo);
+
+                            break;
+                        case "Number":
+                            var number = _context.Numbers.Where(m => m.NumberId == x.ComponentId).First();
+                            _context.Numbers.Remove(number);
+
+                            break;
+                        case "Student":
+                            var student = _context.Students.Where(m => m.StudentId == x.ComponentId).First();
+                            _context.Students.Remove(student);
+
+                            break;
+                        /*case "Grade":
+                            var grade =_context.Grades.Where(m => m.GradeId == x.ComponentId).First();
+                            _context.Grades.Remove(grade);
+                        
+                            break;
+                        */
+                        case "Text":
+                            var text = _context.Texts.Where(m => m.TextId == x.ComponentId).First();
+                            _context.Texts.Remove(text);
+
+                            break;
+                        case "Test":
+                            var test = _context.Tests.Where(m => m.TestId == x.ComponentId).First();
+                            _context.Tests.Remove(test);
+
+                            break;
+                        default:
+                            break;
+
+                    }
+                    _context.ExamPaperElements.Remove(x);
+                    _context.SaveChanges();
+
                 }
-                    
+
             }
             if (copy.Length > 0)
             {

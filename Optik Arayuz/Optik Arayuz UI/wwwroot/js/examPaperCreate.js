@@ -3,7 +3,6 @@ const deleteBox = document.querySelector("#delete");
 const items = document.querySelectorAll('.item');
 const right = document.querySelector(".right");
 const button = document.querySelector("#button");
-var deleteBoxLocation;
 
 var count = {
     "Number" :1,
@@ -79,6 +78,8 @@ box.addEventListener('dragover', dragOver);
 box.addEventListener('dragleave', dragLeave);
 box.addEventListener('drop', drop);
 
+deleteBox.addEventListener('dragover', deletedragOver);
+deleteBox.addEventListener('drop', deleteBoxdrop);
 
 function clicked() {
     var paperitems = getPaperItems();
@@ -103,7 +104,6 @@ function clicked() {
         }
     });
 }
-
 function mouseDown(e) {
     var mouse = window.event;
     var coordinat = box.getBoundingClientRect();
@@ -150,30 +150,35 @@ function Change(e) {
         $('#' + clickedId).html(data);
     });
 }
-function dragStart(e) {
-    e.dataTransfer.setData('text/plain', e.target.id);
-    deleteBox.classList.remove("none");
-    deleteBox.classList.add("delete");
-    deleteBoxLocation = deleteBox.getBoundingClientRect();
+
+function deletedragOver(e) {
+    e.preventDefault();
 }
-
-
 function deleteBoxdrop(e) {
+    const id = e.dataTransfer.getData('text/plain');
+    const element = document.getElementById(id);
+    element.remove();
     deleteBox.classList.remove("delete");
     deleteBox.classList.add("none");
-    console.log("sa");
 }
 
+function dragStart(e) {
+    e.dataTransfer.setData('text/plain', e.target.id);
+    var element = document.getElementById(e.target.id);
+    if (element.classList.contains("on")) {
+        deleteBox.classList.remove("none");
+        deleteBox.classList.add("delete");
+    }
+    
+}
 function dragEnter(e) {
     e.preventDefault();
     box.classList.add("dragging");
 }
-
 function dragOver(e) {
     e.preventDefault();
     box.classList.add("dragging");
 }
-
 function dragLeave(e) {
     box.classList.remove("dragging");
 }
@@ -192,14 +197,14 @@ function drop(e) {
     if (draggable.classList.contains("on")) {
         x = parseInt(x, 10) - tempx + "px";
         y = parseInt(y, 10) - tempy + "px";
-        if (!checkDelete()) {
-            if (!checkCollide(draggable, x, y)) {
-                draggable.style.top = y;
-                draggable.style.left = x;
-            } else {
-                alert("Buraya Koyamazsiniz");
-            }
+        
+        if (!checkCollide(draggable, x, y)) {
+            draggable.style.top = y;
+            draggable.style.left = x;
+        } else {
+            alert("Buraya Koyamazsiniz");
         }
+        
         
     }
     else {
@@ -227,15 +232,6 @@ function drop(e) {
     }
 }
 
-function checkDelete() {
-    var a = deleteBoxLocation;
-    var mouse = window.event;
-    var btop = mouse.clientY;
-    var bleft = mouse.clientX;
-    console.log(a, btop, bleft);
-    
-    return false;
-}
 
 function getPaperItems() {
     return box.getElementsByClassName("item");
