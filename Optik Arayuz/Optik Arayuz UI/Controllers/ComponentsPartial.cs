@@ -18,7 +18,7 @@ namespace Optik_Arayüz_UI.Controllers
         public static List<Grade>? _grades;
         public static List<Text>? _texts;
         public static List<Test>? _tests;
-        public static List<Student> _students;
+        public static List<Student>? _students;
         public static bool flag = true;
 
         private readonly OptikArayuzDbContext _context;
@@ -57,15 +57,24 @@ namespace Optik_Arayüz_UI.Controllers
         {
             int n = 0;
 
+
             if (value != null)
             {
                 var did = value.Split("/");
-                n = Convert.ToInt32(did[3].Substring(did[3].Length - 1));
-                _logos[n].XLength = Convert.ToDouble(did[0]);
-                _logos[n].YLength = Convert.ToDouble(did[1]);
-                _logos[n].ImagePath = did[2];
+                if (did.Length == 1)
+                {
+                    n= Convert.ToInt32(did[0]);
+                }
+                else
+                {
+                    n = Convert.ToInt32(did[3].Substring(did[3].Length - 1));
+                    _logos[n].XLength = Convert.ToDouble(did[0]);
+                    _logos[n].YLength = Convert.ToDouble(did[1]);
+                    _logos[n].ImagePath = did[2];
+                }
             }
-            else {
+            else
+            {
                 _logos.Add(new Logo()
                 {
                     XLength = _logos[0].XLength,
@@ -86,12 +95,19 @@ namespace Optik_Arayüz_UI.Controllers
             if (value != null)
             {
                 var did = value.Split("/");
-                n = Convert.ToInt32(did[4].Substring(did[4].Length - 1));
+                if (did.Length == 1)
+                {
+                    n = Convert.ToInt32(did[0]);
+                }
+                else
+                {
+                    n = Convert.ToInt32(did[4].Substring(did[4].Length - 1));
 
-                _numbers[n].XLength = Convert.ToDouble(did[0]);
-                _numbers[n].YLength = Convert.ToDouble(did[1]);
-                _numbers[n].Length = Convert.ToInt32(did[2]);
-                _numbers[n].Label = did[3];
+                    _numbers[n].XLength = Convert.ToDouble(did[0]);
+                    _numbers[n].YLength = Convert.ToDouble(did[1]);
+                    _numbers[n].Length = Convert.ToInt32(did[2]);
+                    _numbers[n].Label = did[3];
+                }
             }
             else {
                 _numbers.Add(new Optik_Arayuz_UI.Models.Number()
@@ -117,11 +133,17 @@ namespace Optik_Arayüz_UI.Controllers
             if (value != null)
             {
                 var did = value.Split("/");
-                n = Convert.ToInt32(did[2].Substring(did[2].Length - 1));
+                if (did.Length == 1)
+                {
+                    n = Convert.ToInt32(did[0]);
+                }
+                else
+                {
+                    n = Convert.ToInt32(did[2].Substring(did[2].Length - 1));
 
-                _students[n].XLength = Convert.ToDouble(did[0]);
-                _students[n].YLength = Convert.ToDouble(did[1]);
-
+                    _students[n].XLength = Convert.ToDouble(did[0]);
+                    _students[n].YLength = Convert.ToDouble(did[1]);
+                }
             }
             else {
                 _students.Add(new Student() { 
@@ -146,12 +168,19 @@ namespace Optik_Arayüz_UI.Controllers
             if (value != null)
             {
                 var did = value.Split("/");
-                n = Convert.ToInt32(did[5].Substring(did[5].Length - 1));
-                _choices[n].XLength = Convert.ToDouble(did[0]);
-                _choices[n].YLength = Convert.ToDouble(did[1]);
-                _choices[n].Label = did[2];
-                _choices[n].ChoiceCount = Convert.ToInt32(did[3]);
-                _choices[n].Choices = did[4];
+                if (did.Length == 1)
+                {
+                    n = Convert.ToInt32(did[0]);
+                }
+                else
+                {
+                    n = Convert.ToInt32(did[5].Substring(did[5].Length - 1));
+                    _choices[n].XLength = Convert.ToDouble(did[0]);
+                    _choices[n].YLength = Convert.ToDouble(did[1]);
+                    _choices[n].Label = did[2];
+                    _choices[n].ChoiceCount = Convert.ToInt32(did[3]);
+                    _choices[n].Choices = did[4];
+                }
             }
             else {
                 _choices.Add(new Choice()
@@ -179,10 +208,17 @@ namespace Optik_Arayüz_UI.Controllers
             if (value != null)
             {
                 var did = value.Split("/");
-                n = Convert.ToInt32(did[3].Substring(did[3].Length - 1));
-                _texts[n].TextContent = did[0];
-                _texts[n].FontSize = Convert.ToInt32(did[1]);
-                _texts[n].FontType = did[2];
+                if (did.Length == 1)
+                {
+                    n = Convert.ToInt32(did[0]);
+                }
+                else
+                {
+                    n = Convert.ToInt32(did[3].Substring(did[3].Length - 1));
+                    _texts[n].TextContent = did[0];
+                    _texts[n].FontSize = Convert.ToInt32(did[1]);
+                    _texts[n].FontType = did[2];
+                }
             }
             else {
                 _texts.Add(new Text()
@@ -205,11 +241,17 @@ namespace Optik_Arayüz_UI.Controllers
             if (value != null)
             {
                 var did = value.Split("/");
-                n = Convert.ToInt32(did[3].Substring(did[3].Length - 1));
-                _tests[n].XLength = Convert.ToDouble(did[0]);
-                _tests[n].YLength = Convert.ToDouble(did[1]);
-                _tests[n].QuestionCount = Convert.ToInt32(did[2]);
-
+                if (did.Length == 1)
+                {
+                    n = Convert.ToInt32(did[0]);
+                }
+                else
+                {
+                    n = Convert.ToInt32(did[3].Substring(did[3].Length - 1));
+                    _tests[n].XLength = Convert.ToDouble(did[0]);
+                    _tests[n].YLength = Convert.ToDouble(did[1]);
+                    _tests[n].QuestionCount = Convert.ToInt32(did[2]);
+                }
             }
             else {
                 _tests.Add(new Test()

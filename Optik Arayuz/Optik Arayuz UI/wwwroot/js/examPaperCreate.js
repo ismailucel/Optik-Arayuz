@@ -1,7 +1,9 @@
 const box = document.querySelector(".A4");
+const deleteBox = document.querySelector("#delete");
 const items = document.querySelectorAll('.item');
 const right = document.querySelector(".right");
 const button = document.querySelector("#button");
+var deleteBoxLocation;
 
 var count = {
     "Number" :1,
@@ -16,6 +18,50 @@ var clickedId = "";
 var tempx = 0;
 var tempy = 0;
 
+var getValue = () => {
+    var path = window.location.pathname.split("/");
+    try {
+        return parseInt(path[path.length - 1]);
+    } catch (error) {
+    }
+};
+var idValue = getValue();
+
+if (Number.isInteger(idValue)) {
+    var link = "/ExamPapers/getExamPaperComponents";
+    $.get(link, { id: idValue }, function (data) {
+        var draggable = document.getElementById("Number");
+        var components = data.split("/");
+        components.forEach(function (component) {
+            var values = component.split("_");
+
+            let clone = draggable.cloneNode(true);
+            clone.style.top = values[2] + "px";
+            clone.style.left = values[1] + "px";
+            clone.style.position = "absolute";
+            clone.style.margin = "0px";
+            clone.classList.add("on");
+            var link = "/ComponentsPartial/" + values[0];
+
+            clone.id = values[0] + count[values[0]];
+            var sendvalue = count[values[0]].toString();
+            count[values[0]] += 1;
+            clickedId = clone.id;
+
+            $.get(link, { value: sendvalue }, function (data) {
+                $('#' + clone.id).html(data);
+            });
+
+            box.appendChild(clone);
+            clone.addEventListener('dragstart', dragStart);
+            clone.addEventListener('mousedown', mouseDown);
+
+        });
+        
+    });
+}
+
+
 
 button.addEventListener('click', clicked);
 
@@ -24,14 +70,15 @@ items.forEach(item => {
     item.addEventListener('mousedown', mouseDown);
 
 });
-right.addEventListener('mouseenter', mouseEnter);
 
-if (box != null) {
-    box.addEventListener('dragenter', dragEnter)
-    box.addEventListener('dragover', dragOver);
-    box.addEventListener('dragleave', dragLeave);
-    box.addEventListener('drop', drop);
-}
+
+deleteBox.addEventListener('drop', deleteBoxdrop);
+right.addEventListener('mouseenter', mouseEnter);
+box.addEventListener('dragenter', dragEnter)
+box.addEventListener('dragover', dragOver);
+box.addEventListener('dragleave', dragLeave);
+box.addEventListener('drop', drop);
+
 
 function clicked() {
     var paperitems = getPaperItems();
@@ -40,10 +87,16 @@ function clicked() {
     for (var i = 0; i < paperitems.length; i++) {
         values = values +"/"+ paperitems[i].id +"_"+ parseInt(paperitems[i].style.left, 10) +"_"+ parseInt(paperitems[i].style.top, 10);
     }
-    values = values.substr(1);
+
 
 
     var link = "/ExamPapers/SendDatabase";
+    if (!isNaN(idValue)) {
+        values = idValue + "+" + values;
+    }
+    else {
+        values = values.substr(1);
+    }
     $.get(link, { value: values }, function (data) {
         if (data == "true") {
             location.replace("https://localhost:7061/")
@@ -99,6 +152,16 @@ function Change(e) {
 }
 function dragStart(e) {
     e.dataTransfer.setData('text/plain', e.target.id);
+    deleteBox.classList.remove("none");
+    deleteBox.classList.add("delete");
+    deleteBoxLocation = deleteBox.getBoundingClientRect();
+}
+
+
+function deleteBoxdrop(e) {
+    deleteBox.classList.remove("delete");
+    deleteBox.classList.add("none");
+    console.log("sa");
 }
 
 function dragEnter(e) {
@@ -116,6 +179,8 @@ function dragLeave(e) {
 }
 
 function drop(e) {
+    deleteBox.classList.remove("delete");
+    deleteBox.classList.add("none");
     var coordinat = box.getBoundingClientRect();
     var mouse = window.event;
     box.classList.remove("dragging");
@@ -127,12 +192,15 @@ function drop(e) {
     if (draggable.classList.contains("on")) {
         x = parseInt(x, 10) - tempx + "px";
         y = parseInt(y, 10) - tempy + "px";
-        if (!checkCollide(draggable, x, y)) {
-            draggable.style.top = y;
-            draggable.style.left = x;
-        } else {
-            alert("Buraya Koyamazsiniz");
+        if (!checkDelete()) {
+            if (!checkCollide(draggable, x, y)) {
+                draggable.style.top = y;
+                draggable.style.left = x;
+            } else {
+                alert("Buraya Koyamazsiniz");
+            }
         }
+        
     }
     else {
         let clone = draggable.cloneNode(true);
@@ -153,10 +221,21 @@ function drop(e) {
         box.appendChild(clone);
         clone.addEventListener('dragstart', dragStart);
         clone.addEventListener('mousedown', mouseDown);
+        clone.addEventListener('drop', itemDrop);
+
 
     }
 }
 
+function checkDelete() {
+    var a = deleteBoxLocation;
+    var mouse = window.event;
+    var btop = mouse.clientY;
+    var bleft = mouse.clientX;
+    console.log(a, btop, bleft);
+    
+    return false;
+}
 
 function getPaperItems() {
     return box.getElementsByClassName("item");
@@ -202,4 +281,3 @@ function checkCollide(element, x, y) {
     }
     return false;
 }
-

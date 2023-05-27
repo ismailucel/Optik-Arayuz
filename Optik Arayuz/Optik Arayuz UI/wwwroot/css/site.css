@@ -46,7 +46,6 @@ footer {
     color:white;
     background-color: #3C486B;
     height:100px;
-    margin-top: 10px;
     border-top: 1px solid black;
     display: flex;
     justify-content: center;
@@ -54,8 +53,36 @@ footer {
 }
 
 .mid {
+    width:100%;
     display:flex;
     justify-content: center;
     align-items: center;
 }
+.Ccontainer {
+    display:flex;
+    flex-direction:column;
+}
+.Ccontainer * {
+    margin-bottom:10px;
+}
+.Ccontainer a, .btn{
+    width: 90px;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Quicksand', sans-serif;
+    margin-top: 10px;
+    padding: 5px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #3C486B;
+    transition: ease-in .3s;
+}
 
+    .Ccontainer a:hover,.btn:hover {
+        background-color: white;
+        color: #3C486B;
+        cursor: pointer;
+    }
