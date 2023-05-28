@@ -29,6 +29,12 @@
                 <div class="NavLeftItem">
                     <a class="" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                 </div>
+                <div class="NavLeftItem">
+                    <a class="" asp-area="" asp-controller="Exams" asp-action="Index">Sınavlar</a>
+                </div>
+                <div class="NavLeftItem">
+                    <a class=""asp-area="" asp-controller="ExamPapers" asp-action="Index">Sınav Kağıtları</a>
+                </div>
             </div>
             <div class="NavRight">
                 @if (SignInManager.IsSignedIn(User))
