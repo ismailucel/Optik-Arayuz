@@ -16,10 +16,10 @@
 
     @for (var i = 0; i < Convert.ToInt32(ViewData["columnNumber"]); i++)
     {
-    var id = "i" + i.ToString();
+        var id = "i" + i.ToString();
         <div class="inputs">
             <p>@labels[i]</p>
-        <input class="input" id="@id" type="text" value="@values[i]">
+            <input class="input" id="@id" type="text" value="@values[i]">
         </div>
     }
 @if (flag)

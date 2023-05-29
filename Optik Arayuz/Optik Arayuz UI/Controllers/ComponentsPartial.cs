@@ -24,7 +24,7 @@ namespace Optik_Arayüz_UI.Controllers
         private readonly OptikArayuzDbContext _context;
         public enum Columns
         {
-            Logo = 3, Number = 4, Student = 2, Grade = 3, Choice = 5, Text = 3, Test = 3
+            Logo = 3, Number = 4, Student = 2, Grade = 3, Choice = 5, Text = 3, Test = 4
         };
 
         public ComponentsPartial(OptikArayuzDbContext context)
@@ -43,7 +43,7 @@ namespace Optik_Arayüz_UI.Controllers
 
                 _texts = new List<Text> { new Text() { TextContent= "sa",FontSize = 16,FontType = "Calibri"}};
 
-                _tests = new List<Test> { new Test() { XLength = 120, YLength = 100, QuestionCount = 10 } };
+                _tests = new List<Test> { new Test() { XLength = 120, YLength = 100, QuestionCount = 10, BreakPoint=10} };
 
                 flag = false;
             }
@@ -246,10 +246,11 @@ namespace Optik_Arayüz_UI.Controllers
                 }
                 else
                 {
-                    n = Convert.ToInt32(did[3].Substring(did[3].Length - 1));
+                    n = Convert.ToInt32(did[4].Substring(did[4].Length - 1));
                     _tests[n].XLength = Convert.ToDouble(did[0]);
                     _tests[n].YLength = Convert.ToDouble(did[1]);
                     _tests[n].QuestionCount = Convert.ToInt32(did[2]);
+                    _tests[n].BreakPoint = Convert.ToInt32(did[3]);
                 }
             }
             else {
@@ -258,12 +259,14 @@ namespace Optik_Arayüz_UI.Controllers
                     XLength = _tests[0].XLength,
                     YLength = _tests[0].YLength,
                     QuestionCount = _tests[0].QuestionCount,
+                    BreakPoint = _tests[0].BreakPoint,
                 });
             }
 
             ViewData["x"] = _tests[n].XLength;
             ViewData["y"] = _tests[n].YLength;
             ViewData["QuestionCount"] = _tests[n].QuestionCount;
+            ViewData["BreakPoint"] = _tests[n].BreakPoint;
             return PartialView();
         }
         public IActionResult Inputs()
@@ -310,8 +313,8 @@ namespace Optik_Arayüz_UI.Controllers
                     TempData["values"] = new string[] { _texts[j].TextContent, _texts[j].FontSize.ToString(), _texts[j].FontType };
                     break;
                 case "Test":
-                    TempData["labels"] = new string[] { "Width", "Height", "QuestionCount" };
-                    TempData["values"] = new string[] { _tests[j].XLength.ToString(), _tests[j].YLength.ToString(), _tests[j].QuestionCount.ToString() };
+                    TempData["labels"] = new string[] { "Width", "Height", "QuestionCount", "BreakPoint" };
+                    TempData["values"] = new string[] { _tests[j].XLength.ToString(), _tests[j].YLength.ToString(), _tests[j].QuestionCount.ToString(), _tests[j].BreakPoint.ToString() };
 
                     break;
                 default:

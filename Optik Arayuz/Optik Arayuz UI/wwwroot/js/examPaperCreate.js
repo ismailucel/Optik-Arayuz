@@ -131,8 +131,12 @@ function mouseEnter() {
     for (var i = 0; i < inputs.length; i++) {
         inputs[i].addEventListener('change', Change);
     }
+
     const fileform = document.querySelector("#fileform");
-    fileform.addEventListener('submit',submit);
+    if (fileform != null) {
+        fileform.addEventListener('submit', submit);
+
+    }
 }
 function Change(e) {
     var id = clickedId;

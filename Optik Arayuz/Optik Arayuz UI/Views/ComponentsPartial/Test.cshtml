@@ -1,21 +1,38 @@
-﻿
+﻿@{
+    int breakpoint = Convert.ToInt32(ViewData["BreakPoint"]);
+    int questionCount = Convert.ToInt32(ViewData["QuestionCount"]);
+    int column = questionCount / breakpoint;
+    string allwidth = ((column * Convert.ToInt32(ViewData["x"]))+2)+"px";
+}
 <head>
     <link rel="stylesheet" href="~/css/Test.css" asp-append-version="true" />
 </head>
 
-<div class="test" style="width: @ViewData["x"]px">
-    @for (var i = 1; i <= Convert.ToInt32(ViewData["QuestionCount"]); i++)
+<div class="allTests" style="width: @allwidth; display:flex; gap:2px;">
+
+    @for (var i = 1; i <= questionCount; i++)
     {
-        <div class="lines">
-            <div class="number">@i</div>
-            <div class="testCircles">
-                <div>A</div>
-                <div>B</div>
-                <div>C</div>
-                <div>D</div>
-                <div>E</div>
+        @if (i == 1 || (i%breakpoint)==1){
+            @:<div class="section" style="width: @ViewData["x"]px">
+        }      
+        <div class="test" >
+            <div class="lines">
+                <div class="number">@i</div>
+                <div class="testCircles">
+                    <div>A</div>
+                    <div>B</div>
+                    <div>C</div>
+                    <div>D</div>
+                    <div>E</div>
+                </div>
             </div>
         </div>
+        @if( i == breakpoint|| i== (questionCount) || (i%breakpoint)==0)
+        {
+            @:</div>
+        }
+
     }
-    
+
 </div>
+

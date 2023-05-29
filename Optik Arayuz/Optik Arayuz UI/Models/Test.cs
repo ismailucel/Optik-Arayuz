@@ -8,6 +8,7 @@ namespace Optik_Arayuz_UI.Models
         public int TestId { get; set; }
         public int QuestionCount { get; set; }
         public double XLength { get; set; }
-        public double YLength { get; set; } 
+        public double YLength { get; set; }
+        public int BreakPoint { get; set; }
     }
 }
