@@ -19,6 +19,7 @@ builder.Services.AddDbContext<OptikArayuzDbContext>(options => options.UseSqlSer
     ));
 
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<OptikArayuzDbContext>();
 
 builder.Services.AddRazorPages();
