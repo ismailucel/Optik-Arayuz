@@ -120,7 +120,6 @@ function mouseDown(e) {
     tempy = y - parseInt(temp.style.top, 10);
     clickedId = temp.id;
     var id = temp.id;
-    console.log(id);
     var link = "/ComponentsPartial/Inputs/" + id;
     $.get(link, function (data) {
         $('#right').html(data);
@@ -132,6 +131,8 @@ function mouseEnter() {
     for (var i = 0; i < inputs.length; i++) {
         inputs[i].addEventListener('change', Change);
     }
+    const fileform = document.querySelector("#fileform");
+    fileform.addEventListener('submit',submit);
 }
 function Change(e) {
     var id = clickedId;
@@ -144,7 +145,6 @@ function Change(e) {
     }
     values = values + clickedId;
     id = id.substring(0, (id.length - 1));
-    console.log(id);
     var link = "/ComponentsPartial/" + id;
     $.get(link, { value: values }, function (data) {
         $('#' + clickedId).html(data);
@@ -163,8 +163,8 @@ function deleteBoxdrop(e) {
 }
 
 function dragStart(e) {
-    e.dataTransfer.setData('text/plain', e.target.id);
-    var element = document.getElementById(e.target.id);
+    e.dataTransfer.setData('text/plain', e.currentTarget.id);
+    var element = document.getElementById(e.currentTarget.id);
     if (element.classList.contains("on")) {
         deleteBox.classList.remove("none");
         deleteBox.classList.add("delete");
@@ -226,7 +226,6 @@ function drop(e) {
         box.appendChild(clone);
         clone.addEventListener('dragstart', dragStart);
         clone.addEventListener('mousedown', mouseDown);
-        clone.addEventListener('drop', itemDrop);
 
 
     }
@@ -253,7 +252,6 @@ function boxIsCollide(b, x, y) {
     var a = box.getBoundingClientRect();
     var btop = parseInt(y, 10);
     var bleft = parseInt(x, 10);
-    console.log(bleft + b.offsetWidth, a.left + a.width);
     if ((bleft + b.offsetWidth) >= (a.width) || (bleft <= 0)) {
         return true;
     }
@@ -276,4 +274,34 @@ function checkCollide(element, x, y) {
         }
     }
     return false;
+}
+
+
+function submit(e) {
+    e.preventDefault();
+    var sendvalue = clickedId.substring(clickedId.length - 1);
+    var formData = new FormData();
+    formData.append('file', $('#file')[0].files[0]); // myFile is the input type="file" control
+    formData.append('index', sendvalue);
+    $.ajax({
+        url: "/ExamPapers/UploadLogo",
+        type: "POST",
+        data: formData,
+        processData: false, // Not to process data  
+        contentType: false, // Not to set any content header  
+        success: function (result) {
+            var id = clickedId.substring(0, clickedId.length - 1);
+
+            var link = "/ComponentsPartial/" + id;
+
+            $.get(link, { value: sendvalue }, function (data) {
+                $('#' + clickedId).html(data);
+            });
+        },
+        error: function (err) {
+            alert(err.statusText);
+        }
+    });
+    
+
 }

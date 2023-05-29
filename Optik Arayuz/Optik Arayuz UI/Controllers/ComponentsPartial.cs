@@ -35,7 +35,7 @@ namespace Optik_Arayüz_UI.Controllers
 
                 _choices = new List<Choice> { new Choice(){ChoiceCount = 2,XLength = 102,YLength = 42,Label = "Kitap türü",Choices = "A-B"}};
 
-                _logos = new List<Logo> {new Logo() {XLength = 102,YLength = 42,ImagePath = "sa"}};
+                _logos = new List<Logo> {new Logo() {XLength = 102,YLength = 42,ImagePath = "googleturtle.png" } };
 
                 _numbers = new List<Optik_Arayuz_UI.Models.Number> {new Optik_Arayuz_UI.Models.Number() {XLength = 184,YLength = 215,Length = 10,Label = "Ogr"}};
 
@@ -82,7 +82,6 @@ namespace Optik_Arayüz_UI.Controllers
                     ImagePath = _logos[0].ImagePath,
                 });
             }
-
             ViewData["src"] = _logos[n].ImagePath;
             ViewData["x"] = _logos[n].XLength;
             ViewData["y"] = _logos[n].YLength;

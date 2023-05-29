@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json.Linq;
 using Optik_Arayuz_UI.Data;
 using Optik_Arayuz_UI.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Optik_Arayüz_UI.Controllers
 {
@@ -26,11 +27,17 @@ namespace Optik_Arayüz_UI.Controllers
             _context = context;
         }
         [Authorize]
+
         public IActionResult ExamPaperCreate(int? id)
         {
+            if (id != null)
+            {
+                ViewBag.Id = id;
+            }
             return View();
-        }
 
+        }
+        
         [HttpPost]
         public IActionResult ExamPaperCreate(ExamPaper examPaper)
         {
@@ -50,51 +57,40 @@ namespace Optik_Arayüz_UI.Controllers
                     _context.SaveChanges();
 
                     return _context.Choices.OrderBy(m => m.ChoiceId).Last().ChoiceId;
-                    break;
                 case "Logo":
                     _context.Logos.Add(ComponentsPartial._logos[index]);
                     _context.SaveChanges();
 
                     return _context.Logos.OrderBy(m => m.LogoId).Last().LogoId;
-                    break;
                 case "Number":
                     _context.Numbers.Add(ComponentsPartial._numbers[index]);
                     _context.SaveChanges();
 
                     return _context.Numbers.OrderBy(m => m.NumberId).Last().NumberId;
-
-                    break;
                 case "Student":
                     _context.Students.Add(ComponentsPartial._students[index]);
                     _context.SaveChanges();
 
                     return _context.Students.OrderBy(m => m.StudentId).Last().StudentId;
 
-                    break;
                 case "Grade":
                     _context.Grades.Add(ComponentsPartial._grades[index]);
                     _context.SaveChanges();
 
                     return _context.Grades.OrderBy(m => m.GradeId).Last().GradeId;
-
-                    break;
                 case "Text":
                     _context.Texts.Add(ComponentsPartial._texts[index]);
                     _context.SaveChanges();
 
                     return _context.Texts.OrderBy(m => m.TextId).Last().TextId;
-
-                    break;
                 case "Test":
                     _context.Tests.Add(ComponentsPartial._tests[index]);
                     _context.SaveChanges();
 
                     return _context.Tests.OrderBy(m => m.TestId).Last().TestId;
-
-                    break;
                 default:
                     return 0;
-                    break;
+                    
 
             }
         }
@@ -324,7 +320,7 @@ namespace Optik_Arayüz_UI.Controllers
 
                         break;
                     case "Number":
-                        Number number = _context.Numbers.Where(m => m.NumberId == x.ComponentId).FirstOrDefault();
+                        Optik_Arayuz_UI.Models.Number number = _context.Numbers.Where(m => m.NumberId == x.ComponentId).FirstOrDefault();
                         ComponentsPartial._numbers.Add(number);
                         values = values + "/" + x.Type + "_" + x.X + "_" + x.Y;
 
@@ -364,6 +360,28 @@ namespace Optik_Arayüz_UI.Controllers
             }
             return (values);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UploadLogo(string index)
+        {
+            if (Request.Form.Files.Count > 0)
+            {
+                var fileName = Path.GetFileName(Request.Form.Files[0].FileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UploadedLogoImage/", fileName);
+                ComponentsPartial._logos[Convert.ToInt32(index)].ImagePath = fileName;
+                using (var fileSrteam = new FileStream(filePath, FileMode.Create))
+                {
+                    await Request.Form.Files[0].CopyToAsync(fileSrteam);
+                }
+                ViewBag.Message = "Başarılı";
+
+                return Ok();
+            }
+            return Ok();
+
+
+
+        }
         // GET: ExamPapers
         [Authorize]
         public async Task<IActionResult> Index()
@@ -372,6 +390,7 @@ namespace Optik_Arayüz_UI.Controllers
                           View(await _context.ExamPapers.ToListAsync()) :
                           Problem("Entity set 'OptikArayuzDbContext.ExamPapers'  is null.");
         }
+
 
         // GET: ExamPapers/Details/5
         [Authorize]

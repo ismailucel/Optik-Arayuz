@@ -1,6 +1,12 @@
 ﻿@{
     var labels = (string[])TempData["labels"];
     var values = (string[])TempData["values"];
+    bool flag = false;
+    if (labels.Contains("ImagePath"))
+    {
+        flag = true;
+    }
+
 }
 <head>
     <link rel="stylesheet" href="~/css/Inputs.css" asp-append-version="true" />
@@ -11,8 +17,18 @@
     @for (var i = 0; i < Convert.ToInt32(ViewData["columnNumber"]); i++)
     {
     var id = "i" + i.ToString();
-    <div class="inputs">
+        <div class="inputs">
             <p>@labels[i]</p>
         <input class="input" id="@id" type="text" value="@values[i]">
         </div>
     }
+@if (flag)
+{
+    <form id="fileform" method="post" enctype="multipart/form-data" asp-controller="ExamPapers" asp-action="UploadLogo">
+        <input type="file" id="file" value="Yükle" />
+        <input type="submit" value="Upload" />
+
+    </form>
+
+
+}
