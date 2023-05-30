@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Optik_Arayüz_UI.Models;
+using Optik_Arayuz_UI.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
