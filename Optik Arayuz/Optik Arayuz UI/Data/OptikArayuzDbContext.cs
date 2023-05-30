@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Optik_Arayuz_UI.Models;
+using Optik_Arayüz_UI.Models;
 
 namespace Optik_Arayuz_UI.Data
 {
@@ -15,6 +16,7 @@ namespace Optik_Arayuz_UI.Data
         public DbSet<User> User { get; set; }
         public DbSet<Exam> Exams { get; set; }
         public DbSet<Faculty> Faculties { get; set; }
+        public DbSet<Department> Departments { get; set; }
         public DbSet<Grade> Grades { get; set; }
         public DbSet<Choice> Choices { get; set; }
         public DbSet<Number> Numbers { get; set; }
