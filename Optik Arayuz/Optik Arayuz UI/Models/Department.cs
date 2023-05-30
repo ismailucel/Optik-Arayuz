@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Optik_Arayüz_UI.Models
+namespace Optik_Arayuz_UI.Models
 {
     public class Department
     {

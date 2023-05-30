@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Optik_Arayuz_UI.Models;
-using Optik_Arayüz_UI.Models;
 
 namespace Optik_Arayuz_UI.Data
 {
