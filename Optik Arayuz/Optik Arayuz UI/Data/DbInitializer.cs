@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Optik_Arayüz_UI.Data;
 using Optik_Arayuz_UI.Data;
 using Optik_Arayuz_UI.Models;
+using Optik_Arayüz_UI.Models;
 using System;
 using System.Drawing.Text;
 using System.Linq;
@@ -54,8 +55,29 @@ namespace Optik_Arayuz_UI.Data
                 _db.SaveChanges();
             }
 
+            if (!_db.Departments.Any())
+            {
+                var departments = new Department[]
+                {
+                    new Department{
+                        DepartmentName = "Bilgisayar Mühendisliği",
+                        DepartmentAddress = "Sakarya Üniversitesi Bilgisayar ve Bilişim Bilimleri Fakültesi, 54187 Sakarya",
+                        DepartmentMail = "bf@sakarya.edu.tr",
+                        DepartmentPhoneNumber = "+90 (264) 295 69 79",
+                        FacultyId = 1
+                },
 
-            
+
+                };
+                foreach (Department d in departments)
+                {
+                    _db.Departments.Add(d);
+                }
+                _db.SaveChanges();
+            }
+
+
+
             if (_db.Roles.Any(r => r.Name == "Admin")) return;
             _roleManager.CreateAsync(new IdentityRole("Admin")).GetAwaiter().GetResult();
             _roleManager.CreateAsync(new IdentityRole("User")).GetAwaiter().GetResult();
