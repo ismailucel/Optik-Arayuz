@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Optik_Arayüz_UI.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,5 +18,9 @@ namespace Optik_Arayuz_UI.Models
         [ForeignKey("Faculty")]
         public int? FacultyId { get; set; }
         public virtual Faculty? Faculty { get; set; }
+
+        [ForeignKey("Department")]
+        public int? DepartmentId { get; set; }
+        public virtual Department? Department { get; set; }
     }
 }
