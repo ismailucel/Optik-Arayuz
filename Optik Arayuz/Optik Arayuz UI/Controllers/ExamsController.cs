@@ -11,11 +11,11 @@ using Optik_Arayuz_UI.Models;
 
 namespace Optik_Arayüz_UI.Controllers
 {
-    public class ExamsController : Controller
+    public class ExamController : Controller
     {
         private readonly OptikArayuzDbContext _context;
 
-        public ExamsController(OptikArayuzDbContext context)
+        public ExamController(OptikArayuzDbContext context)
         {
             _context = context;
         }

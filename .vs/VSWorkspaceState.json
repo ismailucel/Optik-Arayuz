@@ -4,13 +4,11 @@
     "\\Optik Arayuz",
     "\\Optik Arayuz\\Optik Arayuz UI",
     "\\Optik Arayuz\\Optik Arayuz UI\\Controllers",
-    "\\Optik Arayuz\\Optik Arayuz UI\\Views",
-    "\\Optik Arayuz\\Optik Arayuz UI\\Views\\ComponentsPartial",
-    "\\Optik Arayuz\\Optik Arayuz UI\\Views\\ExamPapers",
+    "\\Optik Arayuz\\Optik Arayuz UI\\Data",
     "\\Optik Arayuz\\Optik Arayuz UI\\wwwroot",
     "\\Optik Arayuz\\Optik Arayuz UI\\wwwroot\\css",
     "\\Optik Arayuz\\Optik Arayuz UI\\wwwroot\\js"
   ],
-  "SelectedNode": "\\Optik Arayuz\\Optik Arayuz UI\\Views\\ComponentsPartial\\Test.cshtml",
+  "SelectedNode": "\\Optik Arayuz\\Optik Arayuz.sln",
   "PreviewInSolutionExplorer": false
 }

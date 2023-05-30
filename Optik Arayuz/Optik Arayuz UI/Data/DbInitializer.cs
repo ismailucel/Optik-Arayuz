@@ -12,15 +12,18 @@ namespace Optik_Arayuz_UI.Data
     public class DbInitializer: IDbInitializer
     {
         private readonly OptikArayuzDbContext _db;
+        private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public DbInitializer(OptikArayuzDbContext db,
+        public DbInitializer(OptikArayuzDbContext db, 
+            UserManager<User> userManager,
             RoleManager<IdentityRole> roleManager)
         {
             _db = db;
             _roleManager = roleManager;
+            _userManager = userManager;
         }
-        public void Initialize()
+        public async void Initialize()
         {
 
              _db.Database.EnsureCreated();
@@ -51,12 +54,27 @@ namespace Optik_Arayuz_UI.Data
                 _db.SaveChanges();
             }
 
-  
+
+            
             if (_db.Roles.Any(r => r.Name == "Admin")) return;
             _roleManager.CreateAsync(new IdentityRole("Admin")).GetAwaiter().GetResult();
             _roleManager.CreateAsync(new IdentityRole("User")).GetAwaiter().GetResult();
 
+            _userManager.CreateAsync(new User
+            {
+                UserName = "admin@gmail.com",
+                Email = "admin@gmail.com",
+                FirstName = "admin",
+                LastName = "123",
+                EmailConfirmed = true,
+                PhoneNumber = "1112223333"
+            }, "Admin123*").GetAwaiter().GetResult();
 
+            User user = (User)_db.Users.FirstOrDefaultAsync(m => m.Email == "admin@gmail.com").GetAwaiter().GetResult();
+
+            user.Role = "Admin";
+            _db.Update(user);
+            _db.SaveChanges();
 
         }
 
