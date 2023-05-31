@@ -16,6 +16,33 @@
         <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
         <div class="LoginRow">
             <div class="LoginRowTop">
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+            <div class="LoginRowBottom">
+                <label asp-for="Input.FirstName">Ad</label>
+                <input asp-for="Input.FirstName" class="form-control" autocomplete="username" aria-required="true" placeholder="Ad" />
+            </div>
+        </div>
+        <div class="LoginRow">
+            <div class="LoginRowTop">
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
+            <div class="LoginRowBottom">
+                <label asp-for="Input.LastName">Soyad</label>
+                <input asp-for="Input.LastName" class="form-control" autocomplete="username" aria-required="true" placeholder="Soyad" />
+            </div>
+        </div>
+        <div class="LoginRow">
+            <div class="LoginRowTop">
+                <span asp-validation-for="Input.Address" class="text-danger"></span>
+            </div>
+            <div class="LoginRowBottom">
+                <label asp-for="Input.Address">Adres</label>
+                <input asp-for="Input.Address" class="form-control" autocomplete="username" aria-required="true" placeholder="Adres" />
+            </div>
+        </div>
+        <div class="LoginRow">
+            <div class="LoginRowTop">
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="LoginRowBottom">

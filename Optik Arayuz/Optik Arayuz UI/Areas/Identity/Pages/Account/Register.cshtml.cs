@@ -76,6 +76,15 @@ namespace Optik_Arayüz_UI.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
+            [Display(Name = "Ad")]
+            public string FirstName { get; set; }
+            [Required]
+            [Display(Name = "Soyad")]
+            public string LastName { get; set; }
+            [Required]
+            [Display(Name = "Adres")]
+            public string Address { get; set; }
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -120,13 +129,13 @@ namespace Optik_Arayüz_UI.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
+                    _userManager.AddToRoleAsync(user, "User").GetAwaiter().GetResult();
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);

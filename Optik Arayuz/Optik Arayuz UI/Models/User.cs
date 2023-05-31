@@ -13,7 +13,6 @@ namespace Optik_Arayuz_UI.Models
 
         public string? Address { get; set;}
 
-        public string? Role { get; set; }
 
         [ForeignKey("Faculty")]
         public int? FacultyId { get; set; }

@@ -92,10 +92,9 @@ namespace Optik_Arayuz_UI.Data
             }, "Admin123*").GetAwaiter().GetResult();
 
             User user = (User)_db.Users.FirstOrDefaultAsync(m => m.Email == "admin@gmail.com").GetAwaiter().GetResult();
-
-            user.Role = "Admin";
-            _db.Update(user);
-            _db.SaveChanges();
+            if (user != null) { 
+                _userManager.AddToRoleAsync(user, "Admin").GetAwaiter().GetResult();
+            }
 
         }
 
