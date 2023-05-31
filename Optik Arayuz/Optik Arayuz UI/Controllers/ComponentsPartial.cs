@@ -24,7 +24,7 @@ namespace Optik_Arayüz_UI.Controllers
         private readonly OptikArayuzDbContext _context;
         public enum Columns
         {
-            Logo = 3, Number = 4, Student = 2, Grade = 3, Choice = 5, Text = 3, Test = 4
+            Logo = 3, Number = 6, Student = 2, Grade = 3, Choice = 5, Text = 3, Test = 4
         };
 
         public ComponentsPartial(OptikArayuzDbContext context)
@@ -37,7 +37,7 @@ namespace Optik_Arayüz_UI.Controllers
 
                 _logos = new List<Logo> {new Logo() {XLength = 102,YLength = 42,ImagePath = "googleturtle.png" } };
 
-                _numbers = new List<Optik_Arayuz_UI.Models.Number> {new Optik_Arayuz_UI.Models.Number() {XLength = 184,YLength = 215,Length = 10,Label = "Ogr"}};
+                _numbers = new List<Optik_Arayuz_UI.Models.Number> {new Optik_Arayuz_UI.Models.Number() {XLength = 184,YLength = 237,Length = 10,Label = "Ogr",Columns="0",Values=""}};
 
                 _grades = new List<Grade>();
 
@@ -100,12 +100,14 @@ namespace Optik_Arayüz_UI.Controllers
                 }
                 else
                 {
-                    n = Convert.ToInt32(did[4].Substring(did[4].Length - 1));
+                    n = Convert.ToInt32(did[6].Substring(did[6].Length - 1));
 
                     _numbers[n].XLength = Convert.ToDouble(did[0]);
                     _numbers[n].YLength = Convert.ToDouble(did[1]);
                     _numbers[n].Length = Convert.ToInt32(did[2]);
                     _numbers[n].Label = did[3];
+                    _numbers[n].Columns = did[4];
+                    _numbers[n].Values = did[5];
                 }
             }
             else {
@@ -114,7 +116,9 @@ namespace Optik_Arayüz_UI.Controllers
                     XLength = _numbers[0].XLength,
                     YLength = _numbers[0].YLength,
                     Length = _numbers[0].Length,
-                    Label = _numbers[0].Label
+                    Label = _numbers[0].Label,
+                    Columns = _numbers[0].Columns,
+                    Values = _numbers[0].Values
                 });
             }
 
@@ -122,6 +126,8 @@ namespace Optik_Arayüz_UI.Controllers
             ViewData["y"] = _numbers[n].YLength;
             ViewData["Length"] = _numbers[n].Length;
             ViewData["Label"] = _numbers[n].Label;
+            ViewData["Columns"] = _numbers[n].Columns;
+            ViewData["Values"] = _numbers[n].Values;
 
             return PartialView();
         }
@@ -296,8 +302,8 @@ namespace Optik_Arayüz_UI.Controllers
 
                     break;
                 case "Number":
-                    TempData["labels"] = new string[] { "Width", "Height", "Lenght", "Label" };
-                    TempData["values"] = new string[] { _numbers[j].XLength.ToString(), _numbers[j].YLength.ToString(), _numbers[j].Length.ToString(), _numbers[j].Label };
+                    TempData["labels"] = new string[] { "Width", "Height", "Lenght", "Label","Columns","Values"};
+                    TempData["values"] = new string[] { _numbers[j].XLength.ToString(), _numbers[j].YLength.ToString(), _numbers[j].Length.ToString(), _numbers[j].Label, _numbers[j].Columns, _numbers[j].Values };
 
                     break;
                 case "Student":

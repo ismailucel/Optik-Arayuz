@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Optik_Arayüz_UI.Data;
 using Optik_Arayuz_UI.Data;
 using Optik_Arayuz_UI.Models;
-using Optik_Arayüz_UI.Models;
 using System;
 using System.Drawing.Text;
 using System.Linq;

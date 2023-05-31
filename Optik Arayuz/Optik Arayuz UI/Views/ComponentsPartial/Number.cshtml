@@ -1,25 +1,56 @@
-﻿
+﻿@{
+    var columns = ViewData["Columns"].ToString().Split("-");
+    var values = ViewData["Values"].ToString().Split("_");
+    bool flag = true;
+
+}
 <head>
     <link rel="stylesheet" href="~/css/Number.css" asp-append-version="true" />
 </head>
 
-<div class="Number" style="width: @ViewData["x"]px;height:@ViewData["y"]px">
+<div class="Number" style="width: @ViewData["x"]px;">
     <div class="label">@ViewData["Label"]</div>
     <div class="bottom">
          @for (var i = 0; i < Convert.ToInt32(ViewData["Length"]); i++){
-            <div class="column">
-                <div class="empty"></div>
-                <div class="circles">0</div>
-                <div class="circles">1</div>
-                <div class="circles">2</div>
-                <div class="circles">3</div>
-                <div class="circles">4</div>
-                <div class="circles">5</div>
-                <div class="circles">6</div>
-                <div class="circles">7</div>
-                <div class="circles">8</div>
-                <div class="circles">9</div>
-            </div>
-         }
+            for (var x = 0; x < columns.Length; x++)
+            {
+                if (columns[x] == (i+1).ToString())
+                
+                {
+                    flag = false;
+                    var value = values[x].Split("-");
+                    <div class="column">
+                        @if (value.Length == 0)
+                        {
+                            
+                        }
+                        <div class="empty"></div>
+                        @for (var y = 0; y < value.Length; y++){
+                            <div class="circles">@value[y]</div>
+                        }
+                    </div>
+                }
+            }
+            if (flag)
+            {
+                <div class="column">
+                    <div class="empty"></div>
+                    <div class="circles">0</div>
+                    <div class="circles">1</div>
+                    <div class="circles">2</div>
+                    <div class="circles">3</div>
+                    <div class="circles">4</div>
+                    <div class="circles">5</div>
+                    <div class="circles">6</div>
+                    <div class="circles">7</div>
+                    <div class="circles">8</div>
+                    <div class="circles">9</div>
+                </div>
+            }
+            if (!flag)
+            {
+                flag = true;   
+            }
+        }
     </div>
 </div>

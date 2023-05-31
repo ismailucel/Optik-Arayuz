@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Optik_Arayuz_UI.Data;
 using Optik_Arayuz_UI.Models;
 
-namespace Optik_Arayuz_UI.Areas.Admin
+namespace Optik_Arayüz_UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
+
     public class FacultiesController : Controller
     {
         private readonly OptikArayuzDbContext _context;
@@ -23,9 +27,9 @@ namespace Optik_Arayuz_UI.Areas.Admin
         // GET: Admin/Faculties
         public async Task<IActionResult> Index()
         {
-              return _context.Faculties != null ? 
-                          View(await _context.Faculties.ToListAsync()) :
-                          Problem("Entity set 'OptikArayuzDbContext.Faculties'  is null.");
+            return _context.Faculties != null ?
+                        View(await _context.Faculties.ToListAsync()) :
+                        Problem("Entity set 'OptikArayuzDbContext.Faculties'  is null.");
         }
 
         // GET: Admin/Faculties/Details/5
@@ -151,14 +155,14 @@ namespace Optik_Arayuz_UI.Areas.Admin
             {
                 _context.Faculties.Remove(faculty);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool FacultyExists(int id)
         {
-          return (_context.Faculties?.Any(e => e.FacultyId == id)).GetValueOrDefault();
+            return (_context.Faculties?.Any(e => e.FacultyId == id)).GetValueOrDefault();
         }
     }
 }

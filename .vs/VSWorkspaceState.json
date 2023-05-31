@@ -3,6 +3,8 @@
     "",
     "\\Optik Arayuz",
     "\\Optik Arayuz\\Optik Arayuz UI",
+    "\\Optik Arayuz\\Optik Arayuz UI\\Areas",
+    "\\Optik Arayuz\\Optik Arayuz UI\\Areas\\Admin",
     "\\Optik Arayuz\\Optik Arayuz UI\\Controllers",
     "\\Optik Arayuz\\Optik Arayuz UI\\Data",
     "\\Optik Arayuz\\Optik Arayuz UI\\wwwroot",

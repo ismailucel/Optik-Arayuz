@@ -19,7 +19,14 @@
         var id = "i" + i.ToString();
         <div class="inputs">
             <p>@labels[i]</p>
+        @if (labels[i] == "ImagePath")
+        {
+            <input class="input" id="@id" type="text" disabled value="@values[i]">
+        }
+        else
+        {
             <input class="input" id="@id" type="text" value="@values[i]">
+        }
         </div>
     }
 @if (flag)

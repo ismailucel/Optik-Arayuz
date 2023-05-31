@@ -10,5 +10,7 @@ namespace Optik_Arayuz_UI.Models
         public double YLength { get; set; }
         public double Length { get; set; }
         public string? Label { get; set; }
+        public string? Columns { get; set; }
+        public string? Values { get; set; }
     }
 }

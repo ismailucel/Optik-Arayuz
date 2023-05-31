@@ -177,6 +177,8 @@ namespace Optik_Arayüz_UI.Controllers
                                 number.YLength = ComponentsPartial._numbers[index].YLength;
                                 number.Length = ComponentsPartial._numbers[index].Length;
                                 number.Label = ComponentsPartial._numbers[index].Label;
+                                number.Columns = ComponentsPartial._numbers[index].Columns;
+                                number.Values = ComponentsPartial._numbers[index].Values;
                                 _context.Update(number);
                                 break;
                             case "Student":
