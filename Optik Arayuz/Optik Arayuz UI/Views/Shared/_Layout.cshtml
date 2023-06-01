@@ -15,6 +15,7 @@
 
 </head>
 <body>
+    @if (SignInManager.IsSignedIn(User))
 
     <header>
         <nav class="Nav">
@@ -68,6 +69,7 @@
             </div>
         </nav>
     </header>
+    }
     <div class="mid">
             @RenderBody()
     </div>

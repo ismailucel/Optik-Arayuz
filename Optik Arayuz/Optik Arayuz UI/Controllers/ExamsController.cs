@@ -49,8 +49,8 @@ namespace Optik_Arayüz_UI.Controllers
         // GET: Exams/Create
         public IActionResult Create()
         {
-            ViewData["ExamPaperId"] = new SelectList(_context.ExamPapers, "ExamPaperId", "ExamPaperId");
-            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id");
+            ViewData["ExamPaperId"] = new SelectList(_context.ExamPapers, "ExamPaperId", "ExamPaperName");
+
             return View();
         }
 
@@ -85,8 +85,7 @@ namespace Optik_Arayüz_UI.Controllers
             {
                 return NotFound();
             }
-            ViewData["ExamPaperId"] = new SelectList(_context.ExamPapers, "ExamPaperId", "ExamPaperId", exam.ExamPaperId);
-            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", exam.UserId);
+            ViewData["ExamPaperId"] = new SelectList(_context.ExamPapers, "ExamPaperId", "ExamPaperName", exam.ExamPaperId);
             return View(exam);
         }
 

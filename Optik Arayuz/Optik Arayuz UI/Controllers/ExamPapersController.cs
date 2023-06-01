@@ -37,7 +37,7 @@ namespace Optik_Arayüz_UI.Controllers
             return View();
 
         }
-        
+
         [HttpPost]
         public IActionResult ExamPaperCreate(ExamPaper examPaper)
         {
@@ -49,7 +49,8 @@ namespace Optik_Arayüz_UI.Controllers
 
         }
 
-        public int CreateNewComponent(string type, int index) {
+        public int CreateNewComponent(string type, int index)
+        {
             switch (type)
             {
                 case "Choice":
@@ -90,11 +91,12 @@ namespace Optik_Arayüz_UI.Controllers
                     return _context.Tests.OrderBy(m => m.TestId).Last().TestId;
                 default:
                     return 0;
-                    
+
 
             }
         }
-        public bool CreateNewExamPaper(string[] components) {
+        public bool CreateNewExamPaper(string[] components)
+        {
             var paperId = _context.ExamPapers.OrderBy(m => m.ExamPaperId).Last().ExamPaperId;
             int id = 0;
             for (int i = 0; i < components.Length; i++)
@@ -133,7 +135,8 @@ namespace Optik_Arayüz_UI.Controllers
             clear();
             return "true";
         }
-        public bool editDatabase(string[] components) {
+        public bool editDatabase(string[] components)
+        {
             var paperId = Convert.ToInt32(components[0][..^1]);
             var examPaperElements = _context.ExamPaperElements.Where(m => m.ExamPaperId == paperId).ToList();
             string[] copy = (string[])components.Clone();
@@ -191,7 +194,7 @@ namespace Optik_Arayüz_UI.Controllers
 
                                 break;
                             case "Text":
-                                var text =_context.Texts.Where(m => m.TextId == x.ComponentId).First();
+                                var text = _context.Texts.Where(m => m.TextId == x.ComponentId).First();
                                 text.TextContent = ComponentsPartial._texts[index].TextContent;
                                 text.FontSize = ComponentsPartial._texts[index].FontSize;
                                 text.FontType = ComponentsPartial._texts[index].FontType;
@@ -215,7 +218,8 @@ namespace Optik_Arayüz_UI.Controllers
                     }
 
                 }
-                if(flag){
+                if (flag)
+                {
                     switch (x.Type)
                     {
                         case "Choice":
@@ -291,13 +295,13 @@ namespace Optik_Arayüz_UI.Controllers
         }
         public void clear()
         {
-            ComponentsPartial._choices.RemoveRange(1, ComponentsPartial._choices.Count-1);
+            ComponentsPartial._choices.RemoveRange(1, ComponentsPartial._choices.Count - 1);
             ComponentsPartial._logos.RemoveRange(1, ComponentsPartial._logos.Count - 1);
             ComponentsPartial._numbers.RemoveRange(1, ComponentsPartial._numbers.Count - 1);
             //ComponentsPartial._grades.RemoveRange(1, ComponentsPartial._grades.Count-1);
-            ComponentsPartial._texts.RemoveRange(1, ComponentsPartial._texts.Count-1);
+            ComponentsPartial._texts.RemoveRange(1, ComponentsPartial._texts.Count - 1);
             ComponentsPartial._tests.RemoveRange(1, ComponentsPartial._tests.Count - 1);
-            ComponentsPartial._students.RemoveRange(1,ComponentsPartial._students.Count-1);
+            ComponentsPartial._students.RemoveRange(1, ComponentsPartial._students.Count - 1);
         }
 
         public string getExamPaperComponents(int id)
@@ -313,7 +317,7 @@ namespace Optik_Arayüz_UI.Controllers
                     case "Choice":
                         Choice choice = _context.Choices.Where(m => m.ChoiceId == x.ComponentId).FirstOrDefault();
                         ComponentsPartial._choices.Add(choice);
-                        values = values + "/" + x.Type+"_"+x.X+"_"+x.Y;
+                        values = values + "/" + x.Type + "_" + x.X + "_" + x.Y;
                         break;
                     case "Logo":
                         Logo logo = _context.Logos.Where(m => m.LogoId == x.ComponentId).FirstOrDefault();
@@ -357,7 +361,8 @@ namespace Optik_Arayüz_UI.Controllers
                 }
 
             }
-            if (values.Length > 0) { 
+            if (values.Length > 0)
+            {
                 values = values.Substring(1);
             }
             return (values);
@@ -388,9 +393,9 @@ namespace Optik_Arayüz_UI.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
-              return _context.ExamPapers != null ? 
-                          View(await _context.ExamPapers.ToListAsync()) :
-                          Problem("Entity set 'OptikArayuzDbContext.ExamPapers'  is null.");
+            return _context.ExamPapers != null ?
+                        View(await _context.ExamPapers.ToListAsync()) :
+                        Problem("Entity set 'OptikArayuzDbContext.ExamPapers'  is null.");
         }
 
 
@@ -420,7 +425,7 @@ namespace Optik_Arayüz_UI.Controllers
             return View();
         }
 
-        
+
         // POST: ExamPapers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -525,14 +530,14 @@ namespace Optik_Arayüz_UI.Controllers
             {
                 _context.ExamPapers.Remove(examPaper);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ExamPaperExists(int id)
         {
-          return (_context.ExamPapers?.Any(e => e.ExamPaperId == id)).GetValueOrDefault();
+            return (_context.ExamPapers?.Any(e => e.ExamPaperId == id)).GetValueOrDefault();
         }
     }
 }

@@ -6,57 +6,99 @@
 }
 
 <head>
-    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
-
+    <title>Giriş Yp</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/css/main.css">
+    <!--===============================================================================================-->
 </head>
-<form id="account" method="post">
-    <div class="LoginContainer">
-        <h1>@ViewData["Title"]</h1>
-        <h4>Local Hesabınızla Giriş Yapın</h4>
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-        <div class="LoginRow">
-            <div class="LoginRowTop">
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="LoginRowBottom">
-                <label asp-for="Input.Email" class="LoginLabel">Email</label>
-                <input asp-for="Input.Email" class="LoginInput" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-            </div>
-        </div>
-        <div class="LoginRow">
-            <div class="LoginRowTop">
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
 
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-form-title" style="background-image: url(images/bg-01.jpg);">
+                <span class="login100-form-title-1">
+                    Giriş Yap
+                </span>
             </div>
-            <div class="LoginRowBottom">
-                <label asp-for="Input.Password" class="form-label">Password</label>
-                <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
-            </div>
-        </div>
-        <div style="margin-top:10px;">
-            <label asp-for="Input.RememberMe" class="form-label">
-                <input class="form-check-input" asp-for="Input.RememberMe" />
-                @Html.DisplayNameFor(m => m.Input.RememberMe)
-            </label>
-        </div>
-        <div>
-            <button id="login-submit" type="submit" class="LoginButton">Giriş Yap</button>
-        </div>
-        <div>
-            <p>
-                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-            </p>
-            <p>
-                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-            </p>
-            <p>
-                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-            </p>
+
+            <form class="login100-form validate-form" id="account" method="post">
+
+                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                    <span class="label-input100">Email</span>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    <input asp-for="Input.Email" class="input100" type="text" placeholder="name@example.com">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                    <span class="label-input100">Password</span>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    <input asp-for="Input.Password" class="input100" type="password" placeholder="Enter password">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="flex-sb-m w-full p-b-30">
+                    <div class="contact100-form-checkbox">
+                        <label asp-for="Input.RememberMe">
+                            <input class="form-check-input" asp-for="Input.RememberMe" />
+                            <p style="font-family: Poppins-Regular;
+    font-size: 15px;    color: #808080;">Beni Hatırla</p>
+                        </label>
+                    </div>
+
+                    <div>
+                        <a id="forgot-password" class="txt1" asp-page="./ForgotPassword">Şifremi Unuttum?</a>
+                    </div>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button id="login-submit" type="submit" class="login100-form-btn">Giriş Yap</button>
+                    <a id="login-submit" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="login100-form-btn" style="margin-left:5px;">Kayıt Ol</a>
+
+                </div>
+
+            </form>
         </div>
     </div>
-</form>
-    
+</div>
+
+<!--===============================================================================================-->
+<script src="~/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/vendor/bootstrap/js/popper.js"></script>
+<script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/vendor/daterangepicker/moment.min.js"></script>
+<script src="~/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="~/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script src="~/js/main.js"></script>
+
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

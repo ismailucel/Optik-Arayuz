@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
+<div class="IContainer">
 
 <h1>Index</h1>
 
@@ -43,10 +44,10 @@
                 @Html.DisplayFor(modelItem => item.ClassicCount)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ExamPaper.ExamPaperId)
+                @Html.DisplayFor(modelItem => item.ExamPaper.ExamPaperName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
+                @Html.DisplayFor(modelItem => item.User.FirstName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ExamId">Edit</a> |
@@ -57,3 +58,4 @@
 }
     </tbody>
 </table>
+</div>
