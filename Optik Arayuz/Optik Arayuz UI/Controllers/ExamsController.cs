@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,17 +10,16 @@ using Optik_Arayuz_UI.Models;
 
 namespace Optik_Arayüz_UI.Controllers
 {
-    public class ExamController : Controller
+    public class ExamsController : Controller
     {
         private readonly OptikArayuzDbContext _context;
 
-        public ExamController(OptikArayuzDbContext context)
+        public ExamsController(OptikArayuzDbContext context)
         {
             _context = context;
         }
 
         // GET: Exams
-        [Authorize]
         public async Task<IActionResult> Index()
         {
             var optikArayuzDbContext = _context.Exams.Include(e => e.ExamPaper).Include(e => e.User);
@@ -29,7 +27,6 @@ namespace Optik_Arayüz_UI.Controllers
         }
 
         // GET: Exams/Details/5
-        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Exams == null)
@@ -50,11 +47,10 @@ namespace Optik_Arayüz_UI.Controllers
         }
 
         // GET: Exams/Create
-        [Authorize]
         public IActionResult Create()
         {
             ViewData["ExamPaperId"] = new SelectList(_context.ExamPapers, "ExamPaperId", "ExamPaperId");
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId");
+            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id");
             return View();
         }
 
@@ -63,11 +59,8 @@ namespace Optik_Arayüz_UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public async Task<IActionResult> Create([Bind("ExamId,ExamName,TestCount,ClassicCount,ExamPaperId,UserId")] Exam exam)
         {
-            exam.UserId = "1";
-            Console.WriteLine(ModelState.IsValid);
             if (ModelState.IsValid)
             {
                 _context.Add(exam);
@@ -75,12 +68,11 @@ namespace Optik_Arayüz_UI.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ExamPaperId"] = new SelectList(_context.ExamPapers, "ExamPaperId", "ExamPaperId", exam.ExamPaperId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", exam.UserId);
+            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", exam.UserId);
             return View(exam);
         }
 
         // GET: Exams/Edit/5
-        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Exams == null)
@@ -94,7 +86,7 @@ namespace Optik_Arayüz_UI.Controllers
                 return NotFound();
             }
             ViewData["ExamPaperId"] = new SelectList(_context.ExamPapers, "ExamPaperId", "ExamPaperId", exam.ExamPaperId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", exam.UserId);
+            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", exam.UserId);
             return View(exam);
         }
 
@@ -103,7 +95,6 @@ namespace Optik_Arayüz_UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("ExamId,ExamName,TestCount,ClassicCount,ExamPaperId,UserId")] Exam exam)
         {
             if (id != exam.ExamId)
@@ -132,12 +123,11 @@ namespace Optik_Arayüz_UI.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ExamPaperId"] = new SelectList(_context.ExamPapers, "ExamPaperId", "ExamPaperId", exam.ExamPaperId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", exam.UserId);
+            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", exam.UserId);
             return View(exam);
         }
 
         // GET: Exams/Delete/5
-        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Exams == null)
@@ -160,7 +150,6 @@ namespace Optik_Arayüz_UI.Controllers
         // POST: Exams/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Exams == null)
