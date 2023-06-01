@@ -3,14 +3,14 @@
     "",
     "\\Optik Arayuz",
     "\\Optik Arayuz\\Optik Arayuz UI",
-    "\\Optik Arayuz\\Optik Arayuz UI\\Areas",
-    "\\Optik Arayuz\\Optik Arayuz UI\\Areas\\Admin",
     "\\Optik Arayuz\\Optik Arayuz UI\\Controllers",
     "\\Optik Arayuz\\Optik Arayuz UI\\Data",
+    "\\Optik Arayuz\\Optik Arayuz UI\\Views",
+    "\\Optik Arayuz\\Optik Arayuz UI\\Views\\ComponentsPartial",
     "\\Optik Arayuz\\Optik Arayuz UI\\wwwroot",
     "\\Optik Arayuz\\Optik Arayuz UI\\wwwroot\\css",
     "\\Optik Arayuz\\Optik Arayuz UI\\wwwroot\\js"
   ],
-  "SelectedNode": "\\Optik Arayuz\\Optik Arayuz.sln",
+  "SelectedNode": "\\Optik Arayuz\\Optik Arayuz UI\\Views\\ComponentsPartial\\Number.cshtml",
   "PreviewInSolutionExplorer": false
 }

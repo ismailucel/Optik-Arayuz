@@ -2,6 +2,7 @@
 @model RegisterModel
 @{
     ViewData["Title"] = "Kayıt Ol";
+
 }
 <head>
     <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
@@ -43,6 +44,16 @@
         </div>
         <div class="LoginRow">
             <div class="LoginRowTop">
+                <span asp-validation-for="Input.FacultyId" class="text-danger"></span>
+            </div>
+            <div class="LoginRowBottom">
+                <label asp-for="Input.FacultyId">faculty id</label>
+                <select asp-for="Input.FacultyId" aria-required="true" asp-items="@(new SelectList(Model.faculties, "FacultyId", "FacultyName"))"></select>
+            </div>
+        </div>
+
+        <div class="LoginRow">
+            <div class="LoginRowTop">
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="LoginRowBottom">
@@ -50,15 +61,7 @@
                 <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
             </div>
         </div>
-        <div class="LoginRow">
-            <div class="LoginRowTop">
-                <span asp-validation-for="Input.FacultyId" class="text-danger"></span>
-            </div>
-            <div class="LoginRowBottom">
-                <label asp-for="Input.FacultyId">Faculty Id</label>
-                <input asp-for="Input.FacultyId" class="form-control" autocomplete="username" aria-required="true" placeholder="fakülte id" />
-            </div>
-        </div>
+        
         <div class="LoginRow">
             <div class="LoginRowTop">
                 <span asp-validation-for="Input.Password" class="text-danger"></span>

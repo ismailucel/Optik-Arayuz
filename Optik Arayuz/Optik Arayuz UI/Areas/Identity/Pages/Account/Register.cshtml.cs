@@ -16,8 +16,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Optik_Arayuz_UI.Data;
 using Optik_Arayuz_UI.Models;
 
 namespace Optik_Arayüz_UI.Areas.Identity.Pages.Account
@@ -30,12 +33,15 @@ namespace Optik_Arayüz_UI.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<User> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly OptikArayuzDbContext _db;
+
 
         public RegisterModel(
             UserManager<User> userManager,
             IUserStore<User> userStore,
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
+            OptikArayuzDbContext db,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -44,6 +50,8 @@ namespace Optik_Arayüz_UI.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _db = db;
+
         }
 
         /// <summary>
@@ -115,10 +123,14 @@ namespace Optik_Arayüz_UI.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
         }
 
-
-        public async Task OnGetAsync(string returnUrl = null)
+        public List<Faculty> faculties;
+        
+    public async Task OnGetAsync(string returnUrl = null)
         {
+            faculties = _db.Faculties.ToList();
+            faculties.Insert(0, new Faculty { FacultyId = 0, FacultyName = "Fakülte Seçiniz" });
             ReturnUrl = returnUrl;
+           
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
@@ -129,6 +141,9 @@ namespace Optik_Arayüz_UI.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                user.FacultyId = Input.FacultyId;
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
