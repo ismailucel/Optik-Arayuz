@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,12 +14,15 @@ namespace Optik_Arayüz_UI.Controllers
     public class ExamsController : Controller
     {
         private readonly OptikArayuzDbContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public ExamsController(OptikArayuzDbContext context)
+        public ExamsController(OptikArayuzDbContext context,
+            UserManager<User> userManager)
         {
             _context = context;
-        }
+            _userManager = userManager;
 
+        }
         // GET: Exams
         public async Task<IActionResult> Index()
         {
@@ -50,6 +54,7 @@ namespace Optik_Arayüz_UI.Controllers
         public IActionResult Create()
         {
             ViewData["ExamPaperId"] = new SelectList(_context.ExamPapers, "ExamPaperId", "ExamPaperName");
+            ViewData["UserId"] = _userManager.GetUserId(HttpContext.User);
 
             return View();
         }

@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Optik Arayuz",
+    "\\Optik Arayuz\\Optik Arayuz UI",
+    "\\Optik Arayuz\\Optik Arayuz UI\\Controllers"
   ],
+  "SelectedNode": "\\Optik Arayuz\\Optik Arayuz.sln",
   "PreviewInSolutionExplorer": false
 }
