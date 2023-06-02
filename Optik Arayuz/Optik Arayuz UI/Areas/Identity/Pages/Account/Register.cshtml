@@ -68,6 +68,11 @@
                     <span asp-validation-for="Input.FacultyId" class="text-danger"></span>
                     <select asp-for="Input.FacultyId" class="custom-select" aria-required="true" asp-items="@(new SelectList(Model.faculties, "FacultyId", "FacultyName"))"></select>
                 </div>
+                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                    <span class="label-input100">Bölüm</span>
+                    <span asp-validation-for="Input.DepartmentId" class="text-danger"></span>
+                    <select asp-for="Input.DepartmentId" class="custom-select" aria-required="true" asp-items="@(new SelectList(Model.departments, "DepartmentId", "DepartmentName"))"></select>
+                </div>
                 <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
                     <span class="label-input100">Email</span>
                     <span asp-validation-for="Input.FacultyId" class="text-danger"></span>

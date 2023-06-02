@@ -101,6 +101,11 @@ namespace Optik_Arayüz_UI.Areas.Identity.Pages.Account
             [Display(Name = "Faculty")]
             public int FacultyId { get; set; }
 
+
+            [Required]
+            [Display(Name = "Bölüm")]
+            public int DepartmentId { get; set; }
+
             public string Role { get; set; }
 
             /// <summary>
@@ -124,11 +129,14 @@ namespace Optik_Arayüz_UI.Areas.Identity.Pages.Account
         }
 
         public List<Faculty> faculties;
-        
-    public async Task OnGetAsync(string returnUrl = null)
+        public List<Department> departments;
+
+        public async Task OnGetAsync(string returnUrl = null)
         {
+            departments = _db.Departments.ToList();
             faculties = _db.Faculties.ToList();
             faculties.Insert(0, new Faculty { FacultyId = 0, FacultyName = "Fakülte Seçiniz" });
+            departments.Insert(0, new Department { DepartmentId = 0, DepartmentName = "Bölüm Seçiniz" });
             ReturnUrl = returnUrl;
            
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -144,6 +152,7 @@ namespace Optik_Arayüz_UI.Areas.Identity.Pages.Account
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 user.FacultyId = Input.FacultyId;
+                user.DepartmentId = Input.DepartmentId;
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);

@@ -16,7 +16,7 @@
 </head>
 <body>
     @if (SignInManager.IsSignedIn(User))
-
+    {
     <header>
         <nav class="Nav">
             <div class="NavLeft">
@@ -36,14 +36,15 @@
                 <div class="NavLeftItem">
                     <a class=""asp-area="" asp-controller="ExamPapers" asp-action="Index">Sınav Kağıtları</a>
                 </div>
-                <div class="NavLeftItem">
-                    <a class="navbar-brand" asp-area="Admin" asp-controller="Faculties" asp-action="Index">Fakülteler</a>
-                </div>
-                <div class="NavLeftItem">
-                    <a class="navbar-brand" asp-area="Admin" asp-controller="Departments" asp-action="Index">Bölümler</a>
-                </div>
-
-               
+                @if (User.IsInRole("Admin"))
+                    {
+                        <div class="NavLeftItem">
+                             <a class="navbar-brand" asp-area="Admin" asp-controller="Faculties" asp-action="Index">Fakülteler</a>
+                        </div>
+                        <div class="NavLeftItem">
+                            <a class="navbar-brand" asp-area="Admin" asp-controller="Departments" asp-action="Index">Bölümler</a>
+                        </div>
+                    }                          
             </div>
             <div class="NavRight">
                 @if (SignInManager.IsSignedIn(User))
