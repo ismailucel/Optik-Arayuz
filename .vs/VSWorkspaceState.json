@@ -3,8 +3,12 @@
     "",
     "\\Optik Arayuz",
     "\\Optik Arayuz\\Optik Arayuz UI",
-    "\\Optik Arayuz\\Optik Arayuz UI\\Controllers"
+    "\\Optik Arayuz\\Optik Arayuz UI\\Controllers",
+    "\\Optik Arayuz\\Optik Arayuz UI\\Views",
+    "\\Optik Arayuz\\Optik Arayuz UI\\Views\\Exams",
+    "\\Optik Arayuz\\Optik Arayuz UI\\wwwroot",
+    "\\Optik Arayuz\\Optik Arayuz UI\\wwwroot\\js"
   ],
-  "SelectedNode": "\\Optik Arayuz\\Optik Arayuz.sln",
+  "SelectedNode": "\\Optik Arayuz\\Optik Arayuz UI\\wwwroot\\js\\mainTable.js",
   "PreviewInSolutionExplorer": false
 }

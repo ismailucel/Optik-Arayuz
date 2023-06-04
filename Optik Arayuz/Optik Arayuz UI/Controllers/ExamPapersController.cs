@@ -415,7 +415,7 @@ namespace Optik_Arayüz_UI.Controllers
                 return NotFound();
             }
 
-            return View(examPaper);
+            return PartialView(examPaper);
         }
 
         // GET: ExamPapers/Create
@@ -457,7 +457,7 @@ namespace Optik_Arayüz_UI.Controllers
             {
                 return NotFound();
             }
-            return View(examPaper);
+            return PartialView(examPaper);
         }
 
         // POST: ExamPapers/Edit/5
@@ -493,7 +493,7 @@ namespace Optik_Arayüz_UI.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(examPaper);
+            return PartialView(examPaper);
         }
 
         // GET: ExamPapers/Delete/5
@@ -512,7 +512,7 @@ namespace Optik_Arayüz_UI.Controllers
                 return NotFound();
             }
 
-            return View(examPaper);
+            return PartialView(examPaper);
         }
 
         // POST: ExamPapers/Delete/5

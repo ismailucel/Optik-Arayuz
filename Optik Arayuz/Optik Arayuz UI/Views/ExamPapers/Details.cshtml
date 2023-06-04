@@ -4,30 +4,26 @@
     ViewData["Title"] = "Details";
 }
 
-<div class="Ccontainer">
-    <h1>Details</h1>
 
+<div class="Rcontainer">
     <div>
-        <h4>ExamPaper</h4>
+        <h4>Sınav Kağıdı Detayları</h4>
         <hr />
-        <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ExamPaperName)
+        <dl class="">
+            <dt class="">
+                Sınav Kağıdı Adı
             </dt>
-            <dd class="col-sm-10">
+            <dd class="">
                 @Html.DisplayFor(model => model.ExamPaperName)
             </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ExamPaperTitle)
+            <dt class="">
+                Sınav Kağıdı Açıklaması
             </dt>
-            <dd class="col-sm-10">
+            <dd class="">
                 @Html.DisplayFor(model => model.ExamPaperTitle)
             </dd>
         </dl>
     </div>
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model?.ExamPaperId">Edit</a> |
-        <a asp-action="Index">Back to List</a>
-    </div>
+
 </div>
 

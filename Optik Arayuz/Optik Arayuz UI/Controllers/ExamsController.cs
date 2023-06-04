@@ -54,7 +54,7 @@ namespace Optik_Arayüz_UI.Controllers
         public IActionResult Create()
         {
             ViewData["ExamPaperId"] = new SelectList(_context.ExamPapers, "ExamPaperId", "ExamPaperName");
-            ViewData["UserId"] = _userManager.GetUserId(HttpContext.User);
+            ViewData["UserId"] = "1";
 
             return View();
         }
@@ -68,6 +68,7 @@ namespace Optik_Arayüz_UI.Controllers
         {
             if (ModelState.IsValid)
             {
+                exam.UserId = _userManager.GetUserId(HttpContext.User);
                 _context.Add(exam);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

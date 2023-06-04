@@ -3,37 +3,42 @@
 @{
     ViewData["Title"] = "Edit";
 }
+<link rel="stylesheet" href="~/css/input.css" asp-append-version="true">
 
 <div class="Ccontainer">
-    <h1>Edit</h1>
 
-    <h4>ExamPaper</h4>
+    <h4>Sınav Kağıdını Düzenle</h4>
     <hr />
-    <div class="row">
-        <div class="col-md-4">
+    <div class="">
+        <div class="">
             <form asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="ExamPaperId" />
-                <div class="form-group">
-                    <label asp-for="ExamPaperName" class="control-label"></label>
-                    <input asp-for="ExamPaperName" class="form-control" />
-                    <span asp-validation-for="ExamPaperName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="ExamPaperTitle" class="control-label"></label>
-                    <input asp-for="ExamPaperTitle" class="form-control" />
-                    <span asp-validation-for="ExamPaperTitle" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-primary" />
-                </div>
+                <dl>
+                    <dt>
+                        <label class="">Sınav Kağıdı Adı</label>
+                    </dt>
+                    <dd>
+                        <input asp-for="ExamPaperName" class="input" />
+                        <span asp-validation-for="ExamPaperName" class="text-danger"></span>
+                    </dd>
+                    <dt>
+                        <label class="">Sınav Kağıdı Açıklaması</label>
+                    </dt>
+                    <dd>
+                        <input asp-for="ExamPaperTitle" class="input" />
+                        <span asp-validation-for="ExamPaperTitle" class="text-danger"></span>
+                    </dd>
+                </dl>
+                    
+                <input type="submit" value="Save" class="button" />
+
             </form>
         </div>
     </div>
 
     <div>
-        <a asp-controller="ExamPapers" asp-action="ExamPaperCreate" asp-route-id="@Model.ExamPaperId">Edit sayfasına git</a>
-        <a asp-action="Index">Back to List</a>
+        <a class="button" asp-controller="ExamPapers" asp-action="ExamPaperCreate" asp-route-id="@Model.ExamPaperId">Editör sayfasına git</a>
     </div>
 </div>
 

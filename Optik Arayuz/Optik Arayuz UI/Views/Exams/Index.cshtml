@@ -3,59 +3,86 @@
 @{
     ViewData["Title"] = "Index";
 }
-<div class="IContainer">
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ExamName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TestCount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ClassicCount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ExamPaper)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExamName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TestCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClassicCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExamPaper.ExamPaperName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.FirstName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ExamId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ExamId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ExamId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/button.css">
+
+    <title>Sınavlar</title>
+</head>
+
+<div class="content">
+
+    <div class="container">
+        <h2 class="mb-3" style="display:flex;justify-content:space-between;align-items:center;">Sınavlar <a class='button' title='Yeni Sınav' asp-action="Create">Yeni Sınav Oluştur</a></h2>
+
+        <div class="table-responsive">
+
+            <table class="table custom-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Sınav Adı</th>
+                        <th scope="col">Test Sayısı</th>
+                        <th scope="col">Klasik Sayısı</th>
+                        <th scope="col">Sınav Kağıdı</th>
+                        <th scope="col">Oluşturan</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ExamName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TestCount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ClassicCount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ExamPaper.ExamPaperName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.FirstName)
+                            </td>
+                            <td>
+                                <a class='button' title='Sınavı Düzenle' asp-action="Edit" asp-route-id="@item.ExamId">Düzenle</a> |
+                                <a class='button' title='Sınav Detayları' asp-action="Details" asp-route-id="@item.ExamId">Detaylar</a> |
+                                <a class ='button' title='Sınavı Sil' asp-action="Delete" asp-route-id="@item.ExamId">Sil</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+
 </div>
+
+
+
+<script src="~/js/jquery-3.3.1.min.js"></script>
+<script src="~/js/popper.min.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~/js/mainTable.js"></script>
