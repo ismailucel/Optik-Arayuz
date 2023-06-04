@@ -2,49 +2,62 @@
 
 @{
     ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
-<h1>Edit</h1>
+<link rel="stylesheet" href="~/css/input.css" asp-append-version="true">
 
-<h4>Faculty</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="FacultyId" />
-            <div class="form-group">
-                <label asp-for="FacultyName" class="control-label"></label>
-                <input asp-for="FacultyName" class="form-control" />
-                <span asp-validation-for="FacultyName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FacultyAddress" class="control-label"></label>
-                <input asp-for="FacultyAddress" class="form-control" />
-                <span asp-validation-for="FacultyAddress" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FacultyMail" class="control-label"></label>
-                <input asp-for="FacultyMail" class="form-control" />
-                <span asp-validation-for="FacultyMail" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FacultyPhoneNumber" class="control-label"></label>
-                <input asp-for="FacultyPhoneNumber" class="form-control" />
-                <span asp-validation-for="FacultyPhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="Ccontainer">
+
+    <h4>Fakülteyi Düzenle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+    <hr />
+    <div class="">
+        <div class="">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="FacultyId" />
+                <dl>
+                    <dt>
+                        <label asp-for="FacultyName"></label>
+                    </dt>
+                    <dd>
+                        <input asp-for="FacultyName" class="input" />
+                        <span asp-validation-for="FacultyName" class="text-danger"></span>
+                    </dd>
+                    <dt>
+                        <label asp-for="FacultyAddress" ></label>
+
+                    </dt>
+                    <dd>
+                        <input asp-for="FacultyAddress" class="input" />
+                        <span asp-validation-for="FacultyAddress" class="text-danger"></span>
+                    </dd>
+                    <dt>
+                        <label asp-for="FacultyMail" ></label>
+
+                    </dt>
+                    <dd>
+                        <input asp-for="FacultyMail" class="input" />
+                        <span asp-validation-for="FacultyMail" class="text-danger"></span>
+                    </dd>
+                    <dt>
+                        <label asp-for="FacultyPhoneNumber" ></label>
+
+                    </dt>
+                    <dd>
+                        <input asp-for="FacultyPhoneNumber" class="input" />
+                        <span asp-validation-for="FacultyPhoneNumber" class="text-danger"></span>
+                    </dd>
+                    
+                    
+                </dl>
+
+                <input type="submit" value="Kaydet" class="button" />
+
+            </form>
+        </div>
     </div>
+
+
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

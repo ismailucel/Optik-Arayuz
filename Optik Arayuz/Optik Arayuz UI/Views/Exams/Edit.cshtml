@@ -3,48 +3,55 @@
 @{
     ViewData["Title"] = "Edit";
 }
+<link rel="stylesheet" href="~/css/input.css" asp-append-version="true">
 
-<h1>Edit</h1>
 
-<h4>Exam</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ExamId" />
-            <div class="form-group">
-                <label asp-for="ExamName" class="control-label"></label>
-                <input asp-for="ExamName" class="form-control" />
-                <span asp-validation-for="ExamName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TestCount" class="control-label"></label>
-                <input asp-for="TestCount" class="form-control" />
-                <span asp-validation-for="TestCount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ClassicCount" class="control-label"></label>
-                <input asp-for="ClassicCount" class="form-control" />
-                <span asp-validation-for="ClassicCount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ExamPaperId" class="control-label"></label>
-                <select asp-for="ExamPaperId" class="form-control" asp-items="ViewBag.ExamPaperId"></select>
-                <span asp-validation-for="ExamPaperId" class="text-danger"></span>
-            </div>
+<div class="Ccontainer">
 
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+    <h4>Seçilen Sınavı Düzenle</h4>
+    <hr />
+    <div class="">
+        <div class="">
+            <form asp-action="Edit">
+                <input asp-for="UserId" type="hidden" value="1" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ExamId" />
+                <dl>
+                    <dt>
+                        <label class="">Sınav Adı</label>
+                    </dt>
+                    <dd>
+                        <input asp-for="ExamName" class="input" />
+                        <span asp-validation-for="ExamName" class="text-danger"></span>
+                    </dd>
+                    <dt>
+                        <label class="">Test Sayısı</label>
+                    </dt>
+                    <dd>
+                        <input asp-for="TestCount" class="input" />
+                        <span asp-validation-for="TestCount" class="text-danger"></span>
+                    </dd>
+                    <dt>
+                        <label class="">Klasik Sayısı</label>
+                    </dt>
+                    <dd>
+                        <input asp-for="ClassicCount" class="input" />
+                        <span asp-validation-for="ClassicCount" class="text-danger"></span>
+                    </dd>
+                    <dt>
+                        <label class="">Sınav Kağıdı</label>
+                    </dt>
+                    <dd>
+                        <select asp-for="ExamPaperId" class="form-control" asp-items="ViewBag.ExamPaperId"></select>
+                        <span asp-validation-for="ExamPaperId" class="text-danger"></span>
+                    </dd>
+                    
+                </dl>
+
+                <input type="submit" value="Kaydet" class="button" />
         </form>
+
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

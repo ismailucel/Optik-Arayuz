@@ -28,7 +28,7 @@
 <div class="content">
 
     <div class="container">
-        <h2 class="mb-3" style="display:flex;justify-content:space-between;align-items:center;">Sınavlar <a class='button' title='Yeni Sınav' asp-action="Create">Yeni Sınav Oluştur</a></h2>
+        <h2 class="mb-3" style="display:flex;justify-content:space-between;align-items:center;">Sınavlar <a class='button blocked' title='Yeni Sınav' asp-action="Create">Yeni Sınav Oluştur</a></h2>
 
         <div class="table-responsive">
 
@@ -64,9 +64,9 @@
                                 @Html.DisplayFor(modelItem => item.User.FirstName)
                             </td>
                             <td>
-                                <a class='button' title='Sınavı Düzenle' asp-action="Edit" asp-route-id="@item.ExamId">Düzenle</a> |
-                                <a class='button' title='Sınav Detayları' asp-action="Details" asp-route-id="@item.ExamId">Detaylar</a> |
-                                <a class ='button' title='Sınavı Sil' asp-action="Delete" asp-route-id="@item.ExamId">Sil</a>
+                                <a class='button Edit' id="@item.ExamId">Düzenle</a> |
+                                <a class='button Details' id="@item.ExamId">Detaylar</a> |
+                                <a class='button Delete' id="@item.ExamId">Sil</a>
                             </td>
                         </tr>
                     }
@@ -80,7 +80,12 @@
 
 </div>
 
-
+<div class="content">
+    <div id="rightContent">
+        <div>
+        </div>
+    </div>
+</div>
 
 <script src="~/js/jquery-3.3.1.min.js"></script>
 <script src="~/js/popper.min.js"></script>

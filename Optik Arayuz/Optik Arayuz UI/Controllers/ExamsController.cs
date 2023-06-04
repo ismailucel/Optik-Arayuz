@@ -47,7 +47,7 @@ namespace Optik_Arayüz_UI.Controllers
                 return NotFound();
             }
 
-            return View(exam);
+            return PartialView(exam);
         }
 
         // GET: Exams/Create
@@ -92,7 +92,7 @@ namespace Optik_Arayüz_UI.Controllers
                 return NotFound();
             }
             ViewData["ExamPaperId"] = new SelectList(_context.ExamPapers, "ExamPaperId", "ExamPaperName", exam.ExamPaperId);
-            return View(exam);
+            return PartialView(exam);
         }
 
         // POST: Exams/Edit/5
@@ -109,6 +109,7 @@ namespace Optik_Arayüz_UI.Controllers
 
             if (ModelState.IsValid)
             {
+                exam.UserId = _userManager.GetUserId(HttpContext.User);
                 try
                 {
                     _context.Update(exam);
@@ -129,7 +130,7 @@ namespace Optik_Arayüz_UI.Controllers
             }
             ViewData["ExamPaperId"] = new SelectList(_context.ExamPapers, "ExamPaperId", "ExamPaperId", exam.ExamPaperId);
             ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", exam.UserId);
-            return View(exam);
+            return PartialView(exam);
         }
 
         // GET: Exams/Delete/5
@@ -149,7 +150,7 @@ namespace Optik_Arayüz_UI.Controllers
                 return NotFound();
             }
 
-            return View(exam);
+            return PartialView(exam);
         }
 
         // POST: Exams/Delete/5

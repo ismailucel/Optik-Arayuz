@@ -3,57 +3,100 @@
 @{
     ViewData["Title"] = "Index";
 }
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-<h1>Index</h1>
+    <link rel="stylesheet" href="~/fonts/icomoon/style.css">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DepartmentName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DepartmentAddress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DepartmentMail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DepartmentPhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Faculty)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DepartmentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DepartmentAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DepartmentMail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DepartmentPhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Faculty.FacultyId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.DepartmentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.DepartmentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.DepartmentId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/button.css" asp-append-version="true">
+
+    <title>Sınav Kağıtları</title>
+</head>
+
+<div class="content">
+
+    <div class="container">
+        <h2 class="mb-3" style="display:flex;justify-content:space-between;align-items:center;">Sınav Kağıtları <a class="button blocked" asp-area="Admin" asp-controller="Departments" asp-action="Create">Departman Oluştur</a></h2>
+
+        <div class="table-responsive">
+
+            <table class="table custom-table">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model => model.DepartmentName)
+                        </th>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model => model.DepartmentAddress)
+                        </th>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model => model.DepartmentMail)
+                        </th>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model => model.DepartmentPhoneNumber)
+                        </th>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model => model.FacultyId)
+                        </th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DepartmentName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DepartmentAddress)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DepartmentMail)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DepartmentPhoneNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Faculty.FacultyName)
+                            </td>
+                            <td>
+                                <a class='button Edit' id="@item.DepartmentId">Düzenle</a>
+                                <a class='button Details' id="@item.DepartmentId">Detaylar</a>
+                                <a class='button Delete' id="@item.DepartmentId">Sil</a>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+
+</div>
+<div class="content">
+    <div id="rightContent">
+        <div>
+        </div>
+    </div>
+</div>
+<script src="~/js/jquery-3.3.1.min.js"></script>
+<script src="~/js/popper.min.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~/js/mainTable.js" asp-append-version="true"></script>
+
+

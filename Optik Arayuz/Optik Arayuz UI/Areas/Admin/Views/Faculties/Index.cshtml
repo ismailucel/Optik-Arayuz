@@ -7,58 +7,85 @@
 }
 
 <head>
-    <link rel="stylesheet" href="~/css/Table.css" asp-append-version="true" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/button.css" asp-append-version="true">
+
+    <title>Sınav Kağıtları</title>
 </head>
 
-<div class="IContainer">
-<h1>Index</h1>
+<div class="content">
 
-<p>
-        <a asp-area="Admin" asp-controller ="Faculties" asp-action="Create">Yeni Fakülte Oluştur</a>
+    <div class="container">
+        <h2 class="mb-3" style="display:flex;justify-content:space-between;align-items:center;">Sınav Kağıtları <a class="button blocked" asp-area="Admin" asp-controller="Faculties" asp-action="Create">Yeni Fakülte Oluştur</a></h2>
 
-</p>
+        <div class="table-responsive">
+
+            <table class="table custom-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Fakülte Adı</th>
+                        <th scope="col">Fakülte Adresi</th>
+                        <th scope="col">Fakülte Mail</th>
+                        <th scope="col">Fakülte İletişim</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FacultyName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FacultyAddress)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FacultyMail)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FacultyPhoneNumber)
+                            </td>
+                            <td>
+                                <a class='button Edit' id="@item.FacultyId">Düzenle</a>
+                                <a class='button Details' id="@item.FacultyId">Detaylar</a>
+                                <a class='button Delete' id="@item.FacultyId">Sil </a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
 
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FacultyName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FacultyAddress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FacultyMail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FacultyPhoneNumber)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FacultyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FacultyAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FacultyMail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FacultyPhoneNumber)
-            </td>
-            <td>
-                <a   asp-action="Edit" asp-route-id="@item.FacultyId">Edit</a> |
-                <a   asp-action="Details" asp-controller="Faculties" asp-route-id="@item.FacultyId">Details</a> |
-                <a   asp-action="Delete" asp-controller="Faculties" asp-route-id="@item.FacultyId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    </div>
+
 </div>
+<div class="content">
+    <div id="rightContent">
+        <div>
+        </div>
+    </div>
+</div>
+<script src="~/js/jquery-3.3.1.min.js"></script>
+<script src="~/js/popper.min.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~/js/mainTable.js" asp-append-version="true"></script>
+
+
+

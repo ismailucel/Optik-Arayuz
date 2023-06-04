@@ -47,13 +47,13 @@ namespace Optik_Arayuz_UI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(department);
+            return PartialView(department);
         }
 
         // GET: Admin/Departments/Create
         public IActionResult Create()
         {
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "FacultyId", "FacultyId");
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "FacultyId", "FacultyName");
             return View();
         }
 
@@ -70,7 +70,7 @@ namespace Optik_Arayuz_UI.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "FacultyId", "FacultyId", department.FacultyId);
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "FacultyId", "FacultyName", department.FacultyId);
             return View(department);
         }
 
@@ -87,8 +87,8 @@ namespace Optik_Arayuz_UI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "FacultyId", "FacultyId", department.FacultyId);
-            return View(department);
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "FacultyId", "FacultyName", department.FacultyId);
+            return PartialView(department);
         }
 
         // POST: Admin/Departments/Edit/5
@@ -123,8 +123,8 @@ namespace Optik_Arayuz_UI.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "FacultyId", "FacultyId", department.FacultyId);
-            return View(department);
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "FacultyId", "FacultyName", department.FacultyId);
+            return PartialView(department);
         }
 
         // GET: Admin/Departments/Delete/5
@@ -143,7 +143,7 @@ namespace Optik_Arayuz_UI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(department);
+            return PartialView(department);
         }
 
         // POST: Admin/Departments/Delete/5

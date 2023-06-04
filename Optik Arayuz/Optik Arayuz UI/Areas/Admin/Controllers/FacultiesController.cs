@@ -47,7 +47,7 @@ namespace Optik_Arayüz_UI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(faculty);
+            return PartialView(faculty);
         }
 
         // GET: Admin/Faculties/Create
@@ -85,7 +85,7 @@ namespace Optik_Arayüz_UI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            return View(faculty);
+            return PartialView(faculty);
         }
 
         // POST: Admin/Faculties/Edit/5
@@ -120,7 +120,7 @@ namespace Optik_Arayüz_UI.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(faculty);
+            return PartialView(faculty);
         }
 
         // GET: Admin/Faculties/Delete/5
@@ -138,7 +138,7 @@ namespace Optik_Arayüz_UI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(faculty);
+            return PartialView(faculty);
         }
 
         // POST: Admin/Faculties/Delete/5

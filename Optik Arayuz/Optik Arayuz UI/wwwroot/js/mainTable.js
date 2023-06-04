@@ -19,22 +19,28 @@ function clicked(e) {
     }
     var id = parseInt(e.srcElement.id);
     var link = "";
-    if (path.contains("ExamPapers")) {
-
+    if (path.includes("ExamPapers")) {
+        link = "/ExamPapers";
     }
-    else if (path.contains("ExamPapers")) {
-
+    else if (path.includes("Exams")) {
+        link = "/Exams";
+    }
+    else if (path.includes("Faculties")) {
+        link = "/Admin/Faculties";
+    }
+    else if (path.includes("Departments")) {
+        link = "/Admin/Departments";
     }
     if (e.srcElement.classList.contains("Details")) {
-        link = "/ExamPapers/Details";
+        link = link+ "/Details";
 
     }
     else if (e.srcElement.classList.contains("Delete")) {
-        link = "/ExamPapers/Delete/" + id;
+        link = link + "/Delete/" + id;
 
     }
     else if (e.srcElement.classList.contains("Edit")) {
-        link = "/ExamPapers/Edit/"+id;
+        link = link + "/Edit/"+id;
 
     }
     $.get(link, { id: id }, function (data) {
