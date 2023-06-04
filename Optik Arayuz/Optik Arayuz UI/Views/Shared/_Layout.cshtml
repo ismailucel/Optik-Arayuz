@@ -7,11 +7,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Optik_Arayüz_UI</title>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Optik Arayüz</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
 
 </head>
 <body>
@@ -39,10 +40,10 @@
                 @if (User.IsInRole("Admin"))
                     {
                         <div class="NavLeftItem">
-                             <a class="navbar-brand" asp-area="Admin" asp-controller="Faculties" asp-action="Index">Fakülteler</a>
+                             <a asp-area="Admin" asp-controller="Faculties" asp-action="Index">Fakülteler</a>
                         </div>
                         <div class="NavLeftItem">
-                            <a class="navbar-brand" asp-area="Admin" asp-controller="Departments" asp-action="Index">Bölümler</a>
+                            <a asp-area="Admin" asp-controller="Departments" asp-action="Index">Bölümler</a>
                         </div>
                     }                          
             </div>
@@ -50,7 +51,7 @@
                 @if (SignInManager.IsSignedIn(User))
                 {
                     <div class="NavRightItem">
-                        <a class="" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Merhaba @User.Identity.Name!</a>
+                            <a asp-controller="Home" asp-action="Index">Merhaba @User.Identity.Name!</a>
                     </div>
                     <div class="NavRightItem">
                         <form class="" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

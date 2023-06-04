@@ -71,8 +71,6 @@
     <None Include="wwwroot\fonts\font-awesome-4.7.0\scss\_screen-reader.scss" />
     <None Include="wwwroot\fonts\font-awesome-4.7.0\scss\_stacked.scss" />
     <None Include="wwwroot\fonts\font-awesome-4.7.0\scss\_variables.scss" />
-    <None Include="wwwroot\fonts\icomoon\demo-files\demo.js" />
-    <None Include="wwwroot\fonts\icomoon\fonts\icomoon.svg" />
     <None Include="wwwroot\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.svg" />
     <None Include="wwwroot\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff2" />
     <None Include="wwwroot\vendor\animsition\js\animsition.js" />
