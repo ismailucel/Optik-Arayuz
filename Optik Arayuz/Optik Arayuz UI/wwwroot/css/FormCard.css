@@ -12,8 +12,6 @@
             border-bottom: 2px solid rgba(28, 190, 131, 1);
         }
 select {
-    // A reset of styles, including removing the default dropdown arrow appearance: none;
-    // Additional resets for further consistency background-color: transparent;
     border: none;
     padding: 0 1em 0 10px;
     margin: 0;
@@ -39,3 +37,4 @@ select {
     align-items:center;
     justify-content:center;
 }
+

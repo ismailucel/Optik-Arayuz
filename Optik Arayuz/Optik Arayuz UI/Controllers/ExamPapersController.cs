@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.Operations;
@@ -30,6 +32,7 @@ namespace Optik_Arayüz_UI.Controllers
 
         public IActionResult ExamPaperCreate(int? id)
         {
+            clear();
             if (id != null)
             {
                 ViewBag.Id = id;
@@ -50,7 +53,98 @@ namespace Optik_Arayüz_UI.Controllers
             return View();
 
         }
+        public IActionResult ExamPaperCopy(int? id)
+        {
+            var exampaper = _context.ExamPapers.First(m => m.ExamPaperId == id);
+            exampaper.ExamPaperId = 0;
+            exampaper.ExamPaperName = exampaper.ExamPaperName + " Kopya";
 
+            _context.ExamPapers.Add(exampaper);
+            _context.SaveChanges();
+            var paperId = _context.ExamPapers.OrderBy(m => m.ExamPaperId).Last().ExamPaperId;
+            var elements = _context.ExamPaperElements.Where(m => m.ExamPaperId == id).ToList();
+            foreach (var element in elements) { 
+                element.ExamPaperElementId = 0;
+                element.ExamPaperId = paperId;
+                _context.ExamPaperElements.Add(element);
+            }
+            _context.SaveChanges();
+            var components = _context.ExamPaperElements.Where(m => m.ExamPaperId == paperId).ToList();
+            foreach (var component in components) {
+                switch (component.Type)
+                {
+                    case "Choice":
+                        var a = _context.Choices.First(m => m.ChoiceId == component.ComponentId);
+                        a.ChoiceId = 0;
+                        _context.Choices.Add(a);
+                        _context.SaveChanges();
+                        var componentId = _context.Choices.OrderBy(m => m.ChoiceId).Last().ChoiceId;
+                        component.ComponentId = componentId;
+                        break;
+
+                    case "Logo":
+                        var b = _context.Logos.First(m => m.LogoId == component.ComponentId);
+                        b.LogoId = 0;
+                        _context.Logos.Add(b);
+                        _context.SaveChanges();
+                        var logoId = _context.Logos.OrderBy(m => m.LogoId).Last().LogoId;
+                        component.ComponentId = logoId;
+                        break;
+                    case "Number":
+                        var c = _context.Numbers.First(m => m.NumberId == component.ComponentId);
+                        c.NumberId = 0;
+                        _context.Numbers.Add(c);
+                        _context.SaveChanges();
+                        var numberId = _context.Numbers.OrderBy(m => m.NumberId).Last().NumberId;
+                        component.ComponentId = numberId;
+                        break;
+
+                    case "Student":
+                        var d = _context.Students.First(m => m.StudentId == component.ComponentId);
+                        d.StudentId = 0;
+                        _context.Students.Add(d);
+                        _context.SaveChanges();
+                        var studentId = _context.Students.OrderBy(m => m.StudentId).Last().StudentId;
+                        component.ComponentId = studentId;
+                        break;
+
+                    case "Grade":
+                        var e = _context.Grades.First(m => m.GradeId == component.ComponentId);
+                        e.GradeId = 0;
+                        _context.Grades.Add(e);
+                        _context.SaveChanges();
+                        var gradeId = _context.Grades.OrderBy(m => m.GradeId).Last().GradeId;
+                        component.ComponentId = gradeId;
+                        break;
+
+                    case "Text":
+                        var f = _context.Texts.First(m => m.TextId == component.ComponentId);
+                        f.TextId = 0;
+                        _context.Texts.Add(f);
+                        _context.SaveChanges();
+                        var textId = _context.Texts.OrderBy(m => m.TextId).Last().TextId;
+                        component.ComponentId = textId;
+                        break;
+
+                    case "Test":
+                        var g = _context.Tests.First(m => m.TestId == component.ComponentId);
+                        g.TestId = 0;
+                        _context.Tests.Add(g);
+                        _context.SaveChanges();
+                        var testId = _context.Tests.OrderBy(m => m.TestId).Last().TestId;
+                        component.ComponentId = testId;
+                        break;
+
+                    default:
+                        break;
+                }
+                _context.ExamPaperElements.Update(component);
+                _context.SaveChanges();
+
+            }
+            return View();
+
+        }
         public int CreateNewComponent(string type, int index)
         {
             switch (type)
@@ -200,6 +294,7 @@ namespace Optik_Arayüz_UI.Controllers
                                 text.TextContent = ComponentsPartial._texts[index].TextContent;
                                 text.FontSize = ComponentsPartial._texts[index].FontSize;
                                 text.FontType = ComponentsPartial._texts[index].FontType;
+        
                                 _context.Update(text);
                                 break;
                             case "Test":
@@ -207,6 +302,7 @@ namespace Optik_Arayüz_UI.Controllers
                                 test.XLength = ComponentsPartial._tests[index].XLength;
                                 test.YLength = ComponentsPartial._tests[index].YLength;
                                 test.QuestionCount = ComponentsPartial._tests[index].QuestionCount;
+                                test.BreakPoint = ComponentsPartial._tests[index].BreakPoint;
                                 _context.Update(test);
                                 break;
                             default:

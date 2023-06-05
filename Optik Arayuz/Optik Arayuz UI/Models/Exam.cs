@@ -7,9 +7,13 @@ namespace Optik_Arayuz_UI.Models
     {
         [Key]
         public int ExamId { get; set; }
+        [Display(Name = "Sınav Adı")]
         public string? ExamName { get; set; }
+        [Display(Name = "Test Sayısı")]
         public int TestCount { get; set; }
+        [Display(Name = "Klasik Sayısı")]
         public int ClassicCount { get; set; }
+        [Display(Name = "Sınav Kağıdı")]
         [ForeignKey("ExamPaper")]
         public int ExamPaperId { get; set; }
         public ExamPaper? ExamPaper { get; set; }

@@ -6,9 +6,9 @@
 <head>
 
 <link rel="stylesheet" href="~/css/FormCard.css">
-<link rel="stylesheet" href="~/css/button.css">
+    <link rel="stylesheet" href="~/css/button.css">
+    <link rel="stylesheet" href="~/css/exam.css">
 </head>
-
 <div class="Ccontainer">
 
         <div class="Card">
@@ -31,8 +31,11 @@
                     <span asp-validation-for="ClassicCount" class="text-danger"></span>
                 </div>
                 <div class="Row">
+                    <div style="display:flex;gap:10px;height:20px;">
                     <label asp-for="ExamPaperId" class=""></label>
-                    <select asp-for="ExamPaperId" class="form-control" asp-items="ViewBag.ExamPaperId"></select>
+                    <a id="copy"><img alt="Sınav Kağıdını Kopyala" style=" width:20px;height:20px;" src=@Url.Content("~/ExamPaper.png") /> </a>
+                    </div>
+                    <select id="select" asp-for="ExamPaperId" class="form-control" asp-items="ViewBag.ExamPaperId"></select>
                 </div>
 
                 <div class="buton">
@@ -45,6 +48,9 @@
         <a class="button" asp-action="Index">Sınav Listesine Dön</a>
     </div>
 </div>
+<div id="alert" class="Alert"></div>
+
+<script src="~/js/copy.js"></script>
 
 @section Scripts {
     @{
