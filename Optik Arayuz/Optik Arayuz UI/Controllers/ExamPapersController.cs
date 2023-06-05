@@ -41,10 +41,12 @@ namespace Optik_Arayüz_UI.Controllers
         [HttpPost]
         public IActionResult ExamPaperCreate(ExamPaper examPaper)
         {
-            _context.ExamPapers.Add(examPaper);
+            if (ModelState.IsValid) {
+                _context.ExamPapers.Add(examPaper);
 
-            _context.SaveChanges();
-
+                _context.SaveChanges();
+            }
+           
             return View();
 
         }

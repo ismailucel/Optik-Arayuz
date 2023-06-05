@@ -3,24 +3,28 @@
     ViewData["Title"] = "Create";
 }
 <head>
-    <link rel="stylesheet" href="~/css/ExamPaper.css" asp-append-version="true" />
-
+    <link rel="stylesheet" href="~/css/FormCard.css">
+    <link rel="stylesheet" href="~/css/button.css">
 </head>
 
-<div class="examContainer">
-    @using (Html.BeginForm("ExamPaperCreate", "ExamPapers", FormMethod.Post))
-    {
-        <div class="examRow">
-            <div class="label">ExamPaperName :</div>
-            @Html.TextBoxFor(m=> m.ExamPaperName)
-        </div>
+<div class="Ccontainer">
 
-        <div class="examRow">
-            <div>ExamPaperTitle :</div>
-            @Html.TextBoxFor(m=> m.ExamPaperTitle)
-        </div>
-        <div class="buttonRow">
-            <input class="button" type="submit" value="Editor Sayfasina Git" />
-        </div>
-    }
+    <div class="Card">
+        <form asp-action="ExamPaperCreate">
+            <div class="Row">
+                <label asp-for="ExamPaperName" class=""></label>
+                <input asp-for="ExamPaperName" class="" />
+                <span asp-validation-for="ExamPaperName" class="text-danger"></span>
+            </div>
+            <div class="Row">
+                <label asp-for="ExamPaperTitle" class=""></label>
+                <input asp-for="ExamPaperTitle" class="form-control" />
+                <span asp-validation-for="ExamPaperTitle" class="text-danger"></span>
+            </div>
+
+            <div class="buton">
+                <input type="submit" value="Editör Sayfasına Git" class="button" />
+            </div>
+        </form>
+    </div>
 </div>

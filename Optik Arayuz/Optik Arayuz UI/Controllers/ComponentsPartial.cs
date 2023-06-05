@@ -33,7 +33,7 @@ namespace Optik_Arayüz_UI.Controllers
             {
                 _students = new List<Student>{ new Student(){XLength = 100,YLength = 100,}};
 
-                _choices = new List<Choice> { new Choice(){ChoiceCount = 2,XLength = 102,YLength = 36,Label = "Kitap türü",Choices = "A-B"}};
+                _choices = new List<Choice> { new Choice(){ChoiceCount = 2,XLength = 102,YLength = 40,Label = "Kitap türü",Choices = "A-B"}};
 
                 _logos = new List<Logo> {new Logo() {XLength = 102,YLength = 42,ImagePath = "googleturtle.png" } };
 

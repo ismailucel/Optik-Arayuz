@@ -6,7 +6,9 @@ body {
     font-family: 'Quicksand', sans-serif !important;
     min-height:100vh;
 }
-
+.ArrowDown {
+    display: none;
+}
 .Nav {
     background-color: transparent;
     display: flex;
@@ -16,16 +18,25 @@ body {
     padding: 5px;
     padding-left: 20px;
     padding-right: 20px;
+    padding-bottom: 0px;
+
 }
     .Nav a {
         font-size:20px;
         color: black;
         text-decoration: none;
     }
-.Nav div {
-    display:flex;
-    align-items:center;
-}
+    .Nav .NavLeftItem:hover .link{
+        color: rgba(28, 190, 131, 1);
+    }
+
+    .Nav .NavLeftItem:hover .ArrowRight {
+        display: none;
+    }
+    .Nav .NavLeftItem:hover .ArrowDown {
+        display: inline;
+    }
+
 .NavLeft {
     display:flex;
 }
@@ -33,7 +44,9 @@ body {
     margin-left: 5px;
 }
 .NavLeftItem {
-margin-left:15px;
+    display:flex;
+    align-items:center;
+    margin-left: 15px;
 }
 
 .NavRight{
@@ -46,20 +59,44 @@ margin-left:15px;
 .NavRightItem {
     margin-right: 15px;
 }
+.myDropdown {
+    transition: 1.0s all ease;
+    display: flex;
+    flex-direction: column;
+}
+.myContent {
+    display: none;
+    flex-direction: column;
+}
 
-
-
-
-footer {
-    color:white;
-    background-color: #3C486B;
-    height:100px;
-    border-top: 1px solid black;
+.NavLeftItem:hover .myContent {
+    padding-top: 20px;
+    position: absolute;
+    top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index:10;
+}
+    .NavLeftItem:hover .myContent a:hover {
+        color: rgba(28, 190, 131, 1);
+        padding-bottom: 5px;
+        border-bottom: 1px solid black;
+    }
+.Footer {
+    color: black;
+    background-color: rgba(28, 190, 131, 0.5);
+    height: 100px;
+    border-top: 1px solid rgba(28, 190, 131, 1);
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
+.FooterMain {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
 .mid {
     width:100%;
     display:flex;
@@ -67,11 +104,15 @@ footer {
     align-items: center;
 }
 .Ccontainer {
+    padding: 20px;
+    padding-right: 50px;
+    padding-left: 50px;
     display: flex;
     flex-direction: column;
-    border-left: 1px solid black;
-    padding-left: 20px;
     transition: width 2s;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-radius: 10%;
 }
 .Ccontainer * {
     margin-bottom:10px;

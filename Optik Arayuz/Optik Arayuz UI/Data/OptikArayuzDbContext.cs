@@ -24,6 +24,7 @@ namespace Optik_Arayuz_UI.Data
         public DbSet<Text> Texts { get; set; }
         public DbSet<Logo> Logos { get; set; }
         public DbSet<Test> Tests { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
 
 
     }

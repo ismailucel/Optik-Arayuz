@@ -6,11 +6,18 @@
 <link rel="stylesheet" href="~/css/button.css">
 
 <div class="Menu">
-    <h1 class="display-4">Hoşgeldiniz</h1>
-    <div class="Links">
-        <a class="button" asp-area="" asp-controller="Exams" asp-action="Index">Sınavlar</a>
-        <a class="button" asp-area="" asp-controller="ExamPapers" asp-action="Index">Sınav Kağıtları</a>
-        <a class="button" asp-area="" asp-controller="Home" asp-action="Help">Yardım</a>
-
+    <div class="menuLeft">
+        <h1 class="display-4">Hoşgeldiniz</h1>
+        <div class="Links">
+            <a class="button" asp-area="" asp-controller="Exams" asp-action="Index">Sınavlar</a>
+            <a class="button" asp-area="" asp-controller="ExamPapers" asp-action="Index">Sınav Kağıtları</a>
+            <a class="button" asp-area="" asp-controller="Home" asp-action="Help">Yardım</a>
+        </div>
     </div>
+    <div class="menuRight">
+        <div class="Duyurular">
+            <h1>Duyurular</h1>
+        </div>
+    </div>
+    
 </div>

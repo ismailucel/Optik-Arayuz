@@ -26,24 +26,46 @@
                 </div>
 
                 <div class="NavLeftItem">
-                    <a class="" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <a class="" asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
                 </div>
                 <div class="NavLeftItem">
-                    <a class="" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    <div class="myDropdown">
+                            <a class="link" asp-area="" asp-controller="Exams" asp-action="Index">Sınavlar <span class="ArrowRight">></span> <span class="ArrowDown">v</span></a>
+                            <div class="myContent">
+                                <a class="" asp-area="" asp-controller="Exams" asp-action="Index">Listele</a>
+                                <a class="" asp-area="" asp-controller="Exams" asp-action="Create">Yeni Oluştur</a>
+                            </div>
+                    </div>
                 </div>
                 <div class="NavLeftItem">
-                    <a class="" asp-area="" asp-controller="Exams" asp-action="Index">Sınavlar</a>
-                </div>
-                <div class="NavLeftItem">
-                    <a class=""asp-area="" asp-controller="ExamPapers" asp-action="Index">Sınav Kağıtları</a>
+                        <div class="myDropdown">
+                            <a class="link" asp-area="" asp-controller="ExamPapers" asp-action="Index">Sınav Kağıtları <span class="ArrowRight">></span> <span class="ArrowDown">v</span></a>
+                            <div class="myContent">
+                                <a class="" asp-area="" asp-controller="ExamPapers" asp-action="Index">Listele</a>
+                                <a class="" asp-area="" asp-controller="ExamPapers" asp-action="Create">Yeni Oluştur</a>
+                            </div>
+                        </div>
                 </div>
                 @if (User.IsInRole("Admin"))
                     {
                         <div class="NavLeftItem">
-                             <a asp-area="Admin" asp-controller="Faculties" asp-action="Index">Fakülteler</a>
+                            <div class="myDropdown">
+                                <a class="link" asp-area="Admin" asp-controller="Faculties" asp-action="Index">Fakülteler <span class="ArrowRight">></span> <span class="ArrowDown">v</span></a>
+                                <div class="myContent">
+                                    <a class="" asp-area="Admin" asp-controller="Faculties" asp-action="Index">Listele</a>
+                                    <a class="" asp-area="Admin" asp-controller="Faculties" asp-action="Create">Yeni Oluştur</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="NavLeftItem">
-                            <a asp-area="Admin" asp-controller="Departments" asp-action="Index">Bölümler</a>
+                            <div class="myDropdown">
+                                <a class="link" asp-area="Admin" asp-controller="Departments" asp-action="Index">Bölümler <span class="ArrowRight">></span> <span class="ArrowDown">v</span></a>
+                                <div class="myContent">
+                                    <a class="" asp-area="Admin" asp-controller="Departments" asp-action="Index">Listele</a>
+                                    <a class="" asp-area="Admin" asp-controller="Departments" asp-action="Create">Yeni Oluştur</a>
+                                </div>
+                            </div>
+                            
                         </div>
                     }                          
             </div>
@@ -76,9 +98,10 @@
             @RenderBody()
     </div>
 
-    <footer>
+    <footer class="Footer">
         <div class="FooterMain">
-            Burası Footer Kısmı
+            Yardıma ihtiyacınız mı var ?
+            Admin@gmail.com'a mail atın.
         </div>
     </footer>
 
