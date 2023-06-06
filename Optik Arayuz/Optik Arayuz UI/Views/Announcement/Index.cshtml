@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Optik_Arayuz_UI.Models.Announcement>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+ 
+</head>
+
+    <div class="duyurularLabel">
+        <h3>Duyurular</h3>
+    </div>
+    <div class="duyurularContent">
+    @foreach (var item in Model)
+    {
+    <div class="duyuruCard">
+        <div class="cardTop">
+                <p>@Html.DisplayFor(modelItem => item.AnnouncementName)</p>
+                <p> @Html.DisplayFor(modelItem => item.AnnouncementDate)</p>
+        </div>
+        <div class="cardContent">
+                @Html.DisplayFor(modelItem => item.AnnouncementContent)
+        </div>
+        <div class="cardBottom">
+                <p>@Html.DisplayFor(modelItem => item.User.FirstName)</p>
+        </div>
+    </div>
+    }
+
+    </div>
+
+

@@ -6,8 +6,14 @@
 
 }
 .menuLeft {
-    display:flex;
-    flex-direction:column;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.menuRight {
+    flex-grow:2;
+    padding-right:50px;
 }
 .Links {
     display: flex;
@@ -15,9 +21,33 @@
     align-items: center;
 }
 .Duyurular {
-    width:500px;
-    height:400px;
-    border:1px solid black;
+    border-left: 1px solid black;
+    border-radius: 30px;
+    padding: 15px;
+
 }
 
 
+.duyurularLabel {
+    text-align: center;
+}
+
+.duyuruCard {
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px 0 20px;
+}
+
+.cardTop {
+    font-weight: bold;
+    padding-right: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardBottom {
+    padding-right: 20px;
+    text-align: end;
+    font-weight: bold;
+}

@@ -4,43 +4,38 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<head>
 
-<h4>Announcement</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <link rel="stylesheet" href="~/css/FormCard.css">
+    <link rel="stylesheet" href="~/css/button.css">
+</head>
+<div class="Ccontainer">
+    <div class="Card">
         <form asp-action="Create">
+            <input asp-for="UserId" type="hidden" value="1" />
+            <input asp-for="AnnouncementDate" type="hidden" value="1" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="AnnouncementName" class="control-label"></label>
-                <input asp-for="AnnouncementName" class="form-control" />
+            <div class="Row">
+                <label asp-for="AnnouncementName" class=""></label>
+                <input asp-for="AnnouncementName" class="" />
                 <span asp-validation-for="AnnouncementName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="AnnouncementContent" class="control-label"></label>
-                <input asp-for="AnnouncementContent" class="form-control" />
+            <div class="Row">
+                <label asp-for="AnnouncementContent" class=""></label>
+                <input asp-for="AnnouncementContent" class="" />
                 <span asp-validation-for="AnnouncementContent" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="AnnouncementDate" class="control-label"></label>
-                <input asp-for="AnnouncementDate" class="form-control" />
-                <span asp-validation-for="AnnouncementDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+            <div class="buton">
+                <input type="submit" value="Oluştur" class="button" />
             </div>
         </form>
     </div>
+    <div class="buton">
+        <a class="button" asp-action="Index">Duyuru Listesine Dön</a>
+    </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

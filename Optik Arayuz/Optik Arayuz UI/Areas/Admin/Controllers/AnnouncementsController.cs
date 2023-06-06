@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +15,12 @@ namespace Optik_Arayüz_UI.Areas.Admin.Controllers
     public class AnnouncementsController : Controller
     {
         private readonly OptikArayuzDbContext _context;
-
-        public AnnouncementsController(OptikArayuzDbContext context)
+        private readonly UserManager<User> _userManager;
+        public AnnouncementsController(OptikArayuzDbContext context,
+            UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Admin/Announcements
@@ -43,13 +46,12 @@ namespace Optik_Arayüz_UI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(announcement);
+            return PartialView(announcement);
         }
 
         // GET: Admin/Announcements/Create
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id");
             return View();
         }
 
@@ -62,6 +64,8 @@ namespace Optik_Arayüz_UI.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                announcement.UserId = _userManager.GetUserId(HttpContext.User);
+                announcement.AnnouncementDate = DateTime.Now.ToString();
                 _context.Add(announcement);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -84,7 +88,7 @@ namespace Optik_Arayüz_UI.Areas.Admin.Controllers
                 return NotFound();
             }
             ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", announcement.UserId);
-            return View(announcement);
+            return PartialView(announcement);
         }
 
         // POST: Admin/Announcements/Edit/5
@@ -120,7 +124,7 @@ namespace Optik_Arayüz_UI.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", announcement.UserId);
-            return View(announcement);
+            return PartialView(announcement);
         }
 
         // GET: Admin/Announcements/Delete/5
@@ -139,7 +143,7 @@ namespace Optik_Arayüz_UI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(announcement);
+            return PartialView(announcement);
         }
 
         // POST: Admin/Announcements/Delete/5

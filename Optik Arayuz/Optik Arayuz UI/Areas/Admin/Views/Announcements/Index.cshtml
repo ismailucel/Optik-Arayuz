@@ -4,50 +4,90 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.AnnouncementName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AnnouncementContent)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AnnouncementDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AnnouncementName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AnnouncementContent)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AnnouncementDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.AnnouncementId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AnnouncementId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.AnnouncementId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/button.css">
+
+    <title>Sınavlar</title>
+</head>
+
+<div class="content">
+
+    <div class="container">
+        <h2 class="mb-3" style="display:flex;justify-content:space-between;align-items:center;">Duyurular <a class='button blocked' asp-area="Admin" asp-controller="Announcements" asp-action="Create">Yeni Duyuru Oluştur</a></h2>
+
+        <div class="table-responsive">
+
+            <table class="table custom-table">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model => model.AnnouncementName)
+                        </th>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model => model.AnnouncementContent)
+                        </th>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model => model.AnnouncementDate)
+                        </th>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model => model.UserId)
+                        </th>
+                        <th scope="col"></th>
+                    </tr>
+
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AnnouncementName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AnnouncementContent)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AnnouncementDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.FirstName)
+                            </td>
+                            <td>
+                                <a class='button Edit' id="@item.AnnouncementId">Düzenle</a> |
+                                <a class='button Details' id="@item.AnnouncementId">Detaylar</a> |
+                                <a class='button Delete' id="@item.AnnouncementId">Sil</a>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="content">
+    <div id="rightContent">
+        <div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/jquery-3.3.1.min.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~/js/mainTable.js"></script>
+

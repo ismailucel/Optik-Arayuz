@@ -12,6 +12,7 @@ blockeds.forEach(item => {
 
 
 function clicked(e) {
+    console.log("aaa");
     var path = window.location.pathname;
     var right = document.querySelector("#box");
     if (right != null) {
@@ -19,8 +20,12 @@ function clicked(e) {
     }
     var id = parseInt(e.srcElement.id);
     var link = "";
+
     if (path.includes("ExamPapers")) {
         link = "/ExamPapers";
+    }
+    else if (path.includes("Announcements")) {
+        link = "/Admin/Announcements";
     }
     else if (path.includes("Exams")) {
         link = "/Exams";
@@ -31,6 +36,8 @@ function clicked(e) {
     else if (path.includes("Departments")) {
         link = "/Admin/Departments";
     }
+    
+    console.log(link);
     if (e.srcElement.classList.contains("Details")) {
         link = link+ "/Details";
 
@@ -43,6 +50,7 @@ function clicked(e) {
         link = link + "/Edit/"+id;
 
     }
+
     $.get(link, { id: id }, function (data) {
        
         let box = document.createElement('div');
