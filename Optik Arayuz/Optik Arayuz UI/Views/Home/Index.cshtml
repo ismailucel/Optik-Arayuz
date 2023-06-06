@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<Optik_Arayuz_UI.Models.Announcement>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -16,7 +18,24 @@
     </div>
     <div class="menuRight">
         <div class="Duyurular">
-            
+            <div class="duyurularLabel">
+                <h1>Duyurular</h1>
+            </div>
+            <div class="duyurularContent">
+                @foreach (var item in Model)
+                {
+                <div class="card">
+                    <h3 class="card__title">
+                            @Html.DisplayFor(modelItem => item.AnnouncementName)
+                    </h3>
+                        <p class="card__content">@Html.DisplayFor(modelItem => item.AnnouncementContent) </p>
+                    <div class="card__date">
+                            @Html.DisplayFor(modelItem => item.AnnouncementDate) - @Html.DisplayFor(modelItem => item.User.FirstName)
+                    </div>
+                </div>
+                }
+            </div>
+   
         </div>
     </div>
 

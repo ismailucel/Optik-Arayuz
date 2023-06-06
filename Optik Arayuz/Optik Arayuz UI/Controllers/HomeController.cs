@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Optik_Arayuz_UI.Data;
 using Optik_Arayuz_UI.Models;
 using System.Diagnostics;
 
@@ -8,22 +11,26 @@ namespace Optik_Arayüz_UI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly OptikArayuzDbContext _context;
+        private readonly UserManager<User> _userManager;
+        public HomeController(ILogger<HomeController> logger,OptikArayuzDbContext context,
+            UserManager<User> userManager)
         {
+            _context = context;
+            _userManager = userManager;
             _logger = logger;
         }
 
+
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var optikArayuzDbContext = _context.Announcements.Include(a => a.User).OrderByDescending(x => x.AnnouncementDate).Take(6);
+
+            return View(await optikArayuzDbContext.ToListAsync());
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+
         public IActionResult Help()
         {
             return View();
