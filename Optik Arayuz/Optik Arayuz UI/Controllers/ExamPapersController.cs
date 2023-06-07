@@ -53,7 +53,7 @@ namespace Optik_Arayüz_UI.Controllers
             return View();
 
         }
-        public IActionResult ExamPaperCopy(int? id)
+        public bool ExamPaperCopy(int? id)
         {
             var exampaper = _context.ExamPapers.First(m => m.ExamPaperId == id);
             exampaper.ExamPaperId = 0;
@@ -142,7 +142,7 @@ namespace Optik_Arayüz_UI.Controllers
                 _context.SaveChanges();
 
             }
-            return View();
+            return true;
 
         }
         public int CreateNewComponent(string type, int index)

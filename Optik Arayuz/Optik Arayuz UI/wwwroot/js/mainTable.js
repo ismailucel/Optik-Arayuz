@@ -12,7 +12,6 @@ blockeds.forEach(item => {
 
 
 function clicked(e) {
-    console.log("aaa");
     var path = window.location.pathname;
     var right = document.querySelector("#box");
     if (right != null) {
@@ -37,7 +36,6 @@ function clicked(e) {
         link = "/Admin/Departments";
     }
     
-    console.log(link);
     if (e.srcElement.classList.contains("Details")) {
         link = link+ "/Details";
 
