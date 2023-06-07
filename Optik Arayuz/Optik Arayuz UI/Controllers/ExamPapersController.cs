@@ -287,7 +287,11 @@ namespace Optik_Arayüz_UI.Controllers
                                 _context.Update(student);
                                 break;
                             case "Grade":
-
+                                var grades = _context.Grades.Where(m => m.GradeId == x.ComponentId).First();
+                                grades.XLength = ComponentsPartial._grades[index].XLength;
+                                grades.YLength = ComponentsPartial._grades[index].YLength;
+                                grades.QuestionCount = ComponentsPartial._grades[index].QuestionCount;
+                                _context.Update(grades);
                                 break;
                             case "Text":
                                 var text = _context.Texts.Where(m => m.TextId == x.ComponentId).First();
@@ -435,12 +439,12 @@ namespace Optik_Arayüz_UI.Controllers
                         values = values + "/" + x.Type + "_" + x.X + "_" + x.Y;
 
                         break;
-                    /*case "Grade":
+                    case "Grade":
                         Grade grade = _context.Grades.Where(m => m.GradeId == x.ComponentId).FirstOrDefault();
                         ComponentsPartial._grades.Add(grade);
                         values = values + "/" + x.Type+"_"+x.X+"_"+x.Y;
 
-                        break;*/
+                        break;
                     case "Text":
                         Text text = _context.Texts.Where(m => m.TextId == x.ComponentId).FirstOrDefault();
                         ComponentsPartial._texts.Add(text);

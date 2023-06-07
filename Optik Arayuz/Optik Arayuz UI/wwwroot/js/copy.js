@@ -16,9 +16,10 @@ function clicked() {
     var id = select.value;
     var link = "/ExamPapers/ExamPaperCopy";
     $.get(link, { id: id }, function () {
+        var text = "Kopyalanan Kağıdı Sınav Kağıdı Sekmesineden Düzenleyebilirsiniz";
+        localStorage.setItem("alert", text);
+        location.reload();
     });
-    var text = "Kopyalanan Kağıdı Sınav Kağıdı Sekmesineden Düzenleyebilirsiniz";
-    localStorage.setItem("alert", text);
-    location.reload();
+   
 
 }

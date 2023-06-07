@@ -31,15 +31,15 @@ namespace Optik_Arayüz_UI.Controllers
         {
             if (flag == true)
             {
-                _students = new List<Student>{ new Student(){XLength = 100,YLength = 100,}};
+                _students = new List<Student> { new Student() { XLength = 100, YLength = 100, } };
 
-                _choices = new List<Choice> { new Choice(){ChoiceCount = 2,XLength = 102,YLength = 40,Label = "Kitap türü",Choices = "A-B"}};
+                _choices = new List<Choice> { new Choice() { ChoiceCount = 2, XLength = 102, YLength = 40, Label = "Kitap türü", Choices = "A-B" } };
 
-                _logos = new List<Logo> {new Logo() {XLength = 102,YLength = 42,ImagePath = "googleturtle.png" } };
+                _logos = new List<Logo> { new Logo() { XLength = 102, YLength = 42, ImagePath = "googleturtle.png" } };
 
-                _numbers = new List<Optik_Arayuz_UI.Models.Number> {new Optik_Arayuz_UI.Models.Number() {XLength = 184,YLength = 237,Length = 10,Label = "Ogr",Columns="0",Values=""}};
+                _numbers = new List<Optik_Arayuz_UI.Models.Number> { new Optik_Arayuz_UI.Models.Number() { XLength = 184, YLength = 237, Length = 10, Label = "Ogr", Columns = "0", Values = "" } };
 
-                _grades = new List<Grade>();
+                _grades = new List<Grade> { new Grade() { XLength = 399, YLength = 213, QuestionCount = 10 } };
 
                 _texts = new List<Text> { new Text() { TextContent= "sa",FontSize = 16,FontType = "Calibri"}};
 
@@ -164,6 +164,41 @@ namespace Optik_Arayüz_UI.Controllers
         }
         public IActionResult Grade(string value)
         {
+            int n = 0;
+
+            if (value != null)
+            {
+                var did = value.Split("/");
+                if (did.Length == 1)
+                {
+                    n = Convert.ToInt32(did[0]);
+                }
+                else
+                {
+                    n = Convert.ToInt32(did[3].Substring(did[3].Length - 1));
+
+                    _grades[n].XLength = Convert.ToDouble(did[0]);
+                    _grades[n].YLength = Convert.ToDouble(did[1]);
+                    _grades[n].QuestionCount = Convert.ToInt32(did[2]);
+                   
+                }
+            }
+            else
+            {
+                _grades.Add(new Optik_Arayuz_UI.Models.Grade()
+                {
+                    XLength = _grades[0].XLength,
+                    YLength = _grades[0].YLength,
+                    QuestionCount = _grades[0].QuestionCount,
+                   
+                });
+            }
+
+            ViewData["x"] = _grades[n].XLength;
+            ViewData["y"] = _grades[n].YLength;
+            ViewData["Length"] = _grades[n].QuestionCount;
+            
+
             return PartialView();
         }
 
@@ -312,7 +347,8 @@ namespace Optik_Arayüz_UI.Controllers
 
                     break;
                 case "Grade":
-
+                    TempData["labels"] = new string[] { "Width", "Height","Question Count"};
+                    TempData["values"] = new string[] { _grades[j].XLength.ToString(), _grades[j].YLength.ToString() , _grades[j].QuestionCount.ToString() };
                     break;
                 case "Text":
                     TempData["labels"] = new string[] { "Content", "FontSize", "FontType" };

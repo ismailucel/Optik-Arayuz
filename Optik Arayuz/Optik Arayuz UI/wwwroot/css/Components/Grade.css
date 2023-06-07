@@ -1,34 +1,67 @@
-.A4{
-    height: 1123px;
-    width:794px;
-    background-color: white;
-    position: relative;
-}
-
-
-.container{
-    margin-right: 2%;
-    margin-left: 2%; 
-    background-color: rgb(163, 206, 235);
-    padding: 10px;
-    display: flex;
-    justify-content: space-around;
-}
-
-.dragging{
-    opacity: 0.5;
+.grade {
     border: 1px solid black;
+    display: flex;
 }
 
-.leftstripes{
-    position: absolute;
-    left: 10px;
-    top: 100px;
+.gradeColumn {
+    flex-grow:1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1.2px solid black;
+}
+.gradeColumn:last-child {
+    border-right:0px;
 }
 
-.leftstripes div{
-    width: 10px;
-    height: 5px;
-    background-color: black;
-    margin-top: 10px;
+    .label {
+        text-align: center;
+    }
+
+.empty span {
+    width: 100%;
+    margin: 0px;
+    height: 16px;
+    border: 0.75px solid black;
+    border-left: 0px;
+}
+
+    .empty span:last-child {
+        border-right: 0px;
+    }
+
+.empty {
+    display: flex;
+}
+
+.bottom {
+
+    display: flex;
+    border-right: 0.5px solid;
+}
+
+.bottomColumn {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.circles {
+    margin: 0.75px;
+    font-size: smaller;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 12px;
+    width: 12px;
+    padding: 1px;
+    border: 0.5px solid black;
+    border-radius: 50%;
+}
+
+.bottom:last-child {
+    border-right: 0px;
 }
