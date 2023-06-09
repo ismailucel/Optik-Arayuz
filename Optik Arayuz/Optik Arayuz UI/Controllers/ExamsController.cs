@@ -128,8 +128,7 @@ namespace Optik_Arayüz_UI.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ExamPaperId"] = new SelectList(_context.ExamPapers, "ExamPaperId", "ExamPaperId", exam.ExamPaperId);
-            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", exam.UserId);
+            ViewData["ExamPaperId"] = new SelectList(_context.ExamPapers, "ExamPaperId", "ExamPaperName", exam.ExamPaperId);
             return PartialView(exam);
         }
 

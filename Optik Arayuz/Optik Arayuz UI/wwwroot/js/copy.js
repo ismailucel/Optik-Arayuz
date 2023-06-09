@@ -1,5 +1,6 @@
 ﻿var button = document.querySelector("#copy");
 var alerttext = localStorage.getItem("alert");
+//Local Stroge kontrol ediliyor. var ise değerler atanıyor.
 if (alerttext != null) {
     var text = document.getElementById("alert");
     text.innerText = alerttext;
@@ -20,6 +21,9 @@ button.addEventListener('mousedown', clicked);
 var select = document.getElementById("select");
 var lastValue = select.options[select.options.length - 1].value;
 select.value = lastValue;
+
+
+//Copy butonu tıklanınca sınav kağıdını kopyalayan fonksiyon.
 function clicked() {
     var select = document.getElementById("select");
     var id = select.value;

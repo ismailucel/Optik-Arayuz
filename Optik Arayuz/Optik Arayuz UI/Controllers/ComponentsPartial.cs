@@ -10,6 +10,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Optik_Arayüz_UI.Controllers
 {
+    //Exam Paperdaki Componentleri yöneten Controller. Her Componentin ayrı css ve cshtmlleri mevcuttur.
     public class ComponentsPartial : Controller
     {
         public static List<Choice>? _choices;
@@ -22,6 +23,7 @@ namespace Optik_Arayüz_UI.Controllers
         public static bool flag = true;
 
         private readonly OptikArayuzDbContext _context;
+        //Componentlerin Veritabanı Stun sayıları
         public enum Columns
         {
             Logo = 3, Number = 6, Student = 2, Grade = 3, Choice = 5, Text = 3, Test = 4
@@ -29,13 +31,14 @@ namespace Optik_Arayüz_UI.Controllers
 
         public ComponentsPartial(OptikArayuzDbContext context)
         {
+            //Statik olarak her sayfada aynı componentler kullanılıyor. Componentlerin default değerleri atanıyor. Sürükle bırak menüsündeki elemanların default değerleri.
             if (flag == true)
             {
-                _students = new List<Student> { new Student() { XLength = 100, YLength = 100, } };
+                _students = new List<Student> { new Student() { XLength = 125, YLength = 60, } };
 
                 _choices = new List<Choice> { new Choice() { ChoiceCount = 2, XLength = 102, YLength = 40, Label = "Kitap türü", Choices = "A-B" } };
 
-                _logos = new List<Logo> { new Logo() { XLength = 102, YLength = 42, ImagePath = "googleturtle.png" } };
+                _logos = new List<Logo> { new Logo() { XLength = 102, YLength = 42, ImagePath = "SauLogo.png" } };
 
                 _numbers = new List<Optik_Arayuz_UI.Models.Number> { new Optik_Arayuz_UI.Models.Number() { XLength = 184, YLength = 237, Length = 10, Label = "Ogr", Columns = "0", Values = "" } };
 
@@ -56,8 +59,7 @@ namespace Optik_Arayüz_UI.Controllers
         public IActionResult Logo(string value)
         {
             int n = 0;
-
-
+            //JS'den gelen value değeri okunuyor. Value yok ise yeni oluşturulur ve default değerler gönderilir. Valuede sadece int değer var ise index değeri olarak atanır ve özellikleri döndürülür. Valuede input değerleri var ise yeni component oluşturulur ve değerleri atanır.
             if (value != null)
             {
                 var did = value.Split("/");
@@ -82,6 +84,7 @@ namespace Optik_Arayüz_UI.Controllers
                     ImagePath = _logos[0].ImagePath,
                 });
             }
+            //Component Değerleri view'e gönderiliyor.
             ViewData["src"] = _logos[n].ImagePath;
             ViewData["x"] = _logos[n].XLength;
             ViewData["y"] = _logos[n].YLength;
@@ -89,6 +92,7 @@ namespace Optik_Arayüz_UI.Controllers
         }
         public IActionResult Number(string value)
         {
+            //JS'den gelen value değeri okunuyor. Value yok ise yeni oluşturulur ve default değerler gönderilir. Valuede sadece int değer var ise index değeri olarak atanır ve özellikleri döndürülür. Valuede input değerleri var ise yeni component oluşturulur ve değerleri atanır.
             int n = 0;
 
             if (value != null)
@@ -121,6 +125,7 @@ namespace Optik_Arayüz_UI.Controllers
                     Values = _numbers[0].Values
                 });
             }
+            //Component Değerleri view'e gönderiliyor.
 
             ViewData["x"] = _numbers[n].XLength;
             ViewData["y"] = _numbers[n].YLength;
@@ -133,6 +138,7 @@ namespace Optik_Arayüz_UI.Controllers
         }
         public IActionResult Student(string value)
         {
+            //JS'den gelen value değeri okunuyor. Value yok ise yeni oluşturulur ve default değerler gönderilir. Valuede sadece int değer var ise index değeri olarak atanır ve özellikleri döndürülür. Valuede input değerleri var ise yeni component oluşturulur ve değerleri atanır.
 
             int n = 0;
             if (value != null)
@@ -156,6 +162,7 @@ namespace Optik_Arayüz_UI.Controllers
                     YLength = _students[0].YLength,
                 });
             }
+            //Component Değerleri view'e gönderiliyor.
 
             ViewData["x"] = _students[n].XLength;
             ViewData["y"] = _students[n].YLength;
@@ -164,6 +171,8 @@ namespace Optik_Arayüz_UI.Controllers
         }
         public IActionResult Grade(string value)
         {
+            //JS'den gelen value değeri okunuyor. Value yok ise yeni oluşturulur ve default değerler gönderilir. Valuede sadece int değer var ise index değeri olarak atanır ve özellikleri döndürülür. Valuede input değerleri var ise yeni component oluşturulur ve değerleri atanır.
+
             int n = 0;
 
             if (value != null)
@@ -193,6 +202,7 @@ namespace Optik_Arayüz_UI.Controllers
                    
                 });
             }
+            //Component Değerleri view'e gönderiliyor.
 
             ViewData["x"] = _grades[n].XLength;
             ViewData["y"] = _grades[n].YLength;
@@ -204,6 +214,8 @@ namespace Optik_Arayüz_UI.Controllers
 
         public IActionResult Choice(string value)
         {
+            //JS'den gelen value değeri okunuyor. Value yok ise yeni oluşturulur ve default değerler gönderilir. Valuede sadece int değer var ise index değeri olarak atanır ve özellikleri döndürülür. Valuede input değerleri var ise yeni component oluşturulur ve değerleri atanır.
+
             int n = 0;
             if (value != null)
             {
@@ -232,6 +244,7 @@ namespace Optik_Arayüz_UI.Controllers
                     Choices = _choices[0].Choices
                 });
             }
+            //Component Değerleri view'e gönderiliyor.
 
             ViewData["x"] = _choices[n].XLength;
             ViewData["y"] = _choices[n].YLength;
@@ -244,6 +257,8 @@ namespace Optik_Arayüz_UI.Controllers
 
         public IActionResult Text(string value)
         {
+            //JS'den gelen value değeri okunuyor. Value yok ise yeni oluşturulur ve default değerler gönderilir. Valuede sadece int değer var ise index değeri olarak atanır ve özellikleri döndürülür. Valuede input değerleri var ise yeni component oluşturulur ve değerleri atanır.
+
             int n = 0;
             if (value != null)
             {
@@ -268,6 +283,7 @@ namespace Optik_Arayüz_UI.Controllers
                     FontType = _texts[0].FontType
                 });
             }
+            //Component Değerleri view'e gönderiliyor.
 
             ViewData["content"] = _texts[n].TextContent;
             ViewData["Size"] = _texts[n].FontSize;
@@ -277,6 +293,8 @@ namespace Optik_Arayüz_UI.Controllers
         }
         public IActionResult Test(string value)
         {
+            //JS'den gelen value değeri okunuyor. Value yok ise yeni oluşturulur ve default değerler gönderilir. Valuede sadece int değer var ise index değeri olarak atanır ve özellikleri döndürülür. Valuede input değerleri var ise yeni component oluşturulur ve değerleri atanır.
+
             int n = 0;
             if (value != null)
             {
@@ -303,6 +321,7 @@ namespace Optik_Arayüz_UI.Controllers
                     BreakPoint = _tests[0].BreakPoint,
                 });
             }
+            //Component Değerleri view'e gönderiliyor.
 
             ViewData["x"] = _tests[n].XLength;
             ViewData["y"] = _tests[n].YLength;
@@ -312,18 +331,24 @@ namespace Optik_Arayüz_UI.Controllers
         }
         public IActionResult Inputs()
         {
+            //Viewdeki inputların değerlerin viewe gönderen fonksiyon.
+
+
+            //Component Adı ve Index numarası path yoluyla gönderilir.
             string Forum = Request.Path.Value;
             var temp = Forum.Split("/");
             int j = 0;
             string componentName = temp[temp.Length - 1];
 
+            //Component name'i bulunur. Örnek Choice2
             var index = int.TryParse(componentName.Substring((componentName.Length - 1)), out int n);
             if (index != false)
             {
                 j = Convert.ToInt32(componentName.Substring(componentName.Length - 1));
                 componentName = componentName.Substring(0, (componentName.Length - 1));
             }
-
+            //Örnek : componentName = Choice , j = 2
+            //İnputların labelları ve değerleri atanır viewe gönderilir.
             switch (componentName)
             {
                 case "Choice":
@@ -364,15 +389,12 @@ namespace Optik_Arayüz_UI.Controllers
 
             }
 
+            //Sütun sayısı bulunur viewe gönderilir.
             int columnNumber = (int)Enum.Parse(typeof(Columns), componentName);
 
             ViewData["columnNumber"] = columnNumber;
             return PartialView();
         }
-        public string SendDatabase(string value)
-        {
-            Console.WriteLine(value);
-            return "true";
-        }
+        
     }
 }

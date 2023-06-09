@@ -1,24 +1,31 @@
 .student {
     border: 1px solid black;
-    width: 175px;
     display: flex;
+    gap:5px;
 }
-
-.line {
-    height: 20px;
-    border-bottom: 1px dotted black;
-}
-
 .sright {
-    margin-right: 4px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    display: flex;
+    flex-grow: 4;
+    flex-direction: column;
+    justify-content: space-between;
 }
-
-.dots {
-    padding: 2px;
+.sline {
+    width:100%;
+    height: 10px;
+    border-bottom: 1px dotted black;
+    margin-top:4px;
 }
 
 .row {
     padding: 2px;
 }
-
+.sleft {
+    padding-left: 5px;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    justify-content: space-between;
+}
 

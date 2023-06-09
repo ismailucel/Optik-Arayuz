@@ -3,14 +3,16 @@
     "",
     "\\Optik Arayuz",
     "\\Optik Arayuz\\Optik Arayuz UI",
+    "\\Optik Arayuz\\Optik Arayuz UI\\Areas",
+    "\\Optik Arayuz\\Optik Arayuz UI\\Areas\\Identity",
+    "\\Optik Arayuz\\Optik Arayuz UI\\Areas\\Identity\\Pages",
+    "\\Optik Arayuz\\Optik Arayuz UI\\Areas\\Identity\\Pages\\Account",
+    "\\Optik Arayuz\\Optik Arayuz UI\\Controllers",
+    "\\Optik Arayuz\\Optik Arayuz UI\\Models",
     "\\Optik Arayuz\\Optik Arayuz UI\\Views",
-    "\\Optik Arayuz\\Optik Arayuz UI\\Views\\ExamPapers",
-    "\\Optik Arayuz\\Optik Arayuz UI\\Views\\Home",
     "\\Optik Arayuz\\Optik Arayuz UI\\wwwroot",
-    "\\Optik Arayuz\\Optik Arayuz UI\\wwwroot\\css",
-    "\\Optik Arayuz\\Optik Arayuz UI\\wwwroot\\css\\Components",
-    "\\Optik Arayuz\\Optik Arayuz UI\\wwwroot\\js"
+    "\\Optik Arayuz\\Optik Arayuz UI\\wwwroot\\css"
   ],
-  "SelectedNode": "\\Optik Arayuz\\Optik Arayuz UI\\Views\\ExamPapers\\ExamPaperCreate.cshtml",
+  "SelectedNode": "\\Optik Arayuz\\Optik Arayuz UI\\wwwroot\\css\\exam.css",
   "PreviewInSolutionExplorer": false
 }

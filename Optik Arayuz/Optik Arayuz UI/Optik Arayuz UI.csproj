@@ -27,10 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\UploadedLogoImage\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="Areas\Admin\Views\Faculties\Create.cshtml" />
     <None Include="Areas\Admin\Views\Faculties\Delete.cshtml" />
     <None Include="Areas\Admin\Views\Faculties\Details.cshtml" />

@@ -55,6 +55,9 @@ namespace Optik_Arayüz_UI.Controllers
         }
         public bool ExamPaperCopy(int? id)
         {
+            //Sınav Kağıdını Kopyalama işlemini gerçekleştiren fonksiyon.
+
+            //Öncelikle kopyalanan kağıdın nameine Kopya ibaresi eklenerek yeniden ekleniyor ve Idsi alınıyor.
             var exampaper = _context.ExamPapers.First(m => m.ExamPaperId == id);
             exampaper.ExamPaperId = 0;
             exampaper.ExamPaperName = exampaper.ExamPaperName + " Kopya";
@@ -62,13 +65,16 @@ namespace Optik_Arayüz_UI.Controllers
             _context.ExamPapers.Add(exampaper);
             _context.SaveChanges();
             var paperId = _context.ExamPapers.OrderBy(m => m.ExamPaperId).Last().ExamPaperId;
+            //Kopyalanacak kağıdın bütün elementleri getiriliyor.
             var elements = _context.ExamPaperElements.Where(m => m.ExamPaperId == id).ToList();
+            //Her elementin sınav kağıdı Idsi yeni ıd ile güncellenerek tekrardan ekleniyor.
             foreach (var element in elements) { 
                 element.ExamPaperElementId = 0;
                 element.ExamPaperId = paperId;
                 _context.ExamPaperElements.Add(element);
             }
             _context.SaveChanges();
+            //Her Elementin belirttiği componentler getirtilip onlarda kopyalanıyor. Yeni ıdleri examPapersElements kayıtınında yerini alıyor.
             var components = _context.ExamPaperElements.Where(m => m.ExamPaperId == paperId).ToList();
             foreach (var component in components) {
                 switch (component.Type)
@@ -147,6 +153,7 @@ namespace Optik_Arayüz_UI.Controllers
         }
         public int CreateNewComponent(string type, int index)
         {
+            //Elementin  kendi tablosunda yeni kayıt oluşturma fonksiyonu. Oluşturduktan sonra İd bilgisi geri döndürülür.
             switch (type)
             {
                 case "Choice":
@@ -195,12 +202,14 @@ namespace Optik_Arayüz_UI.Controllers
         {
             var paperId = _context.ExamPapers.OrderBy(m => m.ExamPaperId).Last().ExamPaperId;
             int id = 0;
+            //Her elementin öncelikle kendi tablosunda yeni kaydı oluşturulur. Daha sonra ExamPaperElements tablosunda yeni kayıt oluşturularak konum ve tür bilgileri kaydedilir.
+            //Yeni kayıta sınavKağıdı id bilgisi verilerek kağıtların elementleri oluşturulur.
             for (int i = 0; i < components.Length; i++)
             {
                 var attr = components[i].Split("_");
                 int index = Convert.ToInt32(attr[0].Substring(attr[0].Length - 1));
                 var type = attr[0][..^1];
-
+                //Elementin  kendi tablosunda yeni kayıt oluşturma fonksiyonu. Oluşturduktan sonra İd bilgisi geri döndürülür.
                 id = CreateNewComponent(type, index);
 
                 ExamPaperElement examPaperElement = new ExamPaperElement()
@@ -219,13 +228,16 @@ namespace Optik_Arayüz_UI.Controllers
         }
         public string SendDatabase(string value)
         {
+            //Elementleri Veritabanına gönderen fonksiyon. Eğer başında id var ise edit sayfasıdır. Yok ise yeni oluşturulmuştur. Farklı işlemler yapılacaktır.
             string[] components = value.Split("/");
             if (components[0].Contains('+'))
             {
+                //İd var ise
                 editDatabase(components);
             }
             else
             {
+                //İd yok ise
                 CreateNewExamPaper(components);
             }
             clear();
@@ -233,20 +245,24 @@ namespace Optik_Arayüz_UI.Controllers
         }
         public bool editDatabase(string[] components)
         {
+            //ExamPaperId bulunarak veritabanından eski element değerleri getiriliyor.
             var paperId = Convert.ToInt32(components[0][..^1]);
             var examPaperElements = _context.ExamPaperElements.Where(m => m.ExamPaperId == paperId).ToList();
+
             string[] copy = (string[])components.Clone();
             copy = copy.Skip(1).ToArray();
-
+            //Veritabanındaki her element için işlem yapılıyor.
             foreach (var x in examPaperElements)
             {
                 bool flag = true;
-
+                //Gönderilen Her element için işlem yapılıyor.
                 for (int i = 0; i < copy.Length; i++)
                 {
+                    //Element özellikleri gönderilen valueden parse ediliyor.
                     var attr = copy[i].Split("_");
                     int index = Convert.ToInt32(attr[0].Substring(attr[0].Length - 1));
                     var type = attr[0][..^1];
+                    //Eğer veritabanındaki element ile valuedeki elementtin tipi aynı ise edit vardır. Component türüne göre atamalar yapılıp veritabanı güncellenir.
                     if (type == x.Type)
                     {
                         flag = false;
@@ -315,11 +331,13 @@ namespace Optik_Arayüz_UI.Controllers
                         }
                         _context.Update(x);
                         _context.SaveChanges();
+                        //İşlem yapılan veri copyden silinir.
                         copy = copy.Skip(1).ToArray();
                         break;
                     }
 
                 }
+                //Copy valuesundaki değerler veritabanındaki değerlerle eşit değilse delete işlemi yapılmıştır. Belirlenen Componentler veri tabanından silinir.
                 if (flag)
                 {
                     switch (x.Type)
@@ -343,12 +361,12 @@ namespace Optik_Arayüz_UI.Controllers
                             _context.Students.Remove(student);
 
                             break;
-                        /*case "Grade":
+                        case "Grade":
                             var grade =_context.Grades.Where(m => m.GradeId == x.ComponentId).First();
                             _context.Grades.Remove(grade);
                         
                             break;
-                        */
+                        
                         case "Text":
                             var text = _context.Texts.Where(m => m.TextId == x.ComponentId).First();
                             _context.Texts.Remove(text);
@@ -369,6 +387,7 @@ namespace Optik_Arayüz_UI.Controllers
                 }
 
             }
+            //Bütün işlem bittiğinde elimizde element valuesu kaldıysa yeni element eklenmiştir. Türüne göre yeni ExamPaperElement kayıtları eklenir.
             if (copy.Length > 0)
             {
                 for (int i = 0; i < copy.Length; i++)
@@ -397,10 +416,11 @@ namespace Optik_Arayüz_UI.Controllers
         }
         public void clear()
         {
+            //Componentlerin defaultlar dışındaki silen fonksiyon.
             ComponentsPartial._choices.RemoveRange(1, ComponentsPartial._choices.Count - 1);
             ComponentsPartial._logos.RemoveRange(1, ComponentsPartial._logos.Count - 1);
             ComponentsPartial._numbers.RemoveRange(1, ComponentsPartial._numbers.Count - 1);
-            //ComponentsPartial._grades.RemoveRange(1, ComponentsPartial._grades.Count-1);
+            ComponentsPartial._grades.RemoveRange(1, ComponentsPartial._grades.Count-1);
             ComponentsPartial._texts.RemoveRange(1, ComponentsPartial._texts.Count - 1);
             ComponentsPartial._tests.RemoveRange(1, ComponentsPartial._tests.Count - 1);
             ComponentsPartial._students.RemoveRange(1, ComponentsPartial._students.Count - 1);
@@ -408,12 +428,14 @@ namespace Optik_Arayüz_UI.Controllers
 
         public string getExamPaperComponents(int id)
         {
+            //Sınav Kağıdı Id si olan bütün ExamPaperElementsler getiriliyor.
             var examPaperElements = _context.ExamPaperElements.Where(m => m.ExamPaperId == id).ToList();
 
             string values = "";
 
             foreach (var x in examPaperElements)
             {
+                //Her elementin tipine göre işlem yapılıyor. Component idsine göre component özellikleri getirilip statik değişkenlere ekleniyor.
                 switch (x.Type)
                 {
                     case "Choice":
@@ -470,9 +492,11 @@ namespace Optik_Arayüz_UI.Controllers
             return (values);
         }
 
+
         [HttpPost]
         public async Task<IActionResult> UploadLogo(string index)
         {
+            //Logo Componentinin yeni logo yükleme fonksiyonu
             if (Request.Form.Files.Count > 0)
             {
                 var fileName = Path.GetFileName(Request.Form.Files[0].FileName);

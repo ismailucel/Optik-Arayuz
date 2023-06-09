@@ -17,6 +17,8 @@ var clickedId = "";
 var tempx = 0;
 var tempy = 0;
 
+
+//Edit sayfasý olup olmadýðý kontol ediliyor. Edit sayfasý ise path yoluyla id deðeri alýnýyor.
 var getValue = () => {
     var path = window.location.pathname.split("/");
     try {
@@ -27,6 +29,7 @@ var getValue = () => {
 var idValue = getValue();
 
 if (Number.isInteger(idValue)) {
+    //Ýd var ise Edit sayfasýdýr. Veritabanýndan componentleri getiren ExamPapersContollerstan getExamPaperComponents fonksiyonu çaðrýlýyor.
     var link = "/ExamPapers/getExamPaperComponents";
     $.get(link, { id: idValue }, function (data) {
         var draggable = document.getElementById("Number");
@@ -34,6 +37,7 @@ if (Number.isInteger(idValue)) {
         components.forEach(function (component) {
             var values = component.split("_");
 
+            //Her Elementin deðerleri atanarak A4 divine ekleniyor.
             let clone = draggable.cloneNode(true);
             clone.style.top = values[2] + "px";
             clone.style.left = values[1] + "px";
@@ -47,6 +51,7 @@ if (Number.isInteger(idValue)) {
             count[values[0]] += 1;
             clickedId = clone.id;
 
+            //Elementin deðerleri atandýktan sonra partialviewini oluþturmak için controllerýna istek atýlýyor.
             $.get(link, { value: sendvalue }, function (data) {
                 $('#' + clone.id).html(data);
             });
@@ -61,37 +66,34 @@ if (Number.isInteger(idValue)) {
 }
 
 
-
+//EventListenerlar ayarlanýyor.
 button.addEventListener('click', clicked);
-
 items.forEach(item => {
     item.addEventListener('dragstart', dragStart);
     item.addEventListener('mousedown', mouseDown);
 
 });
-
-
 deleteBox.addEventListener('drop', deleteBoxdrop);
 right.addEventListener('mouseenter', mouseEnter);
 box.addEventListener('dragenter', dragEnter)
 box.addEventListener('dragover', dragOver);
 box.addEventListener('dragleave', dragLeave);
 box.addEventListener('drop', drop);
-
 deleteBox.addEventListener('dragover', deletedragOver);
 deleteBox.addEventListener('drop', deleteBoxdrop);
 
+//Componentlerin veri tabanýna gönderilmesini saðlayan fonksiyon.
 function clicked() {
     var paperitems = getPaperItems();
     var values = "";
-
+    //Her elementin konum bilgileri tek bir string valuesine ekleniyor. Diðer bilgileri zaten componentspartialýn statik deðiþkenlerinde mevcut.
     for (var i = 0; i < paperitems.length; i++) {
         values = values +"/"+ paperitems[i].id +"_"+ parseInt(paperitems[i].style.left, 10) +"_"+ parseInt(paperitems[i].style.top, 10);
     }
 
 
-
     var link = "/ExamPapers/SendDatabase";
+    //Eðer edit sayfasýysa gönderilen deðerin baþýna exampaper id numarasý yazýlýyor
     if (!isNaN(idValue)) {
         values = idValue + "+" + values;
     }
@@ -104,6 +106,8 @@ function clicked() {
         }
     });
 }
+
+//Týklanan Componentin Ýnput viewi ve deðerleri alýnýyor.
 function mouseDown(e) {
     var mouse = window.event;
     var coordinat = box.getBoundingClientRect();
@@ -126,6 +130,8 @@ function mouseDown(e) {
     });
 
 }
+
+
 function mouseEnter() {
     var inputs = document.getElementsByClassName("input");
     for (var i = 0; i < inputs.length; i++) {
@@ -138,6 +144,7 @@ function mouseEnter() {
 
     }
 }
+//Ýnput deðeri deðiþtiði zaman deðiþen componentin yeni viewini getiren fonksiyon
 function Change(e) {
     var id = clickedId;
     var inputs = document.getElementsByClassName("input");
@@ -158,6 +165,8 @@ function Change(e) {
 function deletedragOver(e) {
     e.preventDefault();
 }
+
+//Delete box fonksiyonu. Elementi siliyor.
 function deleteBoxdrop(e) {
     const id = e.dataTransfer.getData('text/plain');
     const element = document.getElementById(id);
@@ -186,6 +195,7 @@ function dragOver(e) {
 function dragLeave(e) {
     box.classList.remove("dragging");
 }
+
 
 function drop(e) {
     deleteBox.classList.remove("delete");
@@ -235,11 +245,12 @@ function drop(e) {
     }
 }
 
-
+//A4 divinin içerisindeki bütün elementleri getiren fonksiyon
 function getPaperItems() {
     return box.getElementsByClassName("item");
 }
 
+//Collision tespit eden fonksiyonlar
 function isCollide(a, b, x, y) {
     var atop = parseInt(a.style.top, 10);
     var aleft = parseInt(a.style.left, 10);
@@ -264,7 +275,6 @@ function boxIsCollide(b, x, y) {
     }
     else { return false; }
 }
-
 function checkCollide(element, x, y) {
     var paperItems = getPaperItems();
     for (let i = 0; i < paperItems.length; i++) {
@@ -281,6 +291,7 @@ function checkCollide(element, x, y) {
 }
 
 
+//Logo Componentinin inputunun Controllera Dosya göndermesini saðlayan fonksiyon.
 function submit(e) {
     e.preventDefault();
     var sendvalue = clickedId.substring(clickedId.length - 1);
